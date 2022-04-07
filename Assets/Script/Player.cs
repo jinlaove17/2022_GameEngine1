@@ -17,33 +17,43 @@ public class Player : MonoBehaviour
     private Animator _anim;
     private CharacterController _controller;
     private Camera cam;
+    private GameObject explosion;
     
     // 캐릭터 공격
     private float elapsed;
     public float shakingDelay;
-    private bool attackReady;
+    private bool shakingReady;
+    private bool underAttack;
     
     // 카메라 회전
     public bool toggleCameraRotation;
     public float smoothness = 10f;
     
     // 키 입력
-    bool fDown;
+    private bool f1Down;
+    private bool f2Down;
+    private bool f3Down;
+    
     void GetInput()
     {
-        fDown = Input.GetButton("Fire1");
+        f1Down = Input.GetButton("Fire1");
+        f2Down = Input.GetButton("Fire2");
+        f3Down = Input.GetButton("Fire3");
     }
     private void Awake()
     {
         _anim = this.GetComponent<Animator>();
         _controller = this.GetComponent<CharacterController>();
         cam = Camera.main;
+        explosion = GameObject.Find("ExplosionEffect");
+        explosion.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
         GetInput();
+        ShakeCamera();
         Attack();
         Move();
         
@@ -69,34 +79,60 @@ public class Player : MonoBehaviour
 
     void Move()
     {
-        Vector3 forward = transform.TransformDirection(Vector3.forward);
-        Vector3 right = transform.TransformDirection(Vector3.right);
+        if (!underAttack)
+        {
+            Vector3 forward = transform.TransformDirection(Vector3.forward);
+            Vector3 right = transform.TransformDirection(Vector3.right);
 
-        Vector3 moveDirection = forward * Input.GetAxisRaw("Vertical") + right * Input.GetAxisRaw("Horizontal");
+            Vector3 moveDirection = forward * Input.GetAxisRaw("Vertical") + right * Input.GetAxisRaw("Horizontal");
 
-        _controller.Move(moveDirection.normalized * speed * Time.deltaTime);
-        
-        _anim.SetBool("IS_RUN", moveDirection != Vector3.zero);
-        print(moveDirection);
+            _controller.Move(moveDirection.normalized * speed * Time.deltaTime);
+
+            _anim.SetBool("IS_RUN", moveDirection != Vector3.zero);
+        }
     }
     void Attack()
     {
-        if (fDown)
+        if (!underAttack && f1Down)
         {
             elapsed = 0;
-            attackReady = true;
-            _anim.SetTrigger("DO_ATTACK");
+            shakingReady = true;
+            underAttack = true;
+            _anim.SetTrigger("DO_ATTACK1");
+            Invoke("AttackDisable", 5f);
         }
-       
-        if (attackReady)
+
+        else if (!underAttack && f2Down)
+        {
+            underAttack = true;
+            _anim.SetTrigger("DO_ATTACK2");
+            Invoke("AttackDisable", 2f);
+        }
+        else if (!underAttack && f3Down)
+        {
+            underAttack = true;
+            //explosion.SetActive(true);
+            _anim.SetTrigger("DO_ATTACK3");
+            Invoke("AttackDisable", 1.3f);
+        }
+    }
+    void ShakeCamera()
+    {
+        if (shakingReady)
         {
             elapsed += Time.deltaTime;
             if (shakingDelay < elapsed)
             {
                 StartCoroutine(CameraShake.Shake(duration, magnitude));
-                attackReady = false;
+                shakingReady = false;
             }
-        
         }
     }
+    
+    void AttackDisable()
+    {
+        underAttack = false;
+        explosion.SetActive(false);
+    }
+
 }
