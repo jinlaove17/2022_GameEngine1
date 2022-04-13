@@ -131,8 +131,8 @@ public class Player : MonoBehaviour
         {
             underAttack = true;
             _anim.SetTrigger("DO_SKILL1");
-            Invoke("AttackDisable", 2.4f);
-            Invoke("ThrowFire",0.7f);
+            Invoke("AttackDisable", 1.25f);
+            Invoke("ThrowFire",0.46f);
 
         }
     }
@@ -158,7 +158,7 @@ public class Player : MonoBehaviour
             Vector3 oPos = transform.position;
             GameObject instantMagicFire = Instantiate(magicFireObj, rightHand.transform.position, transform.rotation);
             Rigidbody rigidMagicFire = instantMagicFire.GetComponent<Rigidbody>();
-            rigidMagicFire.AddForce(transform.forward * 5.0f, ForceMode.Impulse);
+            rigidMagicFire.AddForce(transform.forward * 20.0f, ForceMode.Impulse);
             //rigidMagicFire.AddTorque(Vector3.back * 10, ForceMode.Impulse);
         }
     }

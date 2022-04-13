@@ -5,11 +5,8 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-    public GameObject fire;
-    public GameObject body;
-
+    public GameObject[] meshObj;
     public GameObject effectObj;
-
     public Rigidbody rigid;
 
     private void Start()
@@ -19,11 +16,13 @@ public class Explosion : MonoBehaviour
 
     IEnumerator Explode()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         rigid.velocity = Vector3.zero;
         rigid.angularVelocity = Vector3.zero;
-        fire.SetActive(false);
-        body.SetActive(false);
+        foreach (GameObject obj in meshObj)
+        {
+            obj.SetActive(false);
+        }
         effectObj.SetActive(true);
     }
     
