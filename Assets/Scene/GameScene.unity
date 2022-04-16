@@ -2628,11 +2628,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1609829962470302593, guid: dafe2f44374925b4692cd6dbc587c068, type: 3}
   m_PrefabInstance: {fileID: 141325511}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &142524397 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7629554581923192317, guid: a2d65955deae58a4dadd1977890b08fa, type: 3}
-  m_PrefabInstance: {fileID: 7629554581781013008}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &149269514
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4522,7 +4517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6797f3866e5492f46bc558fd4ab5d661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 142524397}
+  target: {fileID: 2134007415}
   camSpeed: 10000
   mouseSensitivity: 500
   maxAngle: 70
@@ -21816,7 +21811,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 543450652458056159}
+  - {fileID: 1646006327}
   - {fileID: 1384165243}
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -23488,6 +23483,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8250113047921840432, guid: b76f846b3379607468a593969b575654, type: 3}
   m_PrefabInstance: {fileID: 1634175518}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1646006327 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3135811599969229657, guid: a2d65955deae58a4dadd1977890b08fa, type: 3}
+  m_PrefabInstance: {fileID: 7629554581781013008}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1649534998
 PrefabInstance:
@@ -33096,6 +33096,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8969971835649028076, guid: 4e661a4b9cf2fac4dbc610ceb59e77b8, type: 3}
   m_PrefabInstance: {fileID: 2132054173}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &2134007415 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3174507173401858774, guid: a2d65955deae58a4dadd1977890b08fa, type: 3}
+  m_PrefabInstance: {fileID: 7629554581781013008}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2136184878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33305,11 +33310,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3691659005178554142, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
   m_PrefabInstance: {fileID: 2143355140}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &543450652458056159 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7956494970221075407, guid: a2d65955deae58a4dadd1977890b08fa, type: 3}
-  m_PrefabInstance: {fileID: 7629554581781013008}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &986253269044446330
 PrefabInstance:
@@ -33883,6 +33883,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1515590729}
     m_Modifications:
+    - target: {fileID: 3174507172315783483, guid: a2d65955deae58a4dadd1977890b08fa, type: 3}
+      propertyPath: CameraShake
+      value: 
+      objectReference: {fileID: 1994943196}
     - target: {fileID: 7287095406008582517, guid: a2d65955deae58a4dadd1977890b08fa, type: 3}
       propertyPath: m_Name
       value: Player
