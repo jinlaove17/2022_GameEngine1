@@ -7,6 +7,13 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    // 게임 오브젝트
+    private GameObject playerSword;
+    private GameObject rightHand;
+    private GameObject deadExplodePos;
+    public GameObject magicFireObj;
+    public GameObject deadExplodeObj;
+    
     // 카메라 셰이킹 이펙트
     public CameraShake CameraShake;
     public float duration;
@@ -17,8 +24,7 @@ public class Player : MonoBehaviour
     private Animator _anim;
     private CharacterController _controller;
     private Camera cam;
-    private GameObject explosion;
-    
+
     // 캐릭터 공격
     private float elapsed;
     public float shakingDelay;
@@ -33,20 +39,23 @@ public class Player : MonoBehaviour
     private bool f1Down;
     private bool f2Down;
     private bool f3Down;
+    private bool s1Down;
     
     void GetInput()
     {
-        f1Down = Input.GetButton("Fire1");
-        f2Down = Input.GetButton("Fire2");
-        f3Down = Input.GetButton("Fire3");
+        f1Down = Input.GetButtonDown("Fire1");
+        f2Down = Input.GetButtonDown("Fire2");
+        f3Down = Input.GetButtonDown("Skill1");
+        s1Down = Input.GetButtonDown("Skill2");
     }
     private void Awake()
     {
         _anim = this.GetComponent<Animator>();
         _controller = this.GetComponent<CharacterController>();
         cam = Camera.main;
-        explosion = GameObject.Find("ExplosionEffect");
-        explosion.SetActive(false);
+        playerSword = GameObject.FindWithTag("Player").transform.Find("Maria_sword").gameObject;
+        deadExplodePos = GameObject.Find("DeadExplodePos");
+        rightHand = GameObject.Find("RightHand");
     }
 
     // Update is called once per frame
@@ -96,6 +105,7 @@ public class Player : MonoBehaviour
         if (!underAttack && f1Down)
         {
             elapsed = 0;
+            playerSword.SetActive(true);
             shakingReady = true;
             underAttack = true;
             _anim.SetTrigger("DO_ATTACK1");
@@ -105,15 +115,25 @@ public class Player : MonoBehaviour
         else if (!underAttack && f2Down)
         {
             underAttack = true;
+            playerSword.SetActive(true);
             _anim.SetTrigger("DO_ATTACK2");
             Invoke("AttackDisable", 2f);
         }
         else if (!underAttack && f3Down)
         {
             underAttack = true;
-            //explosion.SetActive(true);
-            _anim.SetTrigger("DO_ATTACK3");
+            _anim.SetTrigger("DO_SKILL1");
             Invoke("AttackDisable", 1.3f);
+            Invoke("DeadExplode", 0.2f);
+        }
+        
+        else if (!underAttack && s1Down)
+        {
+            underAttack = true;
+            _anim.SetTrigger("DO_SKILL2");
+            Invoke("AttackDisable", 1.25f);
+            Invoke("ThrowFire",0.46f);
+
         }
     }
     void ShakeCamera()
@@ -128,11 +148,26 @@ public class Player : MonoBehaviour
             }
         }
     }
+
+    void DeadExplode()
+    {
+        GameObject instantDeadExplode = Instantiate(deadExplodeObj,deadExplodePos.transform.position, transform.rotation);
+        Rigidbody rigidDeadExplode = instantDeadExplode.GetComponent<Rigidbody>();
+        rigidDeadExplode.MovePosition(deadExplodePos.transform.forward * 20f);
+    }
+    
+    void ThrowFire()
+    {
+        GameObject instantMagicFire = Instantiate(magicFireObj, rightHand.transform.position, transform.rotation);
+        Rigidbody rigidMagicFire = instantMagicFire.GetComponent<Rigidbody>();
+        rigidMagicFire.AddForce(transform.forward * 20.0f, ForceMode.Impulse);
+        //rigidMagicFire.AddTorque(Vector3.back * 10, ForceMode.Impulse);
+    }
     
     void AttackDisable()
     {
         underAttack = false;
-        explosion.SetActive(false);
+        playerSword.SetActive(false);
     }
 
 }
