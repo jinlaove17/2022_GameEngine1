@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public MonsterGenerator monsterGenerator = null;
 
     public bool isGameOver = false;
+    public int stage = 0;
 
     public static GameManager Instance
     {

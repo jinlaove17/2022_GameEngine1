@@ -5,16 +5,29 @@ using UnityEngine;
 public class OpenDoor : MonoBehaviour
 {
     public GameObject door = null;
+    public bool isConnectedNextStage = false;
 
+    private bool isOpened = false;
     private const float maxHeight = 3.5f;
 
     private void OnTriggerEnter(Collider other)
     {
         if (door != null)
         {
-            if (other.gameObject.name == "Player")
+            if (!isOpened)
             {
-                StartCoroutine(Opening());
+                if (other.gameObject.name == "Player")
+                {
+                    isOpened = true;
+
+                    StartCoroutine(Opening());
+
+                    if (isConnectedNextStage)
+                    {
+                        GameManager.Instance.stage += 1;
+                        print("현재 스테이지 레벨: " + GameManager.Instance.stage);
+                    }
+                }
             }
         }
     }
