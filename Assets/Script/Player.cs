@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
         _anim = this.GetComponent<Animator>();
         _controller = this.GetComponent<CharacterController>();
         cam = Camera.main;
-        playerSword = GameObject.FindWithTag("Player").transform.Find("Maria_sword").gameObject;
+        playerSword = GameObject.Find("RightHand").transform.Find("Maria_sword").gameObject;
         deadExplodePos = GameObject.Find("DeadExplodePos");
         rightHand = GameObject.Find("RightHand");
     }

@@ -5,7 +5,9 @@ using UnityEngine;
 public class Monster : MonoBehaviour
 {
     private Animator animator = null;
-
+    
+    private bool isDie;
+    
     void Start()
     {
         if (animator == null)
@@ -19,6 +21,18 @@ public class Monster : MonoBehaviour
         if (animator != null)
         {
             animator.SetBool("Land", true);
+        }
+    }
+    
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Weapon")
+        {
+            if (!isDie)
+            {
+                animator.SetTrigger("Do_Die");
+                isDie = true;
+            }
         }
     }
 }

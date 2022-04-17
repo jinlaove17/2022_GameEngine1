@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class MonsterGenerator : MonoBehaviour
 {
@@ -17,6 +19,8 @@ public class MonsterGenerator : MonoBehaviour
     private const int maxMonsterCount = 100;
 
     private const float genPeriod = 3.0f;
+
+
 
     public IEnumerator CreateMonster()
     {
@@ -57,7 +61,6 @@ public class MonsterGenerator : MonoBehaviour
 
                         GameObject newMonster = Instantiate(monsterPrefab, genPosition, genRotation);
                         newMonster.transform.parent = monsters;
-
                         monsterCount += 1;
 
                         if (monsterCount >= maxMonsterCount)
@@ -75,4 +78,5 @@ public class MonsterGenerator : MonoBehaviour
             }
         }
     }
+
 }
