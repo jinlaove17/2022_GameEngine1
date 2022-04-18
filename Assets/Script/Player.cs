@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
     private float elapsed;
     public float shakingDelay;
     private bool shakingReady;
-    private bool underAttack;
+    public bool underAttack;
     
     // 카메라 회전
     public bool toggleCameraRotation;
@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (toggleCameraRotation != true)
+        if (!toggleCameraRotation && !underAttack)
         {
             Vector3 playerRotate = Vector3.Scale(cam.transform.forward, new Vector3(1, 0, 1));
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(playerRotate),
