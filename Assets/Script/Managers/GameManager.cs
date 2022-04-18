@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     public Player player = null;
     public MonsterGenerator monsterGenerator = null;
+    public SkillSelectionUI skillSelectionUI = null;
 
     public bool isGameOver = false;
     public int stage = 0;

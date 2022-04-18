@@ -200,6 +200,13 @@ public class Player : Entity
             {
                 exp = 0.0f;
                 level += 1;
+
+                GameManager.Instance.skillSelectionUI.UpdateSkillSelectionUI();
+                GameManager.Instance.skillSelectionUI.gameObject.SetActive(true);
+
+                Time.timeScale = 0.0f;
+                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.visible = true;
             }
 
             expPer = exp / maxExp;

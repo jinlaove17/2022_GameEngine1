@@ -48,8 +48,8 @@ public class Monster : Entity
 
                     if (!IsAlive)
                     {
-                        GameManager.Instance.IncreasePlayerExp(50.0f);
                         animator.SetTrigger("Die");
+                        GameManager.Instance.IncreasePlayerExp(100.0f);
                     }
                 }
             }
