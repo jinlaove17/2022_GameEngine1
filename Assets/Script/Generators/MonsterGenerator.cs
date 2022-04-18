@@ -6,21 +6,19 @@ using Random = UnityEngine.Random;
 
 public class MonsterGenerator : MonoBehaviour
 {
-    public GameObject monsterPrefab = null;
+    public GameObject   monsterPrefab = null;
 
     // 오로지 생성된 자식을 담기 위해 사용한다.
-    public Transform monsters = null;
+    public Transform    monsters = null;
 
     // 몬스터의 생성 위치는 현재 스테이지의 가장자리이다.
     // x: XMin, y: XMax, z: ZMin, w: ZMax
-    public Vector4[] genLocation = null;
+    public Vector4[]    genLocation = null;
 
-    private int monsterCount = 0;
-    private const int maxMonsterCount = 100;
+    private int         monsterCount = 0;
+    private const int   maxMonsterCount = 100;
 
     private const float genPeriod = 3.0f;
-
-
 
     public IEnumerator CreateMonster()
     {
@@ -57,9 +55,8 @@ public class MonsterGenerator : MonoBehaviour
                                 break;
                         }
 
-                        print(genPosition);
-
                         GameObject newMonster = Instantiate(monsterPrefab, genPosition, genRotation);
+
                         newMonster.transform.parent = monsters;
                         monsterCount += 1;
 
@@ -78,5 +75,4 @@ public class MonsterGenerator : MonoBehaviour
             }
         }
     }
-
 }

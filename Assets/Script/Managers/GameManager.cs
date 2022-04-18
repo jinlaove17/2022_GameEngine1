@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager instance = null;
 
+    public Player player = null;
     public MonsterGenerator monsterGenerator = null;
 
     public bool isGameOver = false;
@@ -30,5 +31,10 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine(monsterGenerator.CreateMonster());
         }
+    }
+
+    public void IncreasePlayerExp(float expIncreament)
+    {
+        StartCoroutine(player.IncreaseExp(expIncreament));
     }
 }

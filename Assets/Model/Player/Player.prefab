@@ -606,7 +606,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!143 &3174507172315783482
 CharacterController:
@@ -625,7 +625,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.88, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &3174507172315783483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1599,14 +1599,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5121084249982440490}
-  m_LocalRotation: {x: -0.048548497, y: 0.2457889, z: 0.09098193, w: 0.9638222}
-  m_LocalPosition: {x: 0.166, y: 0.033, z: 0.943}
+  m_LocalRotation: {x: -0.050446834, y: 0.2659582, z: 0.08994323, w: 0.95845276}
+  m_LocalPosition: {x: 0.06830837, y: 0.0044338754, z: 0.7608679}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6443225979451168168}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -7.95, y: 28, z: 8.8}
+  m_LocalEulerAnglesHint: {x: -8.311, y: 30.402, z: 8.46}
 --- !u!65 &3337152670800061850
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1615,10 +1615,10 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5121084249982440490}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.31, y: 0.08, z: 1.75}
+  m_Size: {x: 0.2, y: 0.08, z: 1.1}
   m_Center: {x: 0.41, y: 0, z: 0}
 --- !u!1 &5658452918362169314
 GameObject:
