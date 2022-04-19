@@ -38,24 +38,26 @@ public class Player : MonoBehaviour
     // 키 입력
     private bool f1Down;
     private bool f2Down;
-    private bool f3Down;
     private bool s1Down;
+    private bool s2Down;
+    private bool s3Down;
     
     void GetInput()
     {
         f1Down = Input.GetButtonDown("Fire1");
         f2Down = Input.GetButtonDown("Fire2");
-        f3Down = Input.GetButtonDown("Skill1");
-        s1Down = Input.GetButtonDown("Skill2");
+        s1Down = Input.GetButtonDown("Skill1");
+        s2Down = Input.GetButtonDown("Skill2");
+        s3Down = Input.GetButtonDown("Skill3");
     }
     private void Awake()
     {
         _anim = this.GetComponent<Animator>();
         _controller = this.GetComponent<CharacterController>();
         cam = Camera.main;
-        playerSword = GameObject.Find("RightHand").transform.Find("Maria_sword").gameObject;
+        playerSword = GameObject.Find("mixamorig:RightHand").transform.Find("Sword").gameObject;
         deadExplodePos = GameObject.Find("DeadExplodePos");
-        rightHand = GameObject.Find("RightHand");
+        rightHand = GameObject.Find("mixamorig:RightHand");
     }
 
     // Update is called once per frame
@@ -109,7 +111,6 @@ public class Player : MonoBehaviour
             shakingReady = true;
             underAttack = true;
             _anim.SetTrigger("DO_ATTACK1");
-            Invoke("AttackDisable", 5f);
         }
 
         else if (!underAttack && f2Down)
@@ -117,24 +118,25 @@ public class Player : MonoBehaviour
             underAttack = true;
             playerSword.SetActive(true);
             _anim.SetTrigger("DO_ATTACK2");
-            Invoke("AttackDisable", 2f);
         }
-        else if (!underAttack && f3Down)
-        {
-            underAttack = true;
-            _anim.SetTrigger("DO_SKILL1");
-            Invoke("AttackDisable", 1.3f);
-            Invoke("DeadExplode", 0.2f);
-        }
-        
         else if (!underAttack && s1Down)
         {
             underAttack = true;
-            _anim.SetTrigger("DO_SKILL2");
-            Invoke("AttackDisable", 1.25f);
-            Invoke("ThrowFire",0.46f);
-
+            _anim.SetTrigger("DO_SKILL1");
         }
+        
+        else if (!underAttack && s2Down)
+        {
+            underAttack = true;
+            _anim.SetTrigger("DO_SKILL2");
+        }
+        
+        else if (!underAttack && s3Down)
+        {
+            underAttack = true;
+            _anim.SetTrigger("DO_SKILL3");
+        }
+        
     }
     void ShakeCamera()
     {

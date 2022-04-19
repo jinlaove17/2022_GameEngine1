@@ -26,7 +26,7 @@ public class Follow : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.Find("Player").GetComponent<Player>();
+        player = GameObject.FindWithTag("Player").GetComponent<Player>();
         rotX = transform.localRotation.eulerAngles.x;
         rotY = transform.localRotation.eulerAngles.y;
 
@@ -40,11 +40,11 @@ public class Follow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.underAttack != true)
+        if (!player.underAttack)
         {
             rotX += -(Input.GetAxis("Mouse Y")) * mouseSensitivity * Time.deltaTime;
             rotY += Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-            
+
             rotX = Mathf.Clamp(rotX, -maxAngle, maxAngle);
             Quaternion rot = Quaternion.Euler(rotX, rotY, 0);
             transform.rotation = rot;
