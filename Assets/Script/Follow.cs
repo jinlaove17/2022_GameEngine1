@@ -6,8 +6,9 @@ using UnityEngine;
 public class Follow : MonoBehaviour
 {
     private Player player;
+
+    private Transform target;
     
-    public Transform target;
     public float camSpeed = 10000f;
     public float mouseSensitivity = 100f;
     public float maxAngle = 70f;
@@ -27,6 +28,8 @@ public class Follow : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        target = GameObject.FindWithTag("Player").transform.Find("Camera").transform;
+
         rotX = transform.localRotation.eulerAngles.x;
         rotY = transform.localRotation.eulerAngles.y;
 

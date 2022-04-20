@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Net;
 using UnityEditor;
 using UnityEngine;
+using Random = System.Random;
 
 public class Player : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class Player : MonoBehaviour
     private GameObject deadExplodePos;
     public GameObject magicFireObj;
     public GameObject deadExplodeObj;
+    public GameObject meteorObj;
     
     // 카메라 셰이킹 이펙트
     public CameraShake CameraShake;
@@ -153,9 +155,9 @@ public class Player : MonoBehaviour
 
     void DeadExplode()
     {
-        GameObject instantDeadExplode = Instantiate(deadExplodeObj,deadExplodePos.transform.position, transform.rotation);
-        Rigidbody rigidDeadExplode = instantDeadExplode.GetComponent<Rigidbody>();
-        rigidDeadExplode.MovePosition(deadExplodePos.transform.forward * 20f);
+        Vector3 skillPos = transform.position;
+        skillPos += transform.forward * 20;
+        GameObject instantDeadExplode = Instantiate(deadExplodeObj, skillPos, transform.rotation);
     }
     
     void ThrowFire()
@@ -164,6 +166,29 @@ public class Player : MonoBehaviour
         Rigidbody rigidMagicFire = instantMagicFire.GetComponent<Rigidbody>();
         rigidMagicFire.AddForce(transform.forward * 20.0f, ForceMode.Impulse);
         //rigidMagicFire.AddTorque(Vector3.back * 10, ForceMode.Impulse);
+    }
+
+    void Meteor()
+    {
+        StartCoroutine("SpawnMeteor");
+    }
+    
+    IEnumerator SpawnMeteor()
+    {
+        WaitForSeconds spawnTime = new WaitForSeconds(0.4f);
+        for (int i = 0; i < 5; i++)
+        {
+            Vector3 skillPos = transform.position;
+            var forward = UnityEngine.Random.Range(10f, 40f);
+            var side = UnityEngine.Random.Range(-20f, 20f);
+            
+            skillPos += transform.forward * forward;
+            skillPos += transform.right * side;
+            
+            GameObject instantMeteor = Instantiate(meteorObj, skillPos, transform.rotation);
+            yield return spawnTime;
+        }
+    
     }
     
     void AttackDisable()
