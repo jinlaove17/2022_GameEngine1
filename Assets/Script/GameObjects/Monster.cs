@@ -1,16 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Monster : Entity
 {
     private Animator animator = null;
     private List<Material> materials = new List<Material>();
+    private NavMeshAgent agent;
+    private Rigidbody rigidbody;
 
     private void Awake()
     {
         animator = transform.GetComponent<Animator>();
-        
+        agent = GetComponent<NavMeshAgent>();
+        rigidbody = GetComponent<Rigidbody>();
+
         // 해당 객체가 가지고 있는 모든 메터리얼을 캐싱 해놓는다.
         // 이때, 이름이 중복된다면 하나만 저장하도록 한다.
         SkinnedMeshRenderer[] skinnedMeshRenderers = transform.GetComponentsInChildren<SkinnedMeshRenderer>();
@@ -26,6 +31,21 @@ public class Monster : Entity
                     isIncluded.Add(material.name);
                 }
             }
+        }
+    }
+    private void Update()
+    {
+        if (IsAlive)
+        {
+            agent.SetDestination(GameManager.Instance.player.transform.position);
+        }
+    }
+    private void FixedUpdate()
+    {
+        if (IsAlive)
+        {
+            rigidbody.velocity = Vector3.zero;
+            rigidbody.angularVelocity = Vector3.zero;
         }
     }
 
@@ -45,7 +65,7 @@ public class Monster : Entity
                     StartCoroutine(HitEffect());
 
                     Health -= 50;
-
+                    print(Health);
                     if (IsAlive)
                     {
                         animator.SetTrigger("Hit");

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 400004}
   - component: {fileID: 19800000}
   - component: {fileID: 19900000}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: KYcircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4833,7 +4833,7 @@ GameObject:
   - component: {fileID: 400006}
   - component: {fileID: 19800002}
   - component: {fileID: 19900002}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: KYdustB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9547,7 +9547,7 @@ GameObject:
   - component: {fileID: 400008}
   - component: {fileID: 19800004}
   - component: {fileID: 19900004}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: KYsphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14368,9 +14368,9 @@ GameObject:
   m_Component:
   - component: {fileID: 400010}
   - component: {fileID: -8131480346436730220}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WhityBomb
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14418,7 +14418,7 @@ GameObject:
   - component: {fileID: 7732002409576721946}
   - component: {fileID: 5362983928623079786}
   - component: {fileID: 5375928291134120349}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: KYBomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}

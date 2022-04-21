@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1896462999409013873}
   - component: {fileID: 1896462999390662961}
   - component: {fileID: 1896462999390750865}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4799,7 +4799,7 @@ GameObject:
   - component: {fileID: 1896462999409013875}
   - component: {fileID: 1896462999390662963}
   - component: {fileID: 1896462999390750867}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9587,7 +9587,7 @@ GameObject:
   - component: {fileID: 1896462999409013877}
   - component: {fileID: 1896462999390662965}
   - component: {fileID: 1896462999390750869}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14375,7 +14375,7 @@ GameObject:
   - component: {fileID: 1896462999409013879}
   - component: {fileID: 1896462999390662967}
   - component: {fileID: 1896462999390750871}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19162,9 +19162,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1896462999409013881}
   - component: {fileID: -5695732550280606067}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LaserFire2
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

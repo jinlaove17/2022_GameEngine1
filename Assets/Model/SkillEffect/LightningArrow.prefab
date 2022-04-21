@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4792277665850183728}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LightningArrow
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,7 +51,7 @@ GameObject:
   - component: {fileID: 5160815308930025556}
   - component: {fileID: 5160815308944182548}
   - component: {fileID: 5160815308944290996}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4875,7 +4875,7 @@ GameObject:
   - component: {fileID: 5160815308930025558}
   - component: {fileID: 5160815308944182550}
   - component: {fileID: 5160815308944290998}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FrontCore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9699,7 +9699,7 @@ GameObject:
   - component: {fileID: 5160815308930025562}
   - component: {fileID: 5160815308944182554}
   - component: {fileID: 5160815308944291002}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FrontLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14505,7 +14505,7 @@ GameObject:
   - component: {fileID: 5160815308930025566}
   - component: {fileID: 5160815308944182558}
   - component: {fileID: 5160815308944291006}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LightningSpark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19329,7 +19329,7 @@ GameObject:
   - component: {fileID: 8159430268683046784}
   - component: {fileID: 8159430268697201344}
   - component: {fileID: 8159430268697310048}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Spark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24117,7 +24117,7 @@ GameObject:
   - component: {fileID: 8159430268683046792}
   - component: {fileID: 8159430268697201352}
   - component: {fileID: 8159430268697310056}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Spark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28905,7 +28905,7 @@ GameObject:
   - component: {fileID: 8159430268683046794}
   - component: {fileID: 8159430268697201354}
   - component: {fileID: 8159430268697310058}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ring2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33693,7 +33693,7 @@ GameObject:
   - component: {fileID: 8159430268683046796}
   - component: {fileID: 8159430268697201356}
   - component: {fileID: 8159430268697310060}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38481,7 +38481,7 @@ GameObject:
   - component: {fileID: 8159430268683046798}
   - component: {fileID: 8159430268697201358}
   - component: {fileID: 8159430268697310062}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}

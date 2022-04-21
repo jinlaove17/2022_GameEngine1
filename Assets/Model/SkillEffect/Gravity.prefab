@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 248826562267213192}
   - component: {fileID: 248826562285562062}
   - component: {fileID: 248826562285654376}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: par1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4721,7 +4721,7 @@ GameObject:
   - component: {fileID: 248826562267213194}
   - component: {fileID: 248826562285562058}
   - component: {fileID: 248826562285654378}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Shock1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9476,7 +9476,7 @@ GameObject:
   - component: {fileID: 248826562267213198}
   - component: {fileID: 248826562285562056}
   - component: {fileID: 248826562285654380}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: par3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14189,7 +14189,7 @@ GameObject:
   - component: {fileID: 248826562267213186}
   - component: {fileID: 248826562285562060}
   - component: {fileID: 248826562285654382}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Aura_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18935,7 +18935,7 @@ GameObject:
   - component: {fileID: 248826563189752776}
   - component: {fileID: 248826563174549128}
   - component: {fileID: 248826563174530856}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Poison
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23741,7 +23741,7 @@ GameObject:
   - component: {fileID: 248826563189752778}
   - component: {fileID: 248826563174549130}
   - component: {fileID: 248826563174530858}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28493,7 +28493,7 @@ GameObject:
   - component: {fileID: 248826563189752780}
   - component: {fileID: 248826563174549132}
   - component: {fileID: 248826563174530860}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GroundSpread
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33299,7 +33299,7 @@ GameObject:
   - component: {fileID: 248826563189752782}
   - component: {fileID: 248826563174549134}
   - component: {fileID: 248826563174530862}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38049,9 +38049,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 248826563714500390}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Gravity
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

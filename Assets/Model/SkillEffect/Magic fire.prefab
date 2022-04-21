@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4495036163693430}
   - component: {fileID: 198439215896751412}
   - component: {fileID: 199781949288928142}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4835,7 +4835,7 @@ GameObject:
   - component: {fileID: 4510220456787218}
   - component: {fileID: 198364450465839256}
   - component: {fileID: 199923637718934068}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9660,9 +9660,9 @@ GameObject:
   - component: {fileID: 2203353868805180774}
   - component: {fileID: 3273506015402627547}
   - component: {fileID: -5929969059152802278}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Magic fire
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9744,7 +9744,7 @@ GameObject:
   - component: {fileID: 4972702023922000}
   - component: {fileID: 198272221527823274}
   - component: {fileID: 199026062044450118}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14568,7 +14568,7 @@ GameObject:
   - component: {fileID: 9916254018775454}
   - component: {fileID: 8648289018266961817}
   - component: {fileID: 870355711181289024}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
