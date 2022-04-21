@@ -85,6 +85,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        player = GameObject.FindWithTag("Player").transform.GetComponent<Player>();
+    }
+
     private void Start()
     {
         if (monsterGenerator != null)

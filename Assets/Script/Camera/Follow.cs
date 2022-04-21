@@ -5,11 +5,13 @@ using UnityEngine;
 
 public class Follow : MonoBehaviour
 {
-    public Transform target;
+    private Player player;
+
+    private Transform target;
+    
     public float camSpeed = 10000f;
     public float mouseSensitivity = 100f;
     public float maxAngle = 70f;
-
     private float rotX;
     private float rotY;
 
@@ -25,6 +27,9 @@ public class Follow : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        target = GameObject.FindWithTag("Player").transform.Find("Camera").transform;
+
         rotX = transform.localRotation.eulerAngles.x;
         rotY = transform.localRotation.eulerAngles.y;
 
@@ -38,12 +43,15 @@ public class Follow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rotX += -(Input.GetAxis("Mouse Y")) * mouseSensitivity * Time.deltaTime;
-        rotY += Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        
-        rotX = Mathf.Clamp(rotX, -maxAngle, maxAngle);
-        Quaternion rot = Quaternion.Euler(rotX, rotY, 0);
-        transform.rotation = rot;
+        if (!player.underAttack)
+        {
+            rotX += -(Input.GetAxis("Mouse Y")) * mouseSensitivity * Time.deltaTime;
+            rotY += Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+
+            rotX = Mathf.Clamp(rotX, -maxAngle, maxAngle);
+            Quaternion rot = Quaternion.Euler(rotX, rotY, 0);
+            transform.rotation = rot;
+        }
     }
 
     private void LateUpdate()

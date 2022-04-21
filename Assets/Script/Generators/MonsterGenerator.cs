@@ -16,7 +16,7 @@ public class MonsterGenerator : MonoBehaviour
     public Vector4[]    genLocation = null;
 
     private int         monsterCount = 0;
-    private const int   maxMonsterCount = 1;
+    private const int   maxMonsterCount = 30;
 
     private const float genPeriod = 3.0f;
 
@@ -30,7 +30,7 @@ public class MonsterGenerator : MonoBehaviour
             {
                 if (monsterCount < maxMonsterCount)
                 {
-                    int genCountPerFrame = Random.Range(1, 10 + 1);
+                    int genCountPerFrame = Random.Range(10, 20 + 1);
 
                     for (int i = 0; i < genCountPerFrame; ++i)
                     {
