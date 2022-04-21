@@ -61,9 +61,12 @@ public class GameManager : MonoBehaviour
 
                 if (stage <= 2)
                 {
-                    // 다음 스테이지로 가는 문의 트리거를 활성화시킨다.
-                    triggers.transform.GetChild(2 * stage).gameObject.SetActive(true);
-                    triggers.transform.GetChild(2 * stage + 1).gameObject.SetActive(true);
+                    // 다음 스테이지로 가는 문을 여는 트리거를 활성화시킨다.
+                    triggers.transform.GetChild(0).GetChild(2 * stage).gameObject.SetActive(true);
+                    triggers.transform.GetChild(0).GetChild(2 * stage + 1).gameObject.SetActive(true);
+
+                    // 이전 스테이지로 가는 문들을 닫는 트리거를 활성화시킨다.
+                    triggers.transform.GetChild(1).GetChild(stage).gameObject.SetActive(true);
                 }
             }
         }

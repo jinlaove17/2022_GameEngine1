@@ -5,29 +5,19 @@ using UnityEngine;
 public class OpenDoor : MonoBehaviour
 {
     public GameObject door = null;
-    public bool isConnectedNextStage = false;
 
-    private bool isOpened = false;
+    private bool isActive = false;
     private const float maxHeight = 3.5f;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (door != null)
+        if (!isActive)
         {
-            if (!isOpened)
+            if (other.CompareTag("Player"))
             {
-                if (other.gameObject.name == "Player")
-                {
-                    StartCoroutine(Opening());
+                isActive = true;
 
-                    isOpened = true;
-
-                    if (isConnectedNextStage)
-                    {
-                        GameManager.Instance.PrepareNextStage();
-                        print("현재 스테이지 레벨: " + GameManager.Instance.Stage);
-                    }
-                }
+                StartCoroutine(Opening());
             }
         }
     }
@@ -36,7 +26,7 @@ public class OpenDoor : MonoBehaviour
     {
         while (true)
         {
-            if (door.transform.position.y >= maxHeight)
+            if (door.transform.position.y > maxHeight)
             {
                 Vector3 newPosition = door.transform.position;
 
@@ -45,9 +35,11 @@ public class OpenDoor : MonoBehaviour
                 break;
             }
 
-            door.transform.Translate(2.0f * Time.deltaTime * Vector3.up);
+            door.transform.Translate(4.0f * Time.deltaTime * Vector3.up);
 
             yield return null;
         }
+
+        transform.gameObject.SetActive(false);
     }
 }
