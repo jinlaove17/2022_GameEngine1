@@ -201,10 +201,8 @@ public class Player : MonoBehaviour
     void EnegyExplode()
     {
         Transform chest = GameObject.FindWithTag("Player").transform.Find("Camera").transform;
-        Vector3 skillPos = chest.transform.position;
-        skillPos -= transform.up * 0.08f;
-        skillPos += transform.right * 0.1f;
-        GameObject instantMeteor = Instantiate(skillObj[3], skillPos, transform.rotation);
+        Transform skillPos = GameObject.FindWithTag("Player").transform.Find("EnegyExplodePos").transform;
+        GameObject instantMeteor = Instantiate(skillObj[3], skillPos.transform.position, skillPos.transform.rotation);
     }
     
     void AttackDisable()

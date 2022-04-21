@@ -138,6 +138,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6594534688041109436, guid: 5cf9378d7eb987d488d59b5866cae369, type: 3}
+      propertyPath: m_Name
+      value: EnegyExplodePos
+      objectReference: {fileID: 0}
+    - target: {fileID: 6594534688041109439, guid: 5cf9378d7eb987d488d59b5866cae369, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6594534688041109439, guid: 5cf9378d7eb987d488d59b5866cae369, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6594534688041109439, guid: 5cf9378d7eb987d488d59b5866cae369, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 6633458246788819876, guid: 5cf9378d7eb987d488d59b5866cae369, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -496,7 +512,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 616368344850898014, guid: 8983919a1789d1a44921c0ed9c16a50f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 870752246956464510, guid: 8983919a1789d1a44921c0ed9c16a50f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8983919a1789d1a44921c0ed9c16a50f, type: 3}
@@ -609,6 +629,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 480240090}
     m_Modifications:
+    - target: {fileID: 4685102097578170364, guid: ef3802cc164df014cb511da83c5ffe6f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4890091261924368981, guid: ef3802cc164df014cb511da83c5ffe6f, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -653,13 +677,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4924582174671439283, guid: ef3802cc164df014cb511da83c5ffe6f, type: 3}
+      propertyPath: skillObj.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4924582174671439283, guid: ef3802cc164df014cb511da83c5ffe6f, type: 3}
+      propertyPath: skillObj.Array.data[3]
+      value: 
+      objectReference: {fileID: 100010, guid: 4d0391f078db24fac9f5cba3075f9f5d, type: 3}
     - target: {fileID: 5230588695082318063, guid: ef3802cc164df014cb511da83c5ffe6f, type: 3}
       propertyPath: m_Name
       value: Megan
       objectReference: {fileID: 0}
     - target: {fileID: 5230588695082318063, guid: ef3802cc164df014cb511da83c5ffe6f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef3802cc164df014cb511da83c5ffe6f, type: 3}
