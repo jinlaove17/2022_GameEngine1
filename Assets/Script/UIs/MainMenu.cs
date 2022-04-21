@@ -1,33 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void OnClickStartButton()
     {
-        
+        SceneManager.LoadScene("GameScene");
+        //Debug.Log("Game Start");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void OnClickStart()
-    {
-        Debug.Log("Game Start");
-    }
-    public void OnClickHelp()
+    public void OnClickHelpButton()
     {
         Debug.Log("도움말");
     }
-    public void OnClickExit()
+
+    public void OnClickExitButton()
     {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
+        Application.Quit();
 #else
         Debug.Log("Exit Game");
 #endif

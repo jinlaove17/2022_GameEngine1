@@ -40,6 +40,7 @@ public class Monster : Entity
             agent.SetDestination(GameManager.Instance.player.transform.position);
         }
     }
+
     private void FixedUpdate()
     {
         if (IsAlive)
@@ -65,7 +66,7 @@ public class Monster : Entity
                     StartCoroutine(HitEffect());
 
                     Health -= 50;
-                    print(Health);
+
                     if (IsAlive)
                     {
                         animator.SetTrigger("Hit");
@@ -103,7 +104,7 @@ public class Monster : Entity
 
     IEnumerator ReserveToDestroyObject()
     {
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(0.1f);
 
         Destroy(gameObject);
     }
