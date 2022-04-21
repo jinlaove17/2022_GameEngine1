@@ -47,13 +47,11 @@ public class SkillSelectionUI : MonoBehaviour
 
             for (int i = 0; i < skillUICount; ++i)
             {
-                TMP_Text[] skillTexts = skillUIs.GetChild(i).GetComponentsInChildren<TMP_Text>();
+                TMP_Text skillNameText = skillUIs.GetChild(i).GetChild(0).GetComponentInChildren<TMP_Text>();
+                TMP_Text skillInfoText = skillUIs.GetChild(i).GetChild(1).GetComponentInChildren<TMP_Text>();
 
-                if (skillTexts.Length > 0)
-                {
-                    skillNames[i] = skillTexts[0];
-                    skillInfo[i] = skillTexts[1];
-                }
+                skillNames[i] = skillNameText;
+                skillInfo[i] = skillInfoText;
             }
         }
 
