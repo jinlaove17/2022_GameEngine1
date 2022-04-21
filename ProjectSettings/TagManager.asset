@@ -4,8 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Weapon
   - Floor
+  - Weapon
+  - Monster
   layers:
   - Default
   - TransparentFX

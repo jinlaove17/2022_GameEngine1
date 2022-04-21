@@ -24,8 +24,15 @@ public class Entity : MonoBehaviour
 
     public bool IsHit
     {
-        get { return isHit; }
-        set { isHit = value; }
+        get
+        { 
+            return isHit;
+        }
+
+        set
+        { 
+            isHit = value;
+        }
     }
 
     public int Health

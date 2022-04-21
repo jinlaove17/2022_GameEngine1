@@ -34,21 +34,27 @@ public class Monster : Entity
         if (IsAlive)
         {
             // collision.gameObject.tag로 하면 충돌이 일어난 프레임의 최상단을 가져오기 때문에 collider.tag로 해야함!
-            if (collision.collider.tag == "Floor")
+            if (collision.collider.CompareTag("Floor") || collision.collider.CompareTag("Monster"))
             {
                 animator.SetTrigger("Land");
             }
-            else if (collision.collider.tag == "Weapon")
+            else if (collision.collider.CompareTag("Weapon"))
             {
                 if (!IsHit)
                 {
-                    Health -= 50;
-
                     StartCoroutine(HitEffect());
 
-                    if (!IsAlive)
+                    Health -= 50;
+
+                    if (IsAlive)
+                    {
+                        animator.SetTrigger("Hit");
+                    }
+                    else
                     {
                         animator.SetTrigger("Die");
+
+                        GameManager.Instance.RestMonsterCount -= 1;
                         GameManager.Instance.IncreasePlayerExp(100.0f);
                     }
                 }
@@ -73,5 +79,12 @@ public class Monster : Entity
         {
             material.color = Color.white;
         }
+    }
+
+    IEnumerator ReserveToDestroyObject()
+    {
+        yield return new WaitForSeconds(5.0f);
+
+        Destroy(gameObject);
     }
 }

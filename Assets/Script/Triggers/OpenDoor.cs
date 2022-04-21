@@ -18,14 +18,14 @@ public class OpenDoor : MonoBehaviour
             {
                 if (other.gameObject.name == "Player")
                 {
-                    isOpened = true;
-
                     StartCoroutine(Opening());
+
+                    isOpened = true;
 
                     if (isConnectedNextStage)
                     {
-                        GameManager.Instance.stage += 1;
-                        print("현재 스테이지 레벨: " + GameManager.Instance.stage);
+                        GameManager.Instance.PrepareNextStage();
+                        print("현재 스테이지 레벨: " + GameManager.Instance.Stage);
                     }
                 }
             }
