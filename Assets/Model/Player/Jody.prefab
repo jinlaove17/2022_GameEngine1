@@ -267,14 +267,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf32773e0fd09c445a85dbad99d41252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magicFireObj: {fileID: 1900756431413560, guid: c04254b84998c7f4380dd9b391744100, type: 3}
-  deadExplodeObj: {fileID: 100006, guid: bf350f60afaca7e44b4533526bda51c2, type: 3}
-  meteorObj: {fileID: 1896462999409240153, guid: a9decccf8cb4fc743971fb5ca00cedd9, type: 3}
-  CameraShake: {fileID: 0}
+  skillObj:
+  - {fileID: 100006, guid: 910ed13255412474fa75e72502d490f6, type: 3}
+  - {fileID: 1900756431413560, guid: c04254b84998c7f4380dd9b391744100, type: 3}
+  - {fileID: 1896462999409240153, guid: a9decccf8cb4fc743971fb5ca00cedd9, type: 3}
+  - {fileID: 100010, guid: 4d0391f078db24fac9f5cba3075f9f5d, type: 3}
   duration: 1.7
   magnitude: 0.04
-  speed: 15
   shakingDelay: 2.5
+  speed: 15
   underAttack: 0
   toggleCameraRotation: 0
   smoothness: 10

@@ -11,26 +11,25 @@ public class Player : MonoBehaviour
     // 게임 오브젝트
     private GameObject playerSword;
     private GameObject rightHand;
-    private GameObject deadExplodePos;
-    public GameObject magicFireObj;
-    public GameObject deadExplodeObj;
-    public GameObject meteorObj;
+
+    public GameObject[] skillObj;
     
     // 카메라 셰이킹 이펙트
-    public CameraShake CameraShake;
+    private CameraShake cameraShake;
     public float duration;
     public float magnitude= 0.01f;
+    
+    private float elapsed;
+    public float shakingDelay;
+    private bool shakingReady;
     
     // 캐릭터 움직임 및 애니메이션
     public float speed;
     private Animator _anim;
     private CharacterController _controller;
     private Camera cam;
-
-    // 캐릭터 공격
-    private float elapsed;
-    public float shakingDelay;
-    private bool shakingReady;
+    
+    // 캐릭터 공격 중
     public bool underAttack;
     
     // 카메라 회전
@@ -43,6 +42,7 @@ public class Player : MonoBehaviour
     private bool s1Down;
     private bool s2Down;
     private bool s3Down;
+    private bool s4Down;
     
     void GetInput()
     {
@@ -51,14 +51,15 @@ public class Player : MonoBehaviour
         s1Down = Input.GetButtonDown("Skill1");
         s2Down = Input.GetButtonDown("Skill2");
         s3Down = Input.GetButtonDown("Skill3");
+        s4Down = Input.GetButtonDown("Skill4");
     }
     private void Awake()
     {
         _anim = this.GetComponent<Animator>();
         _controller = this.GetComponent<CharacterController>();
         cam = Camera.main;
+        cameraShake = cam.GetComponent<CameraShake>();
         playerSword = GameObject.Find("mixamorig:RightHand").transform.Find("Sword").gameObject;
-        deadExplodePos = GameObject.Find("DeadExplodePos");
         rightHand = GameObject.Find("mixamorig:RightHand");
     }
 
@@ -139,6 +140,12 @@ public class Player : MonoBehaviour
             _anim.SetTrigger("DO_SKILL3");
         }
         
+        else if (!underAttack && s4Down)
+        {
+            underAttack = true;
+            _anim.SetTrigger("DO_SKILL4");
+        }
+        
     }
     void ShakeCamera()
     {
@@ -147,7 +154,7 @@ public class Player : MonoBehaviour
             elapsed += Time.deltaTime;
             if (shakingDelay < elapsed)
             {
-                StartCoroutine(CameraShake.Shake(duration, magnitude));
+                StartCoroutine(cameraShake.Shake(duration, magnitude));
                 shakingReady = false;
             }
         }
@@ -157,12 +164,12 @@ public class Player : MonoBehaviour
     {
         Vector3 skillPos = transform.position;
         skillPos += transform.forward * 20;
-        GameObject instantDeadExplode = Instantiate(deadExplodeObj, skillPos, transform.rotation);
+        GameObject instantDeadExplode = Instantiate(skillObj[0], skillPos, transform.rotation);
     }
     
     void ThrowFire()
     {
-        GameObject instantMagicFire = Instantiate(magicFireObj, rightHand.transform.position, transform.rotation);
+        GameObject instantMagicFire = Instantiate(skillObj[1], rightHand.transform.position, transform.rotation);
         Rigidbody rigidMagicFire = instantMagicFire.GetComponent<Rigidbody>();
         rigidMagicFire.AddForce(transform.forward * 20.0f, ForceMode.Impulse);
         //rigidMagicFire.AddTorque(Vector3.back * 10, ForceMode.Impulse);
@@ -179,16 +186,25 @@ public class Player : MonoBehaviour
         for (int i = 0; i < 5; i++)
         {
             Vector3 skillPos = transform.position;
-            var forward = UnityEngine.Random.Range(10f, 40f);
+            var forward = UnityEngine.Random.Range(10f, 20f);
             var side = UnityEngine.Random.Range(-20f, 20f);
             
             skillPos += transform.forward * forward;
             skillPos += transform.right * side;
             
-            GameObject instantMeteor = Instantiate(meteorObj, skillPos, transform.rotation);
+            GameObject instantMeteor = Instantiate(skillObj[2], skillPos, transform.rotation);
             yield return spawnTime;
         }
     
+    }
+
+    void EnegyExplode()
+    {
+        Transform chest = GameObject.FindWithTag("Player").transform.Find("Camera").transform;
+        Vector3 skillPos = chest.transform.position;
+        skillPos -= transform.up * 0.08f;
+        skillPos += transform.right * 0.1f;
+        GameObject instantMeteor = Instantiate(skillObj[3], skillPos, transform.rotation);
     }
     
     void AttackDisable()
