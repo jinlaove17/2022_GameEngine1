@@ -5,6 +5,7 @@ using System.Net;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 using Random = System.Random;
 
 public class Player : MonoBehaviour
@@ -210,12 +211,13 @@ public class Player : MonoBehaviour
         }
     
     }
-
+    
     void EnegyExplode()
     {
         Transform chest = GameObject.FindWithTag("Player").transform.Find("Camera").transform;
         Transform skillPos = GameObject.FindWithTag("Player").transform.Find("EnegyExplodePos").transform;
-        GameObject instantMeteor = Instantiate(skillObj[3], skillPos.transform.position, skillPos.transform.rotation);
+        GameObject instantEnergyExplode = Instantiate(skillObj[3], skillPos.transform.position, skillPos.transform.rotation);
+        StartCoroutine(ActivateAttackCollision(instantEnergyExplode));
     }
     
     void AttackDisable()
@@ -224,6 +226,14 @@ public class Player : MonoBehaviour
         playerSword.SetActive(false);
     }
 
+    IEnumerator ActivateAttackCollision(GameObject instantObj)
+    {
+        WaitForSeconds wait = new WaitForSeconds(2.0f);
+        yield return wait;
+        GameObject attackCollide = instantObj.transform.Find("DamageRange").gameObject;
+        attackCollide.SetActive(true);
+    }
+    
     public IEnumerator IncreaseExp(float expIncrement)
     {
         const float maxExp = 500.0f;
