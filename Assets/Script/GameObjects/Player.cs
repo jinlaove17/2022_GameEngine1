@@ -19,11 +19,7 @@ public class Player : MonoBehaviour
     // 카메라 셰이킹 이펙트
     private CameraShake cameraShake;
     public float duration;
-    public float magnitude= 0.01f;
-    
-    private float elapsed;
-    public float shakingDelay;
-    private bool shakingReady;
+    public float magnitude;
     
     // 캐릭터 움직임 및 애니메이션
     public float speed;
@@ -79,7 +75,6 @@ public class Player : MonoBehaviour
     void Update()
     {
         GetInput();
-        ShakeCamera();
         Attack();
         Move();
         
@@ -122,17 +117,15 @@ public class Player : MonoBehaviour
     {
         if (!underAttack && f1Down)
         {
-            elapsed = 0;
             playerSword.SetActive(true);
-            shakingReady = true;
             underAttack = true;
             _anim.SetTrigger("DO_ATTACK1");
         }
 
         else if (!underAttack && f2Down)
         {
-            underAttack = true;
             playerSword.SetActive(true);
+            underAttack = true;
             _anim.SetTrigger("DO_ATTACK2");
         }
         else if (!underAttack && s1Down)
@@ -163,15 +156,7 @@ public class Player : MonoBehaviour
 
     void ShakeCamera()
     {
-        if (shakingReady)
-        {
-            elapsed += Time.deltaTime;
-            if (shakingDelay < elapsed)
-            {
-                StartCoroutine(cameraShake.Shake(duration, magnitude));
-                shakingReady = false;
-            }
-        }
+        StartCoroutine(cameraShake.Shake(duration, magnitude));
     }
 
     void DeadExplode()

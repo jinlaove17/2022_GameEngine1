@@ -308,7 +308,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1854872187370712166
 Transform:
   m_ObjectHideFlags: 0
@@ -387,7 +387,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1.87, z: 0}
+  m_Center: {x: 0, y: 1.9, z: 0}
 --- !u!114 &2177328861304769413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -405,9 +405,8 @@ MonoBehaviour:
   - {fileID: 1900756431413560, guid: c04254b84998c7f4380dd9b391744100, type: 3}
   - {fileID: 1896462999409240153, guid: a9decccf8cb4fc743971fb5ca00cedd9, type: 3}
   - {fileID: 100010, guid: 4d0391f078db24fac9f5cba3075f9f5d, type: 3}
-  duration: 1.7
+  duration: 1.4
   magnitude: 0.04
-  shakingDelay: 2.5
   speed: 15
   underAttack: 0
   toggleCameraRotation: 0
