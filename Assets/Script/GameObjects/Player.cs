@@ -1,39 +1,36 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Net;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Unity.VisualScripting;
-using Random = System.Random;
 
 public class Player : MonoBehaviour
 {
     // 게임 오브젝트
-    private GameObject playerSword;
-    private GameObject rightHand;
+    public GameObject playerSword;
+    public GameObject rightHand;
 
     public GameObject[] skillObj;
-    
+
     // 카메라 셰이킹 이펙트
     private CameraShake cameraShake;
     public float duration;
     public float magnitude;
-    
+
     // 캐릭터 움직임 및 애니메이션
+    private Animator animator;
+    private CharacterController characterController;
+    private Rigidbody rigidBody;
     public float speed;
-    private Animator _anim;
-    private CharacterController _controller;
-    private Camera cam;
-    
+
     // 캐릭터 공격 중
     public bool underAttack;
-    
+
     // 카메라 회전
     public bool toggleCameraRotation;
-    public float smoothness = 10f;
-    
+    public float smoothness = 10.0f;
+
     // 키 입력
     private bool f1Down;
     private bool f2Down;
@@ -50,8 +47,42 @@ public class Player : MonoBehaviour
     public TMP_Text expText = null;
     private float exp = 0;
 
+    private void Awake()
+    {
+        if (playerSword == null)
+        {
+            Debug.LogError("PlayerSword가 장착되지 않았습니다.");
+        }
 
-    void GetInput()
+        if (rightHand == null)
+        {
+            Debug.LogError("RightHand가 장착되지 않았습니다.");
+        }
+
+        animator = transform.GetComponent<Animator>();
+        characterController = transform.GetComponent<CharacterController>();
+        rigidBody = transform.GetComponent<Rigidbody>();
+        cameraShake = Camera.main.GetComponent<CameraShake>();
+    }
+
+    private void Update()
+    {
+        GetInput();
+        Attack();
+        Move();
+    }
+
+    private void LateUpdate()
+    {
+        if (!toggleCameraRotation && !underAttack)
+        {
+            Vector3 playerRotate = Vector3.Scale(Camera.main.transform.forward, new Vector3(1.0f, 0, 1.0f));
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(playerRotate), Time.deltaTime * smoothness);
+        }
+    }
+
+    private void GetInput()
     {
         f1Down = Input.GetButtonDown("Fire1");
         f2Down = Input.GetButtonDown("Fire2");
@@ -59,25 +90,7 @@ public class Player : MonoBehaviour
         s2Down = Input.GetButtonDown("Skill2");
         s3Down = Input.GetButtonDown("Skill3");
         s4Down = Input.GetButtonDown("Skill4");
-    }
 
-    private void Awake()
-    {
-        _anim = this.GetComponent<Animator>();
-        _controller = this.GetComponent<CharacterController>();
-        cam = Camera.main;
-        cameraShake = cam.GetComponent<CameraShake>();
-        playerSword = GameObject.Find("mixamorig:RightHand").transform.Find("Sword").gameObject;
-        rightHand = GameObject.Find("mixamorig:RightHand");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        GetInput();
-        Attack();
-        Move();
-        
         if (Input.GetKey(KeyCode.LeftAlt))
         {
             toggleCameraRotation = true;
@@ -88,137 +101,126 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void LateUpdate()
-    {
-        if (!toggleCameraRotation && !underAttack)
-        {
-            Vector3 playerRotate = Vector3.Scale(cam.transform.forward, new Vector3(1, 0, 1));
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(playerRotate),
-                Time.deltaTime * smoothness);
-        }
-    }
-
-    void Move()
+    private void Move()
     {
         if (!underAttack)
         {
-            Vector3 forward = transform.TransformDirection(Vector3.forward);
-            Vector3 right = transform.TransformDirection(Vector3.right);
+            Vector3 moveDirection = transform.forward * Input.GetAxisRaw("Vertical") + transform.right * Input.GetAxisRaw("Horizontal");
 
-            Vector3 moveDirection = forward * Input.GetAxisRaw("Vertical") + right * Input.GetAxisRaw("Horizontal");
-
-            _controller.Move(moveDirection.normalized * speed * Time.deltaTime);
-
-            _anim.SetBool("IS_RUN", moveDirection != Vector3.zero);
+            characterController.Move(moveDirection.normalized * speed * Time.deltaTime);
+            animator.SetBool("IS_RUN", moveDirection != Vector3.zero);
         }
     }
 
-    void Attack()
+    private void Attack()
     {
-        if (!underAttack && f1Down)
+        if (!underAttack)
         {
-            playerSword.SetActive(true);
-            underAttack = true;
-            _anim.SetTrigger("DO_ATTACK1");
-        }
+            if (f1Down)
+            {
+                playerSword.SetActive(true);
 
-        else if (!underAttack && f2Down)
-        {
-            playerSword.SetActive(true);
-            underAttack = true;
-            _anim.SetTrigger("DO_ATTACK2");
+                underAttack = true;
+                animator.SetTrigger("DO_ATTACK1");
+            }
+            else if (f2Down)
+            {
+                playerSword.SetActive(true);
+
+                underAttack = true;
+                animator.SetTrigger("DO_ATTACK2");
+            }
+            else if (s1Down)
+            {
+                underAttack = true;
+                animator.SetTrigger("DO_SKILL1");
+            }
+            else if (s2Down)
+            {
+                underAttack = true;
+                animator.SetTrigger("DO_SKILL2");
+            }
+            else if (s3Down)
+            {
+                underAttack = true;
+                animator.SetTrigger("DO_SKILL3");
+            }
+            else if (s4Down)
+            {
+                underAttack = true;
+                animator.SetTrigger("DO_SKILL4");
+            }
         }
-        else if (!underAttack && s1Down)
-        {
-            underAttack = true;
-            _anim.SetTrigger("DO_SKILL1");
-        }
-        
-        else if (!underAttack && s2Down)
-        {
-            underAttack = true;
-            _anim.SetTrigger("DO_SKILL2");
-        }
-        
-        else if (!underAttack && s3Down)
-        {
-            underAttack = true;
-            _anim.SetTrigger("DO_SKILL3");
-        }
-        
-        else if (!underAttack && s4Down)
-        {
-            underAttack = true;
-            _anim.SetTrigger("DO_SKILL4");
-        }
-        
     }
 
-    void ShakeCamera()
+    private void ShakeCamera()
     {
         StartCoroutine(cameraShake.Shake(duration, magnitude));
     }
 
-    void DeadExplode()
+    private void ThrowFire()
     {
-        Vector3 skillPos = transform.position;
-        skillPos += transform.forward * 20;
-        GameObject instantDeadExplode = Instantiate(skillObj[0], skillPos, transform.rotation);
-    }
-    
-    void ThrowFire()
-    {
-        GameObject instantMagicFire = Instantiate(skillObj[1], rightHand.transform.position, transform.rotation);
-        Rigidbody rigidMagicFire = instantMagicFire.GetComponent<Rigidbody>();
-        rigidMagicFire.AddForce(transform.forward * 20.0f, ForceMode.Impulse);
-        //rigidMagicFire.AddTorque(Vector3.back * 10, ForceMode.Impulse);
+        GameObject fireInstance = Instantiate(skillObj[1], rightHand.transform.position, Quaternion.identity);
+        Rigidbody fireRigidBody = fireInstance.GetComponent<Rigidbody>();
+
+        fireRigidBody.AddForce(15.0f * transform.forward, ForceMode.Impulse);
     }
 
-    void Meteor()
+    private void DeadExplode()
+    {
+        Vector3 skillPos = transform.position;
+
+        skillPos += transform.forward * 20;
+        GameObject instantDeadExplode = Instantiate(skillObj[0], skillPos, Quaternion.identity);
+    }
+
+    private void Meteor()
     {
         StartCoroutine("SpawnMeteor");
     }
-    
-    IEnumerator SpawnMeteor()
+
+    private IEnumerator SpawnMeteor()
     {
         WaitForSeconds spawnTime = new WaitForSeconds(0.4f);
+
         for (int i = 0; i < 5; i++)
         {
             Vector3 skillPos = transform.position;
             var forward = UnityEngine.Random.Range(10f, 20f);
             var side = UnityEngine.Random.Range(-20f, 20f);
-            
+
             skillPos += transform.forward * forward;
             skillPos += transform.right * side;
-            
+
             GameObject instantMeteor = Instantiate(skillObj[2], skillPos, transform.rotation);
+
             yield return spawnTime;
         }
-    
     }
-    
-    void EnegyExplode()
+
+    private void EnegyExplode()
     {
         Transform chest = GameObject.FindWithTag("Player").transform.Find("Camera").transform;
         Transform skillPos = GameObject.FindWithTag("Player").transform.Find("EnegyExplodePos").transform;
         GameObject instantEnergyExplode = Instantiate(skillObj[3], skillPos.transform.position, skillPos.transform.rotation);
+
         StartCoroutine(ActivateAttackCollision(instantEnergyExplode));
     }
-    
-    void AttackDisable()
+
+    private void AttackDisable()
     {
         underAttack = false;
         playerSword.SetActive(false);
     }
 
-    IEnumerator ActivateAttackCollision(GameObject instantObj)
+    private IEnumerator ActivateAttackCollision(GameObject instantObj)
     {
-        WaitForSeconds wait = new WaitForSeconds(2.0f);
-        yield return wait;
+        yield return new WaitForSeconds(2.0f);
+
         GameObject attackCollide = instantObj.transform.Find("DamageRange").gameObject;
         attackCollide.SetActive(true);
     }
-    
+
     public IEnumerator IncreaseExp(float expIncrement)
     {
         const float maxExp = 500.0f;

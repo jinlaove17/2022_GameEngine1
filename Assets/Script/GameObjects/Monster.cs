@@ -7,14 +7,15 @@ public class Monster : Entity
 {
     private Animator animator = null;
     private List<Material> materials = new List<Material>();
-    private NavMeshAgent agent;
-    private Rigidbody rigidbody;
+
+    private NavMeshAgent navAgent;
+    private Rigidbody rigidBody;
 
     private void Awake()
     {
         animator = transform.GetComponent<Animator>();
-        agent = GetComponent<NavMeshAgent>();
-        rigidbody = GetComponent<Rigidbody>();
+        navAgent = GetComponent<NavMeshAgent>();
+        rigidBody = GetComponent<Rigidbody>();
 
         // 해당 객체가 가지고 있는 모든 메터리얼을 캐싱 해놓는다.
         // 이때, 이름이 중복된다면 하나만 저장하도록 한다.
@@ -33,11 +34,12 @@ public class Monster : Entity
             }
         }
     }
+
     private void Update()
     {
         if (IsAlive)
         {
-            agent.SetDestination(GameManager.Instance.player.transform.position);
+            navAgent.SetDestination(GameManager.Instance.player.transform.position);
         }
     }
 
@@ -45,8 +47,8 @@ public class Monster : Entity
     {
         if (IsAlive)
         {
-            rigidbody.velocity = Vector3.zero;
-            rigidbody.angularVelocity = Vector3.zero;
+            rigidBody.velocity = Vector3.zero;
+            rigidBody.angularVelocity = Vector3.zero;
         }
     }
 
@@ -73,6 +75,7 @@ public class Monster : Entity
                     }
                     else
                     {
+                        navAgent.enabled = false;
                         animator.SetTrigger("Die");
 
                         GameManager.Instance.RestMonsterCount -= 1;
@@ -104,8 +107,8 @@ public class Monster : Entity
 
     IEnumerator ReserveToDestroyObject()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(2.0f);
 
-        Destroy(gameObject);
+        transform.gameObject.SetActive(false);
     }
 }

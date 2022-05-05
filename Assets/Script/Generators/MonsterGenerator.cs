@@ -6,11 +6,6 @@ using Random = UnityEngine.Random;
 
 public class MonsterGenerator : MonoBehaviour
 {
-    public GameObject[] monsterPrefabs = null;
-
-    // 오로지 생성된 자식을 담기 위해 사용한다.
-    public Transform    monsters = null;
-
     // 몬스터의 생성 위치는 현재 스테이지의 가장자리이다.
     // x: XMin, y: XMax, z: ZMin, w: ZMax
     public Vector4[]    genLocation = null;
@@ -20,7 +15,7 @@ public class MonsterGenerator : MonoBehaviour
 
     private const float genPeriod = 3.0f;
 
-    public IEnumerator CreateMonster()
+    public IEnumerator Spawn()
     {
         WaitForSeconds genTime = new WaitForSeconds(genPeriod);
 
@@ -30,9 +25,9 @@ public class MonsterGenerator : MonoBehaviour
             {
                 if (monsterCount < maxMonsterCount)
                 {
-                    int genCountPerFrame = Random.Range(10, 20 + 1);
+                    int genCountPerCycle = Random.Range(5, 10 + 1);
 
-                    for (int i = 0; i < genCountPerFrame; ++i)
+                    for (int i = 0; i < genCountPerCycle; ++i)
                     {
                         int locationIndex = Random.Range(0, 3 + 1);
                         float genX = Random.Range(genLocation[locationIndex].x, genLocation[locationIndex].y);
@@ -57,8 +52,15 @@ public class MonsterGenerator : MonoBehaviour
 
                         int monsterType = Random.Range(0, 1 + 1);
 
-                        GameObject newMonster = Instantiate(monsterPrefabs[monsterType], genPosition, genRotation);
-                        newMonster.transform.parent = monsters;
+                        switch (monsterType)
+                        {
+                            case 0:
+                                PoolingManager.Instance.Get("Chad", genPosition, genRotation);
+                                break;
+                            case 1:
+                                PoolingManager.Instance.Get("Olivia", genPosition, genRotation);
+                                break;
+                        }
 
                         monsterCount += 1;
                         GameManager.Instance.RestMonsterCount += 1;

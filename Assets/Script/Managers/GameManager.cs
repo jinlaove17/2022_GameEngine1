@@ -15,6 +15,26 @@ public class GameManager : MonoBehaviour
     private int                stage = 0;
     private int                restMonsterCount = 0;
 
+    public static GameManager Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                return FindObjectOfType<GameManager>();
+
+                if (instance == null)
+                {
+                    GameObject gameManager = new GameObject(nameof(GameManager));
+
+                    instance = gameManager.AddComponent<GameManager>();
+                }
+            }
+
+            return instance;
+        }
+    }
+
     public bool IsGameOver
     {
         get
@@ -72,19 +92,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public static GameManager Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                return FindObjectOfType<GameManager>();
-            }
-
-            return instance;
-        }
-    }
-
     private void Awake()
     {
         player = GameObject.FindWithTag("Player").transform.GetComponent<Player>();
@@ -94,7 +101,7 @@ public class GameManager : MonoBehaviour
     {
         if (monsterGenerator != null)
         {
-            StartCoroutine(monsterGenerator.CreateMonster());
+            StartCoroutine(monsterGenerator.Spawn());
         }
     }
 

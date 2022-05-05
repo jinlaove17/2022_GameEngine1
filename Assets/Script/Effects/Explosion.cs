@@ -1,13 +1,16 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-    public GameObject[] meshObj;
-    public GameObject effectObj;
-    public Rigidbody rigid;
+    public ParticleSystem explosionParicleSystem;
+
+    private Rigidbody rigidBody;
+
+    private void Awake()
+    {
+        rigidBody = GetComponent<Rigidbody>();
+    }
 
     private void Start()
     {
@@ -16,14 +19,11 @@ public class Explosion : MonoBehaviour
 
     IEnumerator Explode()
     {
-        yield return new WaitForSeconds(1f);
-        rigid.velocity = Vector3.zero;
-        rigid.angularVelocity = Vector3.zero;
-        foreach (GameObject obj in meshObj)
-        {
-            obj.SetActive(false);
-        }
-        effectObj.SetActive(true);
+        yield return new WaitForSeconds(1.0f);
+
+        rigidBody.velocity = Vector3.zero;
+        rigidBody.angularVelocity = Vector3.zero;
+
+        explosionParicleSystem.Play();
     }
-    
 }
