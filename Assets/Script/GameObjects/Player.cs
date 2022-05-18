@@ -10,9 +10,11 @@ public class Player : Entity
     // 게임 오브젝트
     public GameObject playerSword;
     public GameObject rightHand;
-
     public GameObject[] skillObj;
 
+    // 플레이어 움직임
+    private bool rDown;
+    
     // 카메라 셰이킹 이펙트
     private CameraShake cameraShake;
     public float duration;
@@ -87,13 +89,14 @@ public class Player : Entity
 
     private void GetInput()
     {
+        rDown = Input.GetButton("Run");
         f1Down = Input.GetButtonDown("Fire1");
         f2Down = Input.GetButtonDown("Fire2");
         s1Down = Input.GetButtonDown("Skill1");
         s2Down = Input.GetButtonDown("Skill2");
         s3Down = Input.GetButtonDown("Skill3");
         s4Down = Input.GetButtonDown("Skill4");
-
+        
         if (Input.GetKey(KeyCode.LeftAlt))
         {
             toggleCameraRotation = true;
@@ -109,9 +112,14 @@ public class Player : Entity
         if (!underAttack)
         {
             Vector3 moveDirection = transform.forward * Input.GetAxisRaw("Vertical") + transform.right * Input.GetAxisRaw("Horizontal");
-
-            characterController.Move(moveDirection.normalized * speed * Time.deltaTime);
-            animator.SetBool("IS_RUN", moveDirection != Vector3.zero);
+            print(Input.GetAxis("Vertical"));
+            characterController.Move(moveDirection.normalized * speed * (rDown ? 2f : 1.0f) * Time.deltaTime);
+            animator.SetBool("IS_WALK", moveDirection != Vector3.zero);
+            animator.SetBool("IS_RUN", rDown);
+            animator.SetBool("IS_LEFT_RUN", rDown && Input.GetAxisRaw("Horizontal") < 0.0 && Input.GetAxisRaw("Vertical") == 0.0f);
+            animator.SetBool("IS_RIGHT_RUN", rDown && Input.GetAxisRaw("Horizontal") > 0.0 && Input.GetAxisRaw("Vertical") == 0.0f);
+            animator.SetBool("IS_LEFT_WALK", Input.GetAxisRaw("Horizontal") < 0.0 && Input.GetAxisRaw("Vertical") == 0.0f);
+            animator.SetBool("IS_RIGHT_WALK", Input.GetAxisRaw("Horizontal") > 0.0 && Input.GetAxisRaw("Vertical") == 0.0f);
         }
     }
 

@@ -1580,7 +1580,7 @@ Animator:
   m_GameObject: {fileID: 4350108382898752423}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 374a86c730015ba4299485650860eb39, type: 3}
-  m_Controller: {fileID: 9100000, guid: d1cb17e4c65dea049a47d3db510365d0, type: 2}
+  m_Controller: {fileID: 9100000, guid: bdff1909c62eff540a4f8f47c2db0985, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -1645,7 +1645,7 @@ MonoBehaviour:
   - {fileID: 100010, guid: 4d0391f078db24fac9f5cba3075f9f5d, type: 3}
   duration: 1.4
   magnitude: 0.04
-  speed: 15
+  speed: 5
   underAttack: 0
   toggleCameraRotation: 0
   smoothness: 10
