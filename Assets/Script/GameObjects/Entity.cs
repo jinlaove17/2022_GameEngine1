@@ -4,21 +4,16 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-    private bool isAlive = true;
     private bool isHit = false;
+    private bool isFalling = false;
 
     private int health = 100;
 
     public bool IsAlive
     {
         get
-        { 
-            return isAlive;
-        }
-
-        set
-        { 
-            isAlive = value;
+        {
+            return health > 0;
         }
     }
 
@@ -32,6 +27,19 @@ public class Entity : MonoBehaviour
         set
         { 
             isHit = value;
+        }
+    }
+
+    public bool IsFalling
+    {
+        get
+        {
+            return isFalling;
+        }
+
+        set
+        {
+            isFalling = value;
         }
     }
 
@@ -49,7 +57,6 @@ public class Entity : MonoBehaviour
             if (health <= 0)
             {
                 health = 0;
-                isAlive = false;
             }
         }
     }

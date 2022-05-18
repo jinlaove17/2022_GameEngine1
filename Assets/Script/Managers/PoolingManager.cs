@@ -84,6 +84,10 @@ public class PoolingManager : MonoBehaviour
 
         managedObject.transform.position = position;
         managedObject.transform.rotation = quaternion;
+        
+        Monster monsterScript = managedObject.GetComponent<Monster>();
+
+        monsterScript.Health = 100;
 
         return managedObject;
     }

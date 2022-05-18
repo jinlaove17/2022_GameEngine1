@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Player : MonoBehaviour
+public class Player : Entity
 {
     // 게임 오브젝트
     public GameObject playerSword;
@@ -67,9 +67,12 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        GetInput();
-        Attack();
-        Move();
+        if (IsAlive)
+        {
+            GetInput();
+            Attack();
+            Move();
+        }
     }
 
     private void LateUpdate()
@@ -170,7 +173,7 @@ public class Player : MonoBehaviour
     {
         Vector3 skillPos = transform.position;
 
-        skillPos += transform.forward * 20;
+        skillPos += transform.forward * 20.0f;
         GameObject instantDeadExplode = Instantiate(skillObj[0], skillPos, Quaternion.identity);
     }
 
@@ -186,8 +189,8 @@ public class Player : MonoBehaviour
         for (int i = 0; i < 5; i++)
         {
             Vector3 skillPos = transform.position;
-            var forward = UnityEngine.Random.Range(10f, 20f);
-            var side = UnityEngine.Random.Range(-20f, 20f);
+            var forward = UnityEngine.Random.Range(10.0f, 20.0f);
+            var side = UnityEngine.Random.Range(-20.0f, 20.0f);
 
             skillPos += transform.forward * forward;
             skillPos += transform.right * side;
@@ -200,7 +203,6 @@ public class Player : MonoBehaviour
 
     private void EnegyExplode()
     {
-        Transform chest = GameObject.FindWithTag("Player").transform.Find("Camera").transform;
         Transform skillPos = GameObject.FindWithTag("Player").transform.Find("EnegyExplodePos").transform;
         GameObject instantEnergyExplode = Instantiate(skillObj[3], skillPos.transform.position, skillPos.transform.rotation);
 
