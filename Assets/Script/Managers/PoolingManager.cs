@@ -47,7 +47,7 @@ public class PoolingManager : MonoBehaviour
         }
     }
 
-    public GameObject Get(string objectName)
+    public GameObject GetObject(string objectName, Vector3 position, Quaternion quaternion)
     {
         if (!prefabDict.ContainsKey(objectName))
         {
@@ -64,31 +64,17 @@ public class PoolingManager : MonoBehaviour
             GameObject possibleObject = managedObjects[objectName].FirstOrDefault(obj => !obj.activeInHierarchy);
             
             possibleObject.SetActive(true);
+            possibleObject.GetComponent<Monster>().Health = 100;
 
             return possibleObject;
         }
         else
         {
-            GameObject newObject = Instantiate(prefabDict[objectName]);
+            GameObject newObject = Instantiate(prefabDict[objectName], position, quaternion, monsters);
 
-            newObject.transform.parent = monsters;
             managedObjects[objectName].Add(newObject);
 
             return newObject;
         }
-    }
-
-    public GameObject Get(string objectName, Vector3 position, Quaternion quaternion)
-    {
-        GameObject managedObject = Get(objectName);
-
-        managedObject.transform.position = position;
-        managedObject.transform.rotation = quaternion;
-        
-        Monster monsterScript = managedObject.GetComponent<Monster>();
-
-        monsterScript.Health = 100;
-
-        return managedObject;
     }
 }

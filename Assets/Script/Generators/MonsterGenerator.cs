@@ -55,10 +55,10 @@ public class MonsterGenerator : MonoBehaviour
                         switch (monsterType)
                         {
                             case 0:
-                                PoolingManager.Instance.Get("Chad", genPosition, genRotation);
+                                PoolingManager.Instance.GetObject("Chad", genPosition, genRotation);
                                 break;
                             case 1:
-                                PoolingManager.Instance.Get("Olivia", genPosition, genRotation);
+                                PoolingManager.Instance.GetObject("Olivia", genPosition, genRotation);
                                 break;
                         }
 

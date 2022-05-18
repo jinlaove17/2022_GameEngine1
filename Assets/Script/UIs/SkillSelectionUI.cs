@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
 public class SkillSelectionUI : MonoBehaviour
 {
-    private TMP_Text[] skillNames = null;
-    private TMP_Text[] skillInfo = null;
+    private Text[] skillNames = null;
+    private Text[] skillInfo = null;
 
     private Dictionary<string, int> allSkillLevel = new Dictionary<string, int>()
     {
@@ -42,13 +42,13 @@ public class SkillSelectionUI : MonoBehaviour
 
         if (skillUICount > 0)
         {
-            skillNames = new TMP_Text[skillUICount];
-            skillInfo = new TMP_Text[skillUICount];
+            skillNames = new Text[skillUICount];
+            skillInfo = new Text[skillUICount];
 
             for (int i = 0; i < skillUICount; ++i)
             {
-                TMP_Text skillNameText = skillUIs.GetChild(i).GetChild(0).GetComponentInChildren<TMP_Text>();
-                TMP_Text skillInfoText = skillUIs.GetChild(i).GetChild(1).GetComponentInChildren<TMP_Text>();
+                Text skillNameText = skillUIs.GetChild(i).GetChild(0).GetComponentInChildren<Text>();
+                Text skillInfoText = skillUIs.GetChild(i).GetChild(1).GetComponentInChildren<Text>();
 
                 skillNames[i] = skillNameText;
                 skillInfo[i] = skillInfoText;

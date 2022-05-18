@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class Player : Entity
 {
@@ -44,7 +43,7 @@ public class Player : Entity
 
     // 플레이어의 경험치
     public Slider expBar = null;
-    public TMP_Text expText = null;
+    public Text expText = null;
     private float exp = 0;
 
     private void Awake()
