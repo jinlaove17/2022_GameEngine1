@@ -5,58 +5,12 @@ using UnityEngine.UI;
 
 public class SkillSelectionUI : MonoBehaviour
 {
-    private Text[] skillNames = null;
-    private Text[] skillInfo = null;
+    public SkillDB skillDB = null;
+                   
+    public Text[]  skillUINames = null;
+    public Text[]  skillUIInfo = null;
 
-    private Dictionary<string, int> allSkillLevel = new Dictionary<string, int>()
-    {
-        { "Flame Bead", 0 },
-        { "Slash Blast", 0 },
-        { "Magnetic Drag", 0 },
-        { "Meteo", 0 },
-        { "Ice Age", 0 },
-    };
-
-    private List<string> allSkillNames = new List<string>()
-    {
-        "Flame Bead",
-        "Slash Blast",
-        "Magnetic Drag",
-        "Meteo",
-        "Ice Age"
-    };
-
-    private List<string> allSkillInfo = new List<string>()
-    {
-        "Throw the fire bead to forward.",
-        "Slash to forward.",
-        "Attracts nearby enemies.",
-        "Drop the Metro.",
-        "Freeze around."
-    };
-
-    private void Awake()
-    {
-        Transform skillUIs = transform.Find("SkillUIs");
-        int skillUICount = skillUIs.childCount;
-
-        if (skillUICount > 0)
-        {
-            skillNames = new Text[skillUICount];
-            skillInfo = new Text[skillUICount];
-
-            for (int i = 0; i < skillUICount; ++i)
-            {
-                Text skillNameText = skillUIs.GetChild(i).GetChild(0).GetComponentInChildren<Text>();
-                Text skillInfoText = skillUIs.GetChild(i).GetChild(1).GetComponentInChildren<Text>();
-
-                skillNames[i] = skillNameText;
-                skillInfo[i] = skillInfoText;
-            }
-        }
-
-        transform.gameObject.SetActive(false);
-    }
+    private int[]  selectedIndices = new int[3];
 
     public void UpdateSkillSelectionUI()
     {
@@ -64,14 +18,15 @@ public class SkillSelectionUI : MonoBehaviour
 
         for (int i = 0; i < 3;)
         {
-            int randomIndex = Random.Range(0, allSkillNames.Count);
+            int randomIndex = Random.Range(0, skillDB.skillPrefabs.Length);
 
             if (!indexList.Contains(randomIndex))
             {
                 indexList.Add(randomIndex);
 
-                skillNames[i].text = allSkillNames[randomIndex] + " (LV." + allSkillLevel[allSkillNames[randomIndex]] + ")";
-                skillInfo[i].text = allSkillInfo[randomIndex];
+                selectedIndices[i] = randomIndex;
+                skillUINames[i].text = skillDB.skillPrefabs[randomIndex].skillName + " (LV." + skillDB.skillPrefabs[randomIndex].skillLevel + ")";
+                skillUIInfo[i].text = skillDB.skillPrefabs[randomIndex].skillInfo;
                 ++i;
             }
         }
@@ -80,7 +35,8 @@ public class SkillSelectionUI : MonoBehaviour
     public void OnClickSelectButton(int index)
     {
         // 선택된 스킬의 레벨을 증가시킨다.
-        allSkillLevel[skillNames[index].text.Split(" (")[0]] += 1;
+        skillDB.skillPrefabs[selectedIndices[index]].skillLevel += 1;
+
         transform.gameObject.SetActive(false);
 
         Time.timeScale = 1.0f;
