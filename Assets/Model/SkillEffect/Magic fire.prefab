@@ -9715,6 +9715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e68ea09c950d0ab498f027565c998694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillType: 1
   explosionParicleSystem: {fileID: 8960265231023312902}
 --- !u!114 &-5929969059152802278
 MonoBehaviour:

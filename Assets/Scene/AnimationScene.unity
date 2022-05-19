@@ -130,10 +130,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 480240090}
     m_Modifications:
-    - target: {fileID: 3503758003426572021, guid: 8983919a1789d1a44921c0ed9c16a50f, type: 3}
-      propertyPath: speed
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 3969184381638103325, guid: 8983919a1789d1a44921c0ed9c16a50f, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -186,10 +182,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7058632648518568807, guid: 8983919a1789d1a44921c0ed9c16a50f, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: bdff1909c62eff540a4f8f47c2db0985, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8983919a1789d1a44921c0ed9c16a50f, type: 3}
 --- !u!1001 &441584374
@@ -598,7 +590,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8752260182347238773, guid: ef3802cc164df014cb511da83c5ffe6f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef3802cc164df014cb511da83c5ffe6f, type: 3}
@@ -612,10 +604,6 @@ PrefabInstance:
     - target: {fileID: 1366284767641466588, guid: fcf014db7b4968b40a6a84cb1f893111, type: 3}
       propertyPath: m_Name
       value: Remy
-      objectReference: {fileID: 0}
-    - target: {fileID: 1366284767641466588, guid: fcf014db7b4968b40a6a84cb1f893111, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1854872187370712166, guid: fcf014db7b4968b40a6a84cb1f893111, type: 3}
       propertyPath: m_RootOrder

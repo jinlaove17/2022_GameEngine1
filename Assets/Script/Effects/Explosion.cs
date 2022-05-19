@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
+    public int skillType;
     public ParticleSystem explosionParicleSystem;
 
     private Rigidbody rigidBody;
@@ -19,7 +20,10 @@ public class Explosion : MonoBehaviour
 
     IEnumerator Explode()
     {
-        yield return new WaitForSeconds(1.0f);
+        if (skillType == 1)
+            yield return new WaitForSeconds(1.0f);
+        else if(skillType == 2)
+            yield return new WaitForSeconds(3.5f);
 
         rigidBody.velocity = Vector3.zero;
         rigidBody.angularVelocity = Vector3.zero;

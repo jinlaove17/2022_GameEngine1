@@ -13,7 +13,7 @@ public class DestroyObject : MonoBehaviour
     // Update is called once per frame
     IEnumerator Destroy()
     {
-        WaitForSeconds destroyTick = new WaitForSeconds(3.0f);
+        WaitForSeconds destroyTick = new WaitForSeconds(10.0f);
         yield return destroyTick;
         Destroy(gameObject);
     }

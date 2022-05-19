@@ -40,6 +40,7 @@ public class Player : Entity
     private bool s2Down;
     private bool s3Down;
     private bool s4Down;
+    private bool s5Down;
 
     // 플레이어의 레벨
     private int level = 1;
@@ -96,6 +97,7 @@ public class Player : Entity
         s2Down = Input.GetButtonDown("Skill2");
         s3Down = Input.GetButtonDown("Skill3");
         s4Down = Input.GetButtonDown("Skill4");
+        s5Down = Input.GetButtonDown("Skill5");
         
         if (Input.GetKey(KeyCode.LeftAlt))
         {
@@ -112,7 +114,6 @@ public class Player : Entity
         if (!underAttack)
         {
             Vector3 moveDirection = transform.forward * Input.GetAxisRaw("Vertical") + transform.right * Input.GetAxisRaw("Horizontal");
-            print(Input.GetAxis("Vertical"));
             characterController.Move(moveDirection.normalized * speed * (rDown ? 2f : 1.0f) * Time.deltaTime);
             animator.SetBool("IS_WALK", moveDirection != Vector3.zero);
             animator.SetBool("IS_RUN", rDown);
@@ -160,6 +161,11 @@ public class Player : Entity
             {
                 underAttack = true;
                 animator.SetTrigger("DO_SKILL4");
+            }
+            else if (s5Down)
+            {
+                underAttack = true;
+                animator.SetTrigger("DO_SKILL5");
             }
         }
     }
@@ -217,6 +223,12 @@ public class Player : Entity
         StartCoroutine(ActivateAttackCollision(instantEnergyExplode));
     }
 
+    private void LightningArrow()
+    {
+        Quaternion skillRot = transform.rotation;
+        GameObject instantLightningArrow = Instantiate(skillObj[4], transform.position, transform.rotation);
+    }
+    
     private void AttackDisable()
     {
         underAttack = false;
