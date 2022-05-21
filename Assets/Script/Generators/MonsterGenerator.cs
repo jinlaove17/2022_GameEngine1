@@ -10,10 +10,10 @@ public class MonsterGenerator : MonoBehaviour
     // x: XMin, y: XMax, z: ZMin, w: ZMax
     public Vector4[]    genLocation = null;
 
+    private const float genPeriod = 3.0f;
+
     private int         monsterCount = 0;
     private const int   maxMonsterCount = 30;
-
-    private const float genPeriod = 3.0f;
 
     public IEnumerator Spawn()
     {
@@ -31,7 +31,7 @@ public class MonsterGenerator : MonoBehaviour
                     {
                         int locationIndex = Random.Range(0, 3 + 1);
                         float genX = Random.Range(genLocation[locationIndex].x, genLocation[locationIndex].y);
-                        float genY = Random.Range(4.0f, 6.0f);
+                        float genY = Random.Range(1.0f, 3.0f);
                         float genZ = Random.Range(genLocation[locationIndex].z, genLocation[locationIndex].w);
 
                         Vector3 genPosition = new Vector3(genX, genY, genZ + 108.0f * (GameManager.Instance.Stage - 1));
@@ -55,10 +55,10 @@ public class MonsterGenerator : MonoBehaviour
                         switch (monsterType)
                         {
                             case 0:
-                                PoolingManager.Instance.GetObject("Chad", genPosition, genRotation);
+                                PoolingManager.Instance.GetMonster("Chad", genPosition, genRotation);
                                 break;
                             case 1:
-                                PoolingManager.Instance.GetObject("Olivia", genPosition, genRotation);
+                                PoolingManager.Instance.GetMonster("Olivia", genPosition, genRotation);
                                 break;
                         }
 

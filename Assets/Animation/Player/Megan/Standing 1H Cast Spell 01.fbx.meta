@@ -68,11 +68,11 @@ ModelImporter:
         intParameter: 0
         messageOptions: 0
       - time: 0.44957983
-        functionName: Meteor
+        functionName: GenerateEffect
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
-        intParameter: 0
+        intParameter: 2
         messageOptions: 0
       transformMask: []
       maskType: 3

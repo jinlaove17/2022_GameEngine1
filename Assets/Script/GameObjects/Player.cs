@@ -10,8 +10,6 @@ public class Player : Entity
     public GameObject playerSword;
     public GameObject rightHand;
 
-    public GameObject[] skillObj;
-
     // 카메라 셰이킹 이펙트
     private CameraShake cameraShake;
     public float duration;
@@ -20,7 +18,6 @@ public class Player : Entity
     // 캐릭터 움직임 및 애니메이션
     private Animator animator;
     private CharacterController characterController;
-    private Rigidbody rigidBody;
     public float speed;
 
     // 캐릭터 공격 중
@@ -31,12 +28,7 @@ public class Player : Entity
     public float smoothness = 10.0f;
 
     // 키 입력
-    private bool f1Down;
-    private bool f2Down;
-    private bool s1Down;
-    private bool s2Down;
-    private bool s3Down;
-    private bool s4Down;
+    private int slotIndex = 0;
 
     // 플레이어의 레벨
     private int level = 1;
@@ -44,7 +36,7 @@ public class Player : Entity
     // 플레이어의 경험치
     public Slider expBar = null;
     public Text expText = null;
-    private float exp = 0;
+    private float exp = 0.0f;
 
     private void Awake()
     {
@@ -60,8 +52,13 @@ public class Player : Entity
 
         animator = transform.GetComponent<Animator>();
         characterController = transform.GetComponent<CharacterController>();
-        rigidBody = transform.GetComponent<Rigidbody>();
         cameraShake = Camera.main.GetComponent<CameraShake>();
+
+        // 기본 공격 스킬을 추가한다.
+        SkillManager.Instance.InsertSkill(0);
+        SkillManager.Instance.InsertSkill(1);
+        SkillManager.Instance.InsertSkill(2);
+        SkillManager.Instance.InsertSkill(3);
     }
 
     private void Update()
@@ -69,29 +66,48 @@ public class Player : Entity
         if (IsAlive)
         {
             GetInput();
-            Attack();
             Move();
+            Attack();
         }
     }
 
     private void LateUpdate()
     {
-        if (!toggleCameraRotation && !underAttack)
+        if (!underAttack && !toggleCameraRotation)
         {
             Vector3 playerRotate = Vector3.Scale(Camera.main.transform.forward, new Vector3(1.0f, 0, 1.0f));
 
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(playerRotate), Time.deltaTime * smoothness);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(playerRotate), smoothness * Time.deltaTime);
         }
     }
 
     private void GetInput()
     {
-        f1Down = Input.GetButtonDown("Fire1");
-        f2Down = Input.GetButtonDown("Fire2");
-        s1Down = Input.GetButtonDown("Skill1");
-        s2Down = Input.GetButtonDown("Skill2");
-        s3Down = Input.GetButtonDown("Skill3");
-        s4Down = Input.GetButtonDown("Skill4");
+        if (Input.GetMouseButtonDown(0))
+        {
+            slotIndex = 0;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            slotIndex = 1;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            slotIndex = 2;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            slotIndex = 3;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            slotIndex = 4;
+        }
+        else
+        {
+            // 아무 키도 눌리지 않았다면, -1로 설정한다.
+            slotIndex = -1;
+        }
 
         if (Input.GetKey(KeyCode.LeftAlt))
         {
@@ -116,96 +132,13 @@ public class Player : Entity
 
     private void Attack()
     {
-        if (!underAttack)
+        if (!underAttack && slotIndex >= 0)
         {
-            if (f1Down)
+            if (!SkillManager.Instance.CheckSlotEmpty(slotIndex))
             {
-                playerSword.SetActive(true);
-
-                underAttack = true;
-                animator.SetTrigger("DO_ATTACK1");
-            }
-            else if (f2Down)
-            {
-                playerSword.SetActive(true);
-
-                underAttack = true;
-                animator.SetTrigger("DO_ATTACK2");
-            }
-            else if (s1Down)
-            {
-                underAttack = true;
-                animator.SetTrigger("DO_SKILL1");
-            }
-            else if (s2Down)
-            {
-                underAttack = true;
-                animator.SetTrigger("DO_SKILL2");
-            }
-            else if (s3Down)
-            {
-                underAttack = true;
-                animator.SetTrigger("DO_SKILL3");
-            }
-            else if (s4Down)
-            {
-                underAttack = true;
-                animator.SetTrigger("DO_SKILL4");
+                SkillManager.Instance.UseSkill(slotIndex);
             }
         }
-    }
-
-    private void ShakeCamera()
-    {
-        StartCoroutine(cameraShake.Shake(duration, magnitude));
-    }
-
-    private void ThrowFire()
-    {
-        GameObject fireInstance = Instantiate(skillObj[1], rightHand.transform.position, Quaternion.identity);
-        Rigidbody fireRigidBody = fireInstance.GetComponent<Rigidbody>();
-
-        fireRigidBody.AddForce(15.0f * transform.forward, ForceMode.Impulse);
-    }
-
-    private void DeadExplode()
-    {
-        Vector3 skillPos = transform.position;
-
-        skillPos += transform.forward * 20.0f;
-        GameObject instantDeadExplode = Instantiate(skillObj[0], skillPos, Quaternion.identity);
-    }
-
-    private void Meteor()
-    {
-        StartCoroutine("SpawnMeteor");
-    }
-
-    private IEnumerator SpawnMeteor()
-    {
-        WaitForSeconds spawnTime = new WaitForSeconds(0.4f);
-
-        for (int i = 0; i < 5; i++)
-        {
-            Vector3 skillPos = transform.position;
-            var forward = UnityEngine.Random.Range(10.0f, 20.0f);
-            var side = UnityEngine.Random.Range(-20.0f, 20.0f);
-
-            skillPos += transform.forward * forward;
-            skillPos += transform.right * side;
-
-            GameObject instantMeteor = Instantiate(skillObj[2], skillPos, transform.rotation);
-
-            yield return spawnTime;
-        }
-    }
-
-    private void EnegyExplode()
-    {
-        Transform skillPos = GameObject.FindWithTag("Player").transform.Find("EnegyExplodePos").transform;
-        GameObject instantEnergyExplode = Instantiate(skillObj[3], skillPos.transform.position, skillPos.transform.rotation);
-
-        StartCoroutine(ActivateAttackCollision(instantEnergyExplode));
     }
 
     private void AttackDisable()
@@ -214,12 +147,23 @@ public class Player : Entity
         playerSword.SetActive(false);
     }
 
-    private IEnumerator ActivateAttackCollision(GameObject instantObj)
+    private void ShakeCamera()
     {
-        yield return new WaitForSeconds(2.0f);
+        StartCoroutine(cameraShake.Shake(duration, magnitude));
+    }
 
-        GameObject attackCollide = instantObj.transform.Find("DamageRange").gameObject;
-        attackCollide.SetActive(true);
+    public void TransAnimation(string triggerName)
+    {
+        if (animator)
+        {
+            underAttack = true;
+            animator.SetTrigger(triggerName);
+        }
+    }
+
+    public void GenerateEffect(AnimationEvent animationEvent)
+    {
+        SkillManager.Instance.GenerateEffect(animationEvent.intParameter);
     }
 
     public IEnumerator IncreaseExp(float expIncrement)
@@ -240,8 +184,7 @@ public class Player : Entity
                 exp = 0.0f;
                 level += 1;
 
-                GameManager.Instance.skillSelectionUI.gameObject.SetActive(true);
-                GameManager.Instance.skillSelectionUI.UpdateSkillSelectionUI();
+                SkillManager.Instance.skillSelectionUI.UpdateSkillSelectionUI();
 
                 Time.timeScale = 0.0f;
                 Cursor.lockState = CursorLockMode.Confined;

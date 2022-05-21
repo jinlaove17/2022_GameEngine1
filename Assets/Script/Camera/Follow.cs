@@ -5,15 +5,12 @@ using UnityEngine;
 
 public class Follow : MonoBehaviour
 {
-    private Player player;
-
     private Transform target;
     
-    public float camSpeed = 10000f;
-    public float mouseSensitivity = 100f;
-    public float maxAngle = 70f;
-    private float rotX;
-    private float rotY;
+    public float camSpeed = 10000.0f;
+    public float mouseSensitivity = 100.0f;
+    public float maxAngle = 70.0f;
+    private Vector2 rotation;
 
     public Transform realCamera;
     public Vector3 dirNormalized;
@@ -23,16 +20,12 @@ public class Follow : MonoBehaviour
     public float minDistance;
     public float maxDistance;
     public float finalDistance;
-    public float smoothness = 10f;
+    public float smoothness = 10.0f;
 
-    void Start()
+    private void Start()
     {
-        player = GameObject.FindWithTag("Player").GetComponent<Player>();
-        target = GameObject.FindWithTag("Player").transform.Find("Camera").transform;
-
-        rotX = transform.localRotation.eulerAngles.x;
-        rotY = transform.localRotation.eulerAngles.y;
-
+        target = GameManager.Instance.player.transform.Find("Camera").transform;
+        rotation = new Vector2(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y);
         dirNormalized = realCamera.localPosition.normalized;
         finalDistance = realCamera.localPosition.magnitude;
 
@@ -40,39 +33,31 @@ public class Follow : MonoBehaviour
         Cursor.visible = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (!player.underAttack)
+        if (!GameManager.Instance.player.underAttack)
         {
-            rotX += -(Input.GetAxis("Mouse Y")) * mouseSensitivity * Time.deltaTime;
-            rotY += Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-
-            rotX = Mathf.Clamp(rotX, -maxAngle, maxAngle);
-            Quaternion rot = Quaternion.Euler(rotX, rotY, 0);
-            transform.rotation = rot;
+            rotation.x += -(Input.GetAxis("Mouse Y")) * mouseSensitivity * Time.deltaTime;
+            rotation.x = Mathf.Clamp(rotation.x, -maxAngle, maxAngle);
+            rotation.y += Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+            transform.rotation = Quaternion.Euler(rotation.x, rotation.y, 0.0f);
         }
     }
 
     private void LateUpdate()
     {
         transform.position = Vector3.MoveTowards(transform.position, target.position, camSpeed * Time.deltaTime);
-
         finalDir = transform.TransformPoint(dirNormalized * maxDistance);
 
-        RaycastHit hit;
-
-        if (Physics.Linecast(transform.position, finalDir, out hit))
+        if (Physics.Linecast(transform.position, finalDir, out RaycastHit hit))
         {
             finalDistance = Mathf.Clamp(hit.distance, minDistance, maxDistance);
         }
-        
         else
         {
             finalDistance = maxDistance;
         }
 
-        realCamera.localPosition = Vector3.Lerp(realCamera.localPosition, dirNormalized * finalDistance,
-            Time.deltaTime * smoothness);
+        realCamera.localPosition = Vector3.Lerp(realCamera.localPosition, dirNormalized * finalDistance, smoothness * Time.deltaTime);
     }
 }

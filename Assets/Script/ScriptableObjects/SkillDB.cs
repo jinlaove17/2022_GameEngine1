@@ -12,7 +12,6 @@ public class SkillDB : ScriptableObject
 [Serializable]
 public class SkillPrefab
 {
-    public int    skillLevel;
-    public string skillName;
-    public string skillInfo;
+    public string prefabName = null;
+    public GameObject prefab = null;
 }

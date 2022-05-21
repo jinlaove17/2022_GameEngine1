@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class DestroyObject : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         StartCoroutine(Destroy());
     }
 
-    // Update is called once per frame
     IEnumerator Destroy()
-    {
-        WaitForSeconds destroyTick = new WaitForSeconds(3.0f);
-        yield return destroyTick;
-        Destroy(gameObject);
+    { 
+        yield return new WaitForSeconds(1.0f);
+
+        //Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

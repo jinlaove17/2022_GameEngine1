@@ -61,7 +61,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0.338843
-        functionName: ThrowFire
+        functionName: GenerateEffect
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

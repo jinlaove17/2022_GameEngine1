@@ -6,14 +6,13 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager instance = null;
 
-    public Player              player = null;
-    public MonsterGenerator    monsterGenerator = null;
-    public SkillSelectionUI    skillSelectionUI = null;
-    public GameObject          triggers = null;
+    public Player player = null;
+    public MonsterGenerator monsterGenerator = null;
+    public GameObject triggers = null;
 
-    private bool               isGameOver = false;
-    private int                stage = 0;
-    private int                restMonsterCount = 0;
+    private bool isGameOver = false;
+    private int stage = 0;
+    private int restMonsterCount = 0;
 
     public static GameManager Instance
     {
@@ -38,12 +37,12 @@ public class GameManager : MonoBehaviour
     public bool IsGameOver
     {
         get
-        { 
+        {
             return isGameOver;
         }
 
         set
-        { 
+        {
             isGameOver = value;
         }
     }
@@ -74,7 +73,7 @@ public class GameManager : MonoBehaviour
         set
         {
             restMonsterCount = value;
-            
+
             if (restMonsterCount <= 0)
             {
                 restMonsterCount = 0;
