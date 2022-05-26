@@ -14420,7 +14420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04829d875aeed1f4a975c0a3ffc8cb7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUsable: 0
+  isUsable: 1
   skillInfo: "EnergyDischarge\uC5D0 \uB300\uD55C \uC124\uBA85\uC744 \uC801\uC5B4\uBD05\uC2DC\uB2E4."
   skillLevel: 0
   skillCoolTime: 10

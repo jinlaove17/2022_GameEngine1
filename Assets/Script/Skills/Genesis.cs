@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Genesis : BaseSkill
 {
-    private void Start()
+    private void OnEnable()
     {
         StartCoroutine(InActive(1.5f));
     }

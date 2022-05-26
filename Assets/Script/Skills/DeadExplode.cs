@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DeadExplode : BaseSkill
 {
-    private void Start()
+    private void OnEnable()
     {
         StartCoroutine(InActive(2.0f));
     }

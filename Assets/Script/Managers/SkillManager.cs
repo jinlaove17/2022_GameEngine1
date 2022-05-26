@@ -14,6 +14,7 @@ public class SkillManager : MonoBehaviour
     public Sprite levelImage = null;
 
     public Image[] skillFilters = null;
+    public Text[] skillCoolTimeText = null;
     public Transform[] skillLevelGroups = null;
 
     private BaseSkill[] skillSlots = new BaseSkill[5];
@@ -200,12 +201,15 @@ public class SkillManager : MonoBehaviour
 
     private IEnumerator CalculateCoolTime(int slotIndex)
     {
+        skillCoolTimeText[slotIndex].gameObject.SetActive(true);
+
         while (skillFilters[slotIndex].fillAmount > 0.0f)
         {
             float deltaTime = Time.smoothDeltaTime / skillSlots[slotIndex].skillCoolTime;
 
             skillFilters[slotIndex].fillAmount -= deltaTime;
-            skillSlots[slotIndex].currentTime -= deltaTime;
+            skillSlots[slotIndex].currentTime -= Time.smoothDeltaTime;
+            skillCoolTimeText[slotIndex].text = string.Format("{0:0.0}", skillSlots[slotIndex].currentTime);
 
             yield return null;
         }
@@ -213,5 +217,6 @@ public class SkillManager : MonoBehaviour
         // 스킬 쿨타임이 끝나면 스킬을 사용할 수 있는 상태로 바꿈
         skillSlots[slotIndex].isUsable = true;
         skillSlots[slotIndex].currentTime = 0.0f;
+        skillCoolTimeText[slotIndex].gameObject.SetActive(false);
     }
 }

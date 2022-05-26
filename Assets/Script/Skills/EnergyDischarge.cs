@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnergyDischarge : BaseSkill
 {
-    private void Start()
+    private void OnEnable()
     {
         StartCoroutine(InActive(4.0f));
     }
