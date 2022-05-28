@@ -13,11 +13,19 @@ MonoBehaviour:
   m_Name: Skill DB
   m_EditorClassIdentifier: 
   skillPrefabs:
-  - prefabName: ThrowFire
+  - skillName: ThrowFire
+    skillInfo: '-'
+    skillCoolTime: 1.8
     prefab: {fileID: 1900756431413560, guid: c04254b84998c7f4380dd9b391744100, type: 3}
-  - prefabName: DeadExplode
+  - skillName: DeadExplode
+    skillInfo: '-'
+    skillCoolTime: 4
     prefab: {fileID: 100006, guid: 910ed13255412474fa75e72502d490f6, type: 3}
-  - prefabName: Genesis
+  - skillName: Genesis
+    skillInfo: '-'
+    skillCoolTime: 4
     prefab: {fileID: 1896462999409240153, guid: a9decccf8cb4fc743971fb5ca00cedd9, type: 3}
-  - prefabName: EnergyDischarge
+  - skillName: EnergyDischarge
+    skillInfo: '-'
+    skillCoolTime: 4
     prefab: {fileID: 100010, guid: 4d0391f078db24fac9f5cba3075f9f5d, type: 3}

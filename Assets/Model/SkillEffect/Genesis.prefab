@@ -19197,10 +19197,10 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1896462999409240153}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 12, y: 1, z: 12}
+  m_Size: {x: 15, y: 1, z: 15}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &-8470005198132850861
 MonoBehaviour:
@@ -19214,8 +19214,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b0af9416e1ea8a43b8a25a4afe9585f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUsable: 1
-  skillInfo: "Genesis\uC5D0 \uB300\uD55C \uC124\uBA85\uC744 \uC801\uC5B4\uBD05\uC2DC\uB2E4."
-  skillLevel: 0
-  skillCoolTime: 8
-  currentTime: 0

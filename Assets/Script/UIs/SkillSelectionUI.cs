@@ -8,30 +8,40 @@ public class SkillSelectionUI : MonoBehaviour
     public Text[] skillUINames = null;
     public Text[] skillUIInfo = null;
 
-    private int[] selectedIndices = new int[3];
+    private SKILL_TYPE[] selectedSkillTypes = new SKILL_TYPE[3];
 
-    public void UpdateSkillSelectionUI()
+    public void ActivateUI()
     {
         transform.gameObject.SetActive(true);
 
-        List<int> indexList = new List<int>();
+        List<int> typeList = new List<int>();
         SkillDB skillDB = PoolingManager.Instance.skillDB;
 
         for (int i = 0; i < 3;)
         {
-            int randomIndex = Random.Range(0, skillDB.skillPrefabs.Length);
-            BaseSkill skill = skillDB.skillPrefabs[randomIndex].prefab.GetComponent<BaseSkill>();
+            int randomType = Random.Range(0, skillDB.skillPrefabs.Length);
 
-            if (!indexList.Contains(randomIndex))
+            if (!typeList.Contains(randomType))
             {
-                indexList.Add(randomIndex);
+                int skillLevel = SkillManager.Instance.GetSkillLevel((SKILL_TYPE)randomType);
 
-                selectedIndices[i] = randomIndex;
-                skillUINames[i].text = skillDB.skillPrefabs[randomIndex].prefabName + " (LV." + skill.skillLevel + ")";
-                skillUIInfo[i].text = skill.skillInfo;
-                ++i;
+                if (skillLevel < 5)
+                {
+                    SkillPrefab skill = skillDB.skillPrefabs[randomType];
+
+                    selectedSkillTypes[i] = (SKILL_TYPE)randomType;
+                    skillUINames[i].text = skill.skillName + " (LV." + skillLevel + ")";
+                    skillUIInfo[i].text = skill.skillInfo;
+                    ++i;
+
+                    typeList.Add(randomType);
+                }
             }
         }
+
+        Time.timeScale = 0.0f;
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
     }
 
     public void OnClickSelectButton(int index)
@@ -40,14 +50,14 @@ public class SkillSelectionUI : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        if (SkillManager.Instance.HasSkill(selectedIndices[index]))
+        if (SkillManager.Instance.HasSkill(selectedSkillTypes[index]))
         {
             // 이미 등록된 스킬이라면 레벨을 증가시킨다.
-            SkillManager.Instance.IncreaseSkillLevel(selectedIndices[index]);
+            SkillManager.Instance.IncreaseSkillLevel(selectedSkillTypes[index]);
         }
         else
         {
-            SkillManager.Instance.InsertSkill(selectedIndices[index]);
+            SkillManager.Instance.RegisterSkill(selectedSkillTypes[index]);
         }
 
         transform.gameObject.SetActive(false);

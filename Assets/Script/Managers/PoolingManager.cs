@@ -47,12 +47,12 @@ public class PoolingManager : MonoBehaviour
         // 데이터베이스를 딕셔너리로 재구성한다.
         foreach (MonsterPrefab monsterPrefab in monsterDB.monsterPrefabs)
         {
-            prefabDict.Add(monsterPrefab.prefabName, monsterPrefab.prefab);
+            prefabDict.Add(monsterPrefab.monsterName, monsterPrefab.prefab);
         }
 
         foreach (SkillPrefab skillPrefab in skillDB.skillPrefabs)
         {
-            prefabDict.Add(skillPrefab.prefabName, skillPrefab.prefab);
+            prefabDict.Add(skillPrefab.skillName, skillPrefab.prefab);
         }
     }
 

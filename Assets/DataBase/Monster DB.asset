@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Monster DB
   m_EditorClassIdentifier: 
   monsterPrefabs:
-  - prefabName: Chad
+  - monsterName: Chad
     prefab: {fileID: 4743745568765936209, guid: 1c3d322e71a5d9049a689b0401536104, type: 3}
-  - prefabName: Olivia
+  - monsterName: Olivia
     prefab: {fileID: 6488646497012148880, guid: 98461cc4f99aefd4f949ff66531440ad, type: 3}

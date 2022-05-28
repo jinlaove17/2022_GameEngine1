@@ -53,12 +53,11 @@ public class Player : Entity
         animator = transform.GetComponent<Animator>();
         characterController = transform.GetComponent<CharacterController>();
         cameraShake = Camera.main.GetComponent<CameraShake>();
+    }
 
-        // 기본 공격 스킬을 추가한다.
-        SkillManager.Instance.InsertSkill(0);
-        SkillManager.Instance.InsertSkill(1);
-        SkillManager.Instance.InsertSkill(2);
-        SkillManager.Instance.InsertSkill(3);
+    private void Start()
+    {
+        SkillManager.Instance.RegisterSkill(SKILL_TYPE.ThrowFire);
     }
 
     private void Update()
@@ -134,10 +133,7 @@ public class Player : Entity
     {
         if (!underAttack && slotIndex >= 0)
         {
-            if (!SkillManager.Instance.CheckSlotEmpty(slotIndex))
-            {
-                SkillManager.Instance.UseSkill(slotIndex);
-            }
+            SkillManager.Instance.UseSkill(slotIndex);
         }
     }
 
@@ -184,11 +180,7 @@ public class Player : Entity
                 exp = 0.0f;
                 level += 1;
 
-                SkillManager.Instance.skillSelectionUI.UpdateSkillSelectionUI();
-
-                Time.timeScale = 0.0f;
-                Cursor.lockState = CursorLockMode.Confined;
-                Cursor.visible = true;
+                SkillManager.Instance.skillSelectionUI.ActivateUI();
             }
 
             expPer = exp / maxExp;

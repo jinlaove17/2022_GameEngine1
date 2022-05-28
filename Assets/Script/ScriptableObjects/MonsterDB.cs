@@ -12,6 +12,7 @@ public class MonsterDB : ScriptableObject
 [Serializable]
 public class MonsterPrefab
 {
-    public string prefabName = null;
+    public string monsterName = null;
+
     public GameObject prefab = null;
 }
