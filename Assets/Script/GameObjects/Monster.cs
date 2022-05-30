@@ -45,7 +45,7 @@ public class Monster : Entity
 
     private void FixedUpdate()
     {
-        if (IsAlive)
+        if (IsAlive && navMeshAgent.enabled)
         {
             rigidBody.velocity = Vector3.zero;
             rigidBody.angularVelocity = Vector3.zero;

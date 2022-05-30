@@ -31,7 +31,7 @@ public class MonsterGenerator : MonoBehaviour
                     {
                         int locationIndex = Random.Range(0, 3 + 1);
                         float genX = Random.Range(genLocation[locationIndex].x, genLocation[locationIndex].y);
-                        float genY = Random.Range(1.0f, 3.0f);
+                        float genY = Random.Range(1.0f, 2.0f);
                         float genZ = Random.Range(genLocation[locationIndex].z, genLocation[locationIndex].w);
 
                         Vector3 genPosition = new Vector3(genX, genY, genZ + 108.0f * (GameManager.Instance.Stage - 1));
