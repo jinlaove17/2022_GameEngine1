@@ -59,20 +59,16 @@ public class SkillManager : MonoBehaviour
 
     public bool HasSkill(SKILL_TYPE skillType)
     {
-        if (skillCount >= skillSlots.Length)
-        {
-            Debug.LogError("인덱스를 벗어났습니다.");
-
-            return false;
-        }
-        else if (skillType < 0 || (int)skillType >= PoolingManager.Instance.skillDB.skillPrefabs.Length)
+        if (skillType < 0 || (int)skillType >= PoolingManager.Instance.skillDB.skillPrefabs.Length)
         {
             Debug.LogError("인덱스를 벗어났습니다.");
 
             return false;
         }
 
-        for (int i = 0; i <= skillCount; ++i)
+        int slotCount = skillSlots.Length;
+
+        for (int i = 0; i < slotCount; ++i)
         {
             if (!skillSlots[i].IsEmpty && skillSlots[i].SkillType == skillType)
             {
@@ -104,22 +100,18 @@ public class SkillManager : MonoBehaviour
     public int GetSkillSlotIndex(SKILL_TYPE skillType)
     {
         // 해당 스킬을 보유하고 있다면, 그 스킬을 보유한 슬롯의 인덱스를 반환한다.
-        if (skillCount >= skillSlots.Length)
-        {
-            Debug.LogError("인덱스를 벗어났습니다.");
-
-            return -1;
-        }
-        else if (skillType < 0 || (int)skillType >= PoolingManager.Instance.skillDB.skillPrefabs.Length)
+        if (skillType < 0 || (int)skillType >= PoolingManager.Instance.skillDB.skillPrefabs.Length)
         {
             Debug.LogError("인덱스를 벗어났습니다.");
 
             return -1;
         }
 
-        for (int i = 0; i <= skillCount; ++i)
+        int slotCount = skillSlots.Length;
+
+        for (int i = 0; i < slotCount; ++i)
         {
-            if (skillSlots[i].SkillType == skillType)
+            if (!skillSlots[i].IsEmpty && skillSlots[i].SkillType == skillType)
             {
                 return i;
             }
@@ -132,8 +124,6 @@ public class SkillManager : MonoBehaviour
     {
         if (skillCount >= skillSlots.Length)
         {
-            Debug.LogError("스킬 슬롯이 꽉차서 추가할 수 없습니다.");
-
             return;
         }
         else if (skillType < 0 || (int)skillType >= PoolingManager.Instance.skillDB.skillPrefabs.Length)
@@ -149,7 +139,7 @@ public class SkillManager : MonoBehaviour
             return;
         }
 
-        skillSlots[skillCount].RegisterSkill(skillType, PoolingManager.Instance.skillDB.skillPrefabs[(int)skillType].skillCoolTime);
+        skillSlots[skillCount].RegisterSkill(skillType);
         IncreaseSkillLevel(skillType);
 
         skillCount += 1;
@@ -173,7 +163,7 @@ public class SkillManager : MonoBehaviour
 
             if (skillLevel < 5)
             {
-                skillSlots[slotIndex].skillLevelImages[skillLevel].sprite = skillLevelImage;
+                skillSlots[slotIndex].IncreaseSkillLevel(skillLevel);
 
                 // 복사된 skillLevel이 아닌 원본 값을 증가시켜주어야 한다.
                 skillLevelDict[skillSlots[slotIndex].SkillType] += 1;

@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class SkillSelectionUI : MonoBehaviour
 {
-    public Text[] skillUINames = null;
-    public Text[] skillUIInfo = null;
+    public Text[] skillUINames;
+    public Image[] skillIcons;
+    public Text[] skillUIInfo;
 
     private SKILL_TYPE[] selectedSkillTypes = new SKILL_TYPE[3];
 
@@ -31,6 +32,7 @@ public class SkillSelectionUI : MonoBehaviour
 
                     selectedSkillTypes[i] = (SKILL_TYPE)randomType;
                     skillUINames[i].text = skill.skillName + " (LV." + skillLevel + ")";
+                    skillIcons[i].sprite = skill.skillIcon;
                     skillUIInfo[i].text = skill.skillInfo;
                     ++i;
 

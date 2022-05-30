@@ -108,7 +108,7 @@ public class Monster : Entity
 
     IEnumerator ReserveToDestroyObject()
     {
-        yield return new WaitForSeconds(1.25f);
+        yield return new WaitForSeconds(1.0f);
 
         transform.gameObject.SetActive(false);
         navMeshAgent.enabled = false;

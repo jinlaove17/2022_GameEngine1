@@ -5,9 +5,10 @@ using UnityEngine.UI;
 
 public class SkillSlot : MonoBehaviour
 {
-    public Image skillFilter;
-    public Text skillCoolTimeText;
-    public Image[] skillLevelImages;
+    private Image skillIcon;
+    private Image skillFilter;
+    private Text skillCoolTimeText;
+    private Image[] skillLevelImages;
 
     private bool isEmpty = true;
     private bool isUsable;
@@ -15,6 +16,14 @@ public class SkillSlot : MonoBehaviour
     private SKILL_TYPE skillType;
     private float skillCoolTime;
     private float currentCoolTime;
+
+    private void Awake()
+    {
+        skillIcon = transform.GetComponent<Image>();
+        skillFilter = transform.GetChild(0).GetComponent<Image>();
+        skillCoolTimeText = transform.GetChild(0).GetComponentInChildren<Text>(true);
+        skillLevelImages = transform.GetChild(3).GetComponentsInChildren<Image>();
+    }
 
     public bool IsEmpty
     {
@@ -40,16 +49,24 @@ public class SkillSlot : MonoBehaviour
         }
     }
 
-    public void RegisterSkill(SKILL_TYPE newSkillType, float coolTime)
+    public void RegisterSkill(SKILL_TYPE newSkillType)
     {
         if (isEmpty)
         {
+            SkillPrefab skill = PoolingManager.Instance.skillDB.skillPrefabs[(int)newSkillType];
+
             isEmpty = false;
             isUsable = true;
 
             skillType = newSkillType;
-            skillCoolTime = coolTime;
+            skillCoolTime = skill.skillCoolTime;
+            skillIcon.sprite = skill.skillIcon;
         }
+    }
+
+    public void IncreaseSkillLevel(int skillLevel)
+    {
+        skillLevelImages[skillLevel].sprite = SkillManager.Instance.skillLevelImage;
     }
 
     public IEnumerator CalculateCoolTime()
