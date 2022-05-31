@@ -14,8 +14,8 @@ public class Monster : Entity
     private void Awake()
     {
         animator = transform.GetComponent<Animator>();
-        navMeshAgent = GetComponent<NavMeshAgent>();
-        rigidBody = GetComponent<Rigidbody>();
+        navMeshAgent = transform.GetComponent<NavMeshAgent>();
+        rigidBody = transform.GetComponent<Rigidbody>();
 
         // 해당 객체가 가지고 있는 모든 메터리얼을 캐싱 해놓는다.
         // 이때, 이름이 중복된다면 하나만 저장하도록 한다.

@@ -8,12 +8,20 @@ public class SkillSelectionUI : MonoBehaviour
     public Text[] skillUINames;
     public Image[] skillIcons;
     public Text[] skillUIInfo;
+    public GameObject levelUpParticle;
 
+    private Animator animator;
     private SKILL_TYPE[] selectedSkillTypes = new SKILL_TYPE[3];
+
+    private void Awake()
+    {
+        animator = transform.GetComponent<Animator>();
+    }
 
     public void ActivateUI()
     {
         transform.gameObject.SetActive(true);
+        animator.Play("Show", -1, 0.0f);
 
         List<int> typeList = new List<int>();
         SkillDB skillDB = PoolingManager.Instance.skillDB;
@@ -63,5 +71,14 @@ public class SkillSelectionUI : MonoBehaviour
         }
 
         transform.gameObject.SetActive(false);
+    }
+
+    public void ShowLevelUpEffect()
+    {
+        Vector3 genPosition = transform.position;
+
+        genPosition.y += 25.0f;
+
+        Instantiate(levelUpParticle, genPosition, Quaternion.identity);
     }
 }
