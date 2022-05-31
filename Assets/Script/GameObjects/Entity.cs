@@ -5,7 +5,6 @@ using UnityEngine;
 public class Entity : MonoBehaviour
 {
     private bool isHit = false;
-    private bool isFalling = false;
 
     private int health = 100;
 
@@ -27,19 +26,6 @@ public class Entity : MonoBehaviour
         set
         { 
             isHit = value;
-        }
-    }
-
-    public bool IsFalling
-    {
-        get
-        {
-            return isFalling;
-        }
-
-        set
-        {
-            isFalling = value;
         }
     }
 

@@ -8,11 +8,19 @@ public class Monster : Entity
     private Animator animator = null;
     private List<Material> materials = new List<Material>();
 
-    private NavMeshAgent navMeshAgent;
-    private Rigidbody rigidBody;
+    [HideInInspector]
+    public StateMachine<Monster> stateMachine;
+
+    [HideInInspector]
+    public NavMeshAgent navMeshAgent;
+
+    [HideInInspector]
+    public Rigidbody rigidBody;
 
     private void Awake()
     {
+        stateMachine = new StateMachine<Monster>(this, Monster_ChaseState.Instance);
+
         animator = transform.GetComponent<Animator>();
         navMeshAgent = transform.GetComponent<NavMeshAgent>();
         rigidBody = transform.GetComponent<Rigidbody>();
@@ -37,18 +45,17 @@ public class Monster : Entity
 
     private void Update()
     {
-        if (IsAlive && navMeshAgent.enabled)
+        if (IsAlive && !IsHit)
         {
-            navMeshAgent.SetDestination(GameManager.Instance.player.transform.position);
+            stateMachine.LogicUpdate();
         }
     }
 
     private void FixedUpdate()
     {
-        if (IsAlive && navMeshAgent.enabled)
+        if (IsAlive && !IsHit)
         {
-            rigidBody.velocity = Vector3.zero;
-            rigidBody.angularVelocity = Vector3.zero;
+            stateMachine.PhysicsUpdate();
         }
     }
 
@@ -66,44 +73,43 @@ public class Monster : Entity
             {
                 if (!IsHit)
                 {
-                    StartCoroutine(HitEffect());
-
-                    Health -= 50;
-
-                    if (IsAlive)
-                    {
-                        animator.SetTrigger("Hit");
-                    }
-                    else
-                    {
-                        navMeshAgent.enabled = false;
-                        animator.SetTrigger("Die");
-
-                        GameManager.Instance.RestMonsterCount -= 1;
-                        GameManager.Instance.IncreasePlayerExp(100.0f);
-                    }
+                    StartCoroutine(Hit());
                 }
             }
         }
     }
 
-    IEnumerator HitEffect()
+    private IEnumerator Hit()
     {
         IsHit = true;
+        Health -= 50;
 
-        foreach (Material material in materials)
+        if (IsAlive)
         {
-            material.color = new Color(1.0f, 0.6f, 0.6f, 1.0f);
-        }
+            foreach (Material material in materials)
+            {
+                material.color = new Color(1.0f, 0.7f, 0.7f, 1.0f);
+            }
 
-        yield return new WaitForSeconds(0.15f);
+            animator.SetTrigger("Hit");
+
+            yield return new WaitForSeconds(0.2f);
+
+            foreach (Material material in materials)
+            {
+                material.color = Color.white;
+            }
+        }
+        else
+        {
+            navMeshAgent.enabled = false;
+            animator.SetTrigger("Die");
+
+            GameManager.Instance.RestMonsterCount -= 1;
+            GameManager.Instance.IncreasePlayerExp(100.0f);
+        }
 
         IsHit = false;
-
-        foreach (Material material in materials)
-        {
-            material.color = Color.white;
-        }
     }
 
     IEnumerator ReserveToDestroyObject()

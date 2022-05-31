@@ -8,12 +8,15 @@ public class MonsterGenerator : MonoBehaviour
 {
     // 몬스터의 생성 위치는 현재 스테이지의 가장자리이다.
     // x: XMin, y: XMax, z: ZMin, w: ZMax
-    public Vector4[]    genLocation = null;
+    public Vector4[] genLocation;
 
     private const float genPeriod = 3.0f;
 
-    private int         monsterCount = 0;
-    private const int   maxMonsterCount = 30;
+    private int monsterCount = 0;
+    private const int maxMonsterCount = 30;
+
+    private const int minGenCountPerCycle = 5;
+    private const int maxGenCountPerCycle = 10;
 
     public IEnumerator Spawn()
     {
@@ -25,7 +28,7 @@ public class MonsterGenerator : MonoBehaviour
             {
                 if (monsterCount < maxMonsterCount)
                 {
-                    int genCountPerCycle = Random.Range(5, 10 + 1);
+                    int genCountPerCycle = Random.Range(minGenCountPerCycle, maxGenCountPerCycle + 1);
 
                     for (int i = 0; i < genCountPerCycle; ++i)
                     {
