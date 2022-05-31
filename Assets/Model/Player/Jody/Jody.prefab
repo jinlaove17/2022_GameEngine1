@@ -1627,6 +1627,8 @@ MonoBehaviour:
   - {fileID: 1896462999409240153, guid: a9decccf8cb4fc743971fb5ca00cedd9, type: 3}
   - {fileID: 100010, guid: 4d0391f078db24fac9f5cba3075f9f5d, type: 3}
   - {fileID: 4792277665850183729, guid: efde5df4a1e82844d8b77b75b3568688, type: 3}
+  - {fileID: 100008, guid: 254b768cc445ecc41aab8fef699a4c05, type: 3}
+  - {fileID: 1634767862067424, guid: b4a08749955bde0469b6f1d029310f91, type: 3}
   speed: 5
   underAttack: 0
   toggleCameraRotation: 0
