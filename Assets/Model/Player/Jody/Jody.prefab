@@ -1535,7 +1535,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3969184381638103325}
   - component: {fileID: 7058632648518568807}
-  - component: {fileID: 3503758003426572027}
   - component: {fileID: 3503758003426572026}
   - component: {fileID: 3503758003426572021}
   m_Layer: 6
@@ -1544,7 +1543,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3969184381638103325
 Transform:
   m_ObjectHideFlags: 0
@@ -1590,22 +1589,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!54 &3503758003426572027
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4350108382898752423}
-  serializedVersion: 2
-  m_Mass: 50
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 1
 --- !u!143 &3503758003426572026
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1644,8 +1627,6 @@ MonoBehaviour:
   - {fileID: 1896462999409240153, guid: a9decccf8cb4fc743971fb5ca00cedd9, type: 3}
   - {fileID: 100010, guid: 4d0391f078db24fac9f5cba3075f9f5d, type: 3}
   - {fileID: 4792277665850183729, guid: efde5df4a1e82844d8b77b75b3568688, type: 3}
-  duration: 1.4
-  magnitude: 0.04
   speed: 5
   underAttack: 0
   toggleCameraRotation: 0

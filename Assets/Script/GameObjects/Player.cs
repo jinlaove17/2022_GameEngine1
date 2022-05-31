@@ -17,8 +17,8 @@ public class Player : Entity
     
     // 카메라 셰이킹 이펙트
     private CameraShake cameraShake;
-    public float duration;
-    public float magnitude;
+    private float duration = 1.4f;
+    private float magnitude = 0.04f;
 
     // 캐릭터 움직임 및 애니메이션
     private Animator animator;
@@ -41,6 +41,8 @@ public class Player : Entity
     private bool s3Down;
     private bool s4Down;
     private bool s5Down;
+    private bool s6Down;
+    private bool s7Down;
 
     // 플레이어의 레벨
     private int level = 1;
@@ -98,6 +100,8 @@ public class Player : Entity
         s3Down = Input.GetButtonDown("Skill3");
         s4Down = Input.GetButtonDown("Skill4");
         s5Down = Input.GetButtonDown("Skill5");
+        s6Down = Input.GetButtonDown("Skill6");
+        s7Down = Input.GetButtonDown("Skill7");
         
         if (Input.GetKey(KeyCode.LeftAlt))
         {
@@ -131,14 +135,12 @@ public class Player : Entity
             if (f1Down)
             {
                 playerSword.SetActive(true);
-
                 underAttack = true;
                 animator.SetTrigger("DO_ATTACK1");
             }
             else if (f2Down)
             {
                 playerSword.SetActive(true);
-
                 underAttack = true;
                 animator.SetTrigger("DO_ATTACK2");
             }
@@ -166,6 +168,16 @@ public class Player : Entity
             {
                 underAttack = true;
                 animator.SetTrigger("DO_SKILL5");
+            }
+            else if (s6Down)
+            {
+                underAttack = true;
+                animator.SetTrigger("DO_SKILL6");
+            }
+            else if (s7Down)
+            {
+                underAttack = true;
+                animator.SetTrigger("DO_SKILL7");
             }
         }
     }
@@ -225,8 +237,17 @@ public class Player : Entity
 
     private void LightningArrow()
     {
-        Quaternion skillRot = transform.rotation;
         GameObject instantLightningArrow = Instantiate(skillObj[4], transform.position, transform.rotation);
+    }
+
+    private void GravityField()
+    {
+        GameObject instantGravityField = Instantiate(skillObj[5], transform.position, transform.rotation);
+    }
+
+    private void FlameThrower()
+    {
+        GameObject instantFlameThrower = Instantiate(skillObj[6], rightHand.transform.position, transform.rotation);
     }
     
     private void AttackDisable()

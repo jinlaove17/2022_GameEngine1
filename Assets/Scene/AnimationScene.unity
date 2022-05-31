@@ -178,10 +178,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jody
       objectReference: {fileID: 0}
-    - target: {fileID: 4350108382898752423, guid: 8983919a1789d1a44921c0ed9c16a50f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8983919a1789d1a44921c0ed9c16a50f, type: 3}
 --- !u!1001 &441584374
@@ -194,10 +190,6 @@ PrefabInstance:
     - target: {fileID: 8273899023574157608, guid: 5cf9378d7eb987d488d59b5866cae369, type: 3}
       propertyPath: m_Name
       value: Lewis
-      objectReference: {fileID: 0}
-    - target: {fileID: 8273899023574157608, guid: 5cf9378d7eb987d488d59b5866cae369, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8762065335095825298, guid: 5cf9378d7eb987d488d59b5866cae369, type: 3}
       propertyPath: m_RootOrder
@@ -588,10 +580,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Megan
       objectReference: {fileID: 0}
-    - target: {fileID: 8752260182347238773, guid: ef3802cc164df014cb511da83c5ffe6f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef3802cc164df014cb511da83c5ffe6f, type: 3}
 --- !u!1001 &1263375014
@@ -649,6 +637,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2177328861304769413, guid: fcf014db7b4968b40a6a84cb1f893111, type: 3}
+      propertyPath: skillObj.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2177328861304769413, guid: fcf014db7b4968b40a6a84cb1f893111, type: 3}
+      propertyPath: skillObj.Array.data[6]
+      value: 
+      objectReference: {fileID: 1634767862067424, guid: b4a08749955bde0469b6f1d029310f91, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fcf014db7b4968b40a6a84cb1f893111, type: 3}
 --- !u!4 &1467112164 stripped

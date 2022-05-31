@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2885611791660225377}
   - component: {fileID: 2885611791646070305}
   - component: {fileID: 2885611791646175105}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ring2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4799,7 +4799,7 @@ GameObject:
   - component: {fileID: 2885611791660225379}
   - component: {fileID: 2885611791646070307}
   - component: {fileID: 2885611791646175107}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Spark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9587,7 +9587,7 @@ GameObject:
   - component: {fileID: 2885611791660225381}
   - component: {fileID: 2885611791646070309}
   - component: {fileID: 2885611791646175109}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14321,7 +14321,7 @@ GameObject:
   - component: {fileID: 2885611791660225383}
   - component: {fileID: 2885611791646070311}
   - component: {fileID: 2885611791646175111}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19109,7 +19109,7 @@ GameObject:
   - component: {fileID: 2885611791660225387}
   - component: {fileID: 2885611791646070315}
   - component: {fileID: 2885611791646175115}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Explode
   m_TagString: Untagged
   m_Icon: {fileID: 0}

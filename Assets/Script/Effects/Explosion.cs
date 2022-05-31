@@ -24,7 +24,8 @@ public class Explosion : MonoBehaviour
             yield return new WaitForSeconds(1.0f);
         else if(skillType == 2)
             yield return new WaitForSeconds(3.5f);
-
+        else if(skillType == 3)
+            yield return new WaitForSeconds(1.2f);
         rigidBody.velocity = Vector3.zero;
         rigidBody.angularVelocity = Vector3.zero;
 
