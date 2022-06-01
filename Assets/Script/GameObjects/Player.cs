@@ -98,10 +98,6 @@ public class Player : Entity
         {
             slotIndex = 3;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            slotIndex = 4;
-        }
         else
         {
             // 아무 키도 눌리지 않았다면, -1로 설정한다.
