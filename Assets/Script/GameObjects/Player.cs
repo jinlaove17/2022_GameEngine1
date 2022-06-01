@@ -118,10 +118,24 @@ public class Player : Entity
     {
         if (!underAttack)
         {
-            Vector3 moveDirection = transform.forward * Input.GetAxisRaw("Vertical") + transform.right * Input.GetAxisRaw("Horizontal");
-
-            characterController.Move(moveDirection.normalized * speed * Time.deltaTime);
-            animator.SetBool("IS_RUN", moveDirection != Vector3.zero);
+            Vector3 userInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0.0f, Input.GetAxisRaw("Vertical"));
+            Vector3 moveDirection = transform.right * userInput.x + transform.forward * userInput.z;
+            bool isRun = Input.GetKey(KeyCode.LeftShift);
+                
+            characterController.Move(moveDirection.normalized * speed * (isRun ? 2.0f : 1.0f) * Time.deltaTime);
+            animator.SetBool("IS_WALK", moveDirection != Vector3.zero);
+            animator.SetBool("IS_RUN", isRun);
+            
+            if (isRun)
+            {
+                animator.SetBool("IS_LEFT_RUN", userInput.x < 0.0 && userInput.z == 0.0f);
+                animator.SetBool("IS_RIGHT_RUN", userInput.x > 0.0 && userInput.z == 0.0f);
+            }
+            else
+            {
+                animator.SetBool("IS_LEFT_WALK", userInput.x < 0.0 && userInput.z == 0.0f);
+                animator.SetBool("IS_RIGHT_WALK", userInput.x > 0.0 && userInput.z == 0.0f);
+            }
         }
     }
 

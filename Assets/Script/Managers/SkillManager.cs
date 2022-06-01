@@ -8,7 +8,7 @@ public enum SKILL_TYPE
     ThrowFire,
     DeadExplode,
     Genesis,
-    EnergyDischarge
+    EnergyDischarge,
 };
 
 public class SkillManager : MonoBehaviour
