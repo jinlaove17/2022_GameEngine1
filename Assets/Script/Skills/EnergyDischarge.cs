@@ -11,6 +11,6 @@ public class EnergyDischarge : BaseSkill
 
     public override void UseSkill()
     {
-        GameManager.Instance.player.TransAnimation("DO_SKILL4");
+        GameManager.Instance.player.TransAnimation("EnergyDischarge");
     }
 }

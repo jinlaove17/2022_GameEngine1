@@ -15,6 +15,7 @@ public class SkillPrefab
     public string skillName;
     public string skillInfo;
     public float skillCoolTime;
+    public float skillDamage;
 
     public Sprite skillIcon;
     public GameObject prefab;

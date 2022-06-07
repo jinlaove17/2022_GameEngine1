@@ -16,6 +16,6 @@ public class ThrowFire : BaseSkill
 
     public override void UseSkill()
     {
-        GameManager.Instance.player.TransAnimation("DO_SKILL2");
+        GameManager.Instance.player.TransAnimation("ThrowFire");
     }
 }

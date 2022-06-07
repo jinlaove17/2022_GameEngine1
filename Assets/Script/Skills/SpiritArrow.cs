@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Genesis : BaseSkill
+public class SpiritArrow : BaseSkill
 {
     private void OnEnable()
     {
-        StartCoroutine(InActive(1.5f));
+        StartCoroutine(InActive(2.0f));
     }
 
     public override void UseSkill()
     {
-        GameManager.Instance.player.TransAnimation("Genesis");
+        GameManager.Instance.player.TransAnimation("SpiritArrow");
     }
 }

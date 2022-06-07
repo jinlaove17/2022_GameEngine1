@@ -11,6 +11,6 @@ public class DeadExplode : BaseSkill
 
     public override void UseSkill()
     {
-        GameManager.Instance.player.TransAnimation("DO_SKILL1");
+        GameManager.Instance.player.TransAnimation("DeadExplode");
     }
 }

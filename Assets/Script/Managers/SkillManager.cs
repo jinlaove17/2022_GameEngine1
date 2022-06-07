@@ -9,6 +9,9 @@ public enum SKILL_TYPE
     DeadExplode,
     Genesis,
     EnergyDischarge,
+    SpiritArrow,
+    GravityField,
+    FlameThrowing
 };
 
 public class SkillManager : MonoBehaviour
@@ -219,6 +222,12 @@ public class SkillManager : MonoBehaviour
                 break;
             case SKILL_TYPE.EnergyDischarge:
                 StartCoroutine(Discharge());
+                break;
+            case SKILL_TYPE.SpiritArrow:
+                break;
+            case SKILL_TYPE.GravityField:
+                break;
+            case SKILL_TYPE.FlameThrowing:
                 break;
         }
     }
