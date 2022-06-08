@@ -6,7 +6,7 @@ public class FlameThrowing : BaseSkill
 {
     private void OnEnable()
     {
-        StartCoroutine(InActive(2.0f));
+        StartCoroutine(InActive(5.0f));
     }
 
     public override void UseSkill()

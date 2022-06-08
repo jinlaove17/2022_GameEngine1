@@ -9,7 +9,7 @@ public enum SKILL_TYPE
     DeadExplode,
     Genesis,
     EnergyDischarge,
-    SpiritArrow,
+    LightningArrow,
     GravityField,
     FlameThrowing
 };
@@ -190,19 +190,15 @@ public class SkillManager : MonoBehaviour
 
     public void GenerateEffect(int skillIndex)
     {
-        if (skillIndex < 0 || skillIndex >= skillSlots.Length)
-        {
-            print("ÀÎµ¦½º¸¦ ¹þ¾î³µ½À´Ï´Ù.");
-
-            return;
-        }
+        Transform playerTransform = GameManager.Instance.player.transform;
+        Vector3 genPosition;
 
         switch ((SKILL_TYPE)skillIndex)
         {
             case SKILL_TYPE.ThrowFire:
-                Vector3 genPosition = GameManager.Instance.player.rightHand.transform.position;
+                genPosition = GameManager.Instance.player.rightHand.transform.position;
 
-                GameObject fire = PoolingManager.Instance.GetSkillEffect("ThrowFire", genPosition, Quaternion.identity);
+                GameObject fire = PoolingManager.Instance.GetSkillEffect("ThrowFire", genPosition, playerTransform.rotation);
                 Rigidbody fireRigidbody = fire.GetComponent<Rigidbody>();
 
                 fireRigidbody.velocity = Vector3.zero;
@@ -210,12 +206,10 @@ public class SkillManager : MonoBehaviour
                 fireRigidbody.AddForce(15.0f * GameManager.Instance.player.transform.forward, ForceMode.Impulse);
                 break;
             case SKILL_TYPE.DeadExplode:
-                Transform playerTransform = GameManager.Instance.player.transform;
-                Vector3 skillPos = playerTransform.position;
+                genPosition = playerTransform.position;
+                genPosition += 15.0f * playerTransform.forward;
 
-                skillPos += 15.0f * playerTransform.forward;
-
-                PoolingManager.Instance.GetSkillEffect("DeadExplode", skillPos, Quaternion.identity);
+                PoolingManager.Instance.GetSkillEffect("DeadExplode", genPosition, playerTransform.rotation);
                 break;
             case SKILL_TYPE.Genesis:
                 StartCoroutine(GenerateBeam());
@@ -223,11 +217,16 @@ public class SkillManager : MonoBehaviour
             case SKILL_TYPE.EnergyDischarge:
                 StartCoroutine(Discharge());
                 break;
-            case SKILL_TYPE.SpiritArrow:
+            case SKILL_TYPE.LightningArrow:
+                genPosition = GameManager.Instance.player.rightHand.transform.position;
+
+                PoolingManager.Instance.GetSkillEffect("LightningArrow", genPosition, playerTransform.rotation);
                 break;
             case SKILL_TYPE.GravityField:
+                StartCoroutine(GenerateField());
                 break;
             case SKILL_TYPE.FlameThrowing:
+                StartCoroutine(GenerateFlame());
                 break;
         }
     }
@@ -265,5 +264,43 @@ public class SkillManager : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
 
         skillRange.enabled = true;
+    }
+
+    private IEnumerator GenerateField()
+    {
+        Transform playerTransform = GameManager.Instance.player.transform;
+        Vector3 genPosition = playerTransform.position;
+        GameObject skill = PoolingManager.Instance.GetSkillEffect("GravityField", genPosition, playerTransform.rotation);
+        BoxCollider skillRange = skill.GetComponent<BoxCollider>();
+
+        skillRange.enabled = false;
+
+        yield return new WaitForSeconds(0.3f);
+
+        skillRange.enabled = true;
+    }
+
+    private IEnumerator GenerateFlame()
+    {
+        Transform playerTransform = GameManager.Instance.player.transform;
+        Vector3 genPosition = GameManager.Instance.player.rightHand.transform.position;
+
+        GameObject skill = PoolingManager.Instance.GetSkillEffect("FlameThrowing", genPosition, playerTransform.rotation);
+        BoxCollider skillRange = skill.GetComponent<BoxCollider>();
+
+        const float duration = 1.6f;
+        float centerDeltaZPerFrame = (5.0f / duration) * Time.deltaTime;
+        float sizeDeltaZPerFrame = ((10.0f - skillRange.size.z) / duration) * Time.deltaTime;
+
+        while (skillRange.center.z < 10.0f && skillRange.size.z < 5.0f)
+        {
+            skillRange.center += Vector3.forward * centerDeltaZPerFrame;
+            skillRange.size += Vector3.forward * sizeDeltaZPerFrame;
+
+            yield return null;
+        }
+
+        skillRange.center = Vector3.zero;
+        skillRange.size = 0.6f * Vector3.one;
     }
 }
