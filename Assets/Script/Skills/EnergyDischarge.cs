@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class EnergyDischarge : BaseSkill
 {
+    private void Awake()
+    {
+        skillType = SKILL_TYPE.EnergyDischarge;
+    }
+
     private void OnEnable()
     {
         StartCoroutine(InActive(4.0f));

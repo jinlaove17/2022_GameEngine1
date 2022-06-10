@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9d324d64694f99419d22bba69f0edf4, type: 3}
   m_Name: Monster DB
   m_EditorClassIdentifier: 
-  monsterPrefabs:
+  monsterBundles:
   - monsterName: Chad
     prefab: {fileID: 4743745568765936209, guid: 1c3d322e71a5d9049a689b0401536104, type: 3}
   - monsterName: Olivia

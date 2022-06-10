@@ -3,21 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum SKILL_TYPE
-{
-    ThrowFire,
-    DeadExplode,
-    Genesis,
-    EnergyDischarge,
-    LightningArrow,
-    GravityField,
-    FlameThrowing
-};
-
 public class SkillManager : MonoBehaviour
 {
     private static SkillManager instance;
 
+    public SkillDB skillDB;
     public SkillSelectionUI skillSelectionUI;
 
     public Sprite skillLevelImage;
@@ -52,7 +42,7 @@ public class SkillManager : MonoBehaviour
         // 스킬 레벨을 관리하기 위한 딕셔너리를 생성한다.
         skillLevelDict = new Dictionary<SKILL_TYPE, int>();
 
-        int allSkillCount = PoolingManager.Instance.skillDB.skillPrefabs.Length;
+        int allSkillCount = skillDB.skillBundles.Length;
 
         for (int i = 0; i < allSkillCount; ++i)
         {
@@ -62,7 +52,7 @@ public class SkillManager : MonoBehaviour
 
     public bool HasSkill(SKILL_TYPE skillType)
     {
-        if (skillType < 0 || (int)skillType >= PoolingManager.Instance.skillDB.skillPrefabs.Length)
+        if (skillType < 0 || (int)skillType >= skillDB.skillBundles.Length)
         {
             Debug.LogError("인덱스를 벗어났습니다.");
 
@@ -84,7 +74,7 @@ public class SkillManager : MonoBehaviour
 
     public int GetSkillLevel(SKILL_TYPE skillType)
     {
-        if (skillType < 0 || (int)skillType >= PoolingManager.Instance.skillDB.skillPrefabs.Length)
+        if (skillType < 0 || (int)skillType >= skillDB.skillBundles.Length)
         {
             Debug.LogError("인덱스를 벗어났습니다.");
 
@@ -103,7 +93,7 @@ public class SkillManager : MonoBehaviour
     public int GetSkillSlotIndex(SKILL_TYPE skillType)
     {
         // 해당 스킬을 보유하고 있다면, 그 스킬을 보유한 슬롯의 인덱스를 반환한다.
-        if (skillType < 0 || (int)skillType >= PoolingManager.Instance.skillDB.skillPrefabs.Length)
+        if (skillType < 0 || (int)skillType >= skillDB.skillBundles.Length)
         {
             Debug.LogError("인덱스를 벗어났습니다.");
 
@@ -129,7 +119,7 @@ public class SkillManager : MonoBehaviour
         {
             return;
         }
-        else if (skillType < 0 || (int)skillType >= PoolingManager.Instance.skillDB.skillPrefabs.Length)
+        else if (skillType < 0 || (int)skillType >= skillDB.skillBundles.Length)
         {
             Debug.LogError("인덱스를 벗어났습니다.");
 
@@ -150,7 +140,7 @@ public class SkillManager : MonoBehaviour
 
     public void IncreaseSkillLevel(SKILL_TYPE skillType)
     {
-        if (skillType < 0 || (int)skillType >= PoolingManager.Instance.skillDB.skillPrefabs.Length)
+        if (skillType < 0 || (int)skillType >= skillDB.skillBundles.Length)
         {
             Debug.LogError("인덱스를 벗어났습니다.");
 
@@ -182,8 +172,8 @@ public class SkillManager : MonoBehaviour
         }
 
         if (!skillSlots[slotIndex].IsEmpty && skillSlots[slotIndex].IsUsable)
-        { 
-            PoolingManager.Instance.skillDB.skillPrefabs[(int)skillSlots[slotIndex].SkillType].prefab.GetComponent<BaseSkill>().UseSkill();
+        {
+            skillDB.skillBundles[(int)skillSlots[slotIndex].SkillType].prefab.GetComponent<BaseSkill>().UseSkill();
             StartCoroutine(skillSlots[slotIndex].CalculateCoolTime());
         }
     }
@@ -288,11 +278,11 @@ public class SkillManager : MonoBehaviour
         GameObject skill = PoolingManager.Instance.GetSkillEffect("FlameThrowing", genPosition, playerTransform.rotation);
         BoxCollider skillRange = skill.GetComponent<BoxCollider>();
 
-        const float duration = 1.6f;
+        const float duration = 1.5f;
         float centerDeltaZPerFrame = (5.0f / duration) * Time.deltaTime;
         float sizeDeltaZPerFrame = ((10.0f - skillRange.size.z) / duration) * Time.deltaTime;
 
-        while (skillRange.center.z < 10.0f && skillRange.size.z < 5.0f)
+        while (skillRange.center.z < 5.0f || skillRange.size.z < 10.0f)
         {
             skillRange.center += Vector3.forward * centerDeltaZPerFrame;
             skillRange.size += Vector3.forward * sizeDeltaZPerFrame;

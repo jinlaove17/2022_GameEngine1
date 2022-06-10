@@ -24,11 +24,11 @@ public class SkillSelectionUI : MonoBehaviour
         animator.Play("Show", -1, 0.0f);
 
         List<int> typeList = new List<int>();
-        SkillDB skillDB = PoolingManager.Instance.skillDB;
+        SkillDB skillDB = SkillManager.Instance.skillDB;
 
         for (int i = 0; i < 3;)
         {
-            int randomType = Random.Range(0, skillDB.skillPrefabs.Length);
+            int randomType = Random.Range(0, skillDB.skillBundles.Length);
 
             if (!typeList.Contains(randomType))
             {
@@ -36,7 +36,7 @@ public class SkillSelectionUI : MonoBehaviour
 
                 if (skillLevel < 5)
                 {
-                    SkillPrefab skill = skillDB.skillPrefabs[randomType];
+                    SkillData skill = skillDB.skillBundles[randomType];
 
                     selectedSkillTypes[i] = (SKILL_TYPE)randomType;
                     skillUINames[i].text = skill.skillName + " (LV." + skillLevel + ")";

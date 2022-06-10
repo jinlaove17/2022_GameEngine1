@@ -6,13 +6,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Monster DB", menuName = "Create Monster DB", order = 0)]
 public class MonsterDB : ScriptableObject
 {
-    public MonsterPrefab[] monsterPrefabs = null;
+    public MonsterData[] monsterBundles;
 }
 
 [Serializable]
-public class MonsterPrefab
+public class MonsterData
 {
-    public string monsterName = null;
+    public string monsterName;
 
-    public GameObject prefab = null;
+    public GameObject prefab;
 }

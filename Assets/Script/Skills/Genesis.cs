@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Genesis : BaseSkill
 {
+    private void Awake()
+    {
+        skillType = SKILL_TYPE.Genesis;
+    }
+
     private void OnEnable()
     {
         StartCoroutine(InActive(1.5f));

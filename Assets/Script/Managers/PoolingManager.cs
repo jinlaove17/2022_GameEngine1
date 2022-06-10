@@ -8,7 +8,6 @@ public class PoolingManager : MonoBehaviour
     private static PoolingManager instance = null;
 
     public MonsterDB monsterDB = null;
-    public SkillDB skillDB = null;
 
     // 생성된 자식들을 담기 위한 부모객체이다.      
     public Transform monsters = null;
@@ -45,14 +44,14 @@ public class PoolingManager : MonoBehaviour
         managedObjects = new Dictionary<string, List<GameObject>>();
 
         // 데이터베이스를 딕셔너리로 재구성한다.
-        foreach (MonsterPrefab monsterPrefab in monsterDB.monsterPrefabs)
+        foreach (MonsterData monsterData in monsterDB.monsterBundles)
         {
-            prefabDict.Add(monsterPrefab.monsterName, monsterPrefab.prefab);
+            prefabDict.Add(monsterData.monsterName, monsterData.prefab);
         }
 
-        foreach (SkillPrefab skillPrefab in skillDB.skillPrefabs)
+        foreach (SkillData skillData in SkillManager.Instance.skillDB.skillBundles)
         {
-            prefabDict.Add(skillPrefab.skillName, skillPrefab.prefab);
+            prefabDict.Add(skillData.skillName, skillData.prefab);
         }
     }
 

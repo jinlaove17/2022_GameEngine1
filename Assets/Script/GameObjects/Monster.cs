@@ -73,16 +73,18 @@ public class Monster : Entity
             {
                 if (!IsHit)
                 {
-                    StartCoroutine(Hit());
+                    StartCoroutine(Hit(collision.gameObject.GetComponent<BaseSkill>().SkillType));
                 }
             }
         }
     }
 
-    private IEnumerator Hit()
+    private IEnumerator Hit(SKILL_TYPE skillType)
     {
+        SkillData skill = SkillManager.Instance.skillDB.skillBundles[(int)skillType];
+
         IsHit = true;
-        Health -= 50;
+        Health -= skill.skillDamage;
 
         if (IsAlive)
         {
@@ -93,7 +95,7 @@ public class Monster : Entity
 
             animator.SetTrigger("Hit");
 
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(skill.hitDuration);
 
             foreach (Material material in materials)
             {

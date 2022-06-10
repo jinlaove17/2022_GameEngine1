@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class ThrowFire : BaseSkill
 {
+    private void Awake()
+    {
+        skillType = SKILL_TYPE.ThrowFire;
+    }
+
     private void OnEnable()
     {
         StartCoroutine(InActive(3.0f));

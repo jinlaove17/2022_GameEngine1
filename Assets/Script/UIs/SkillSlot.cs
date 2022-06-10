@@ -53,7 +53,7 @@ public class SkillSlot : MonoBehaviour
     {
         if (isEmpty)
         {
-            SkillPrefab skill = PoolingManager.Instance.skillDB.skillPrefabs[(int)newSkillType];
+            SkillData skill = SkillManager.Instance.skillDB.skillBundles[(int)newSkillType];
 
             isEmpty = false;
             isUsable = true;

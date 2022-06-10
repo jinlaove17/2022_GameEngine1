@@ -6,7 +6,7 @@ public class Entity : MonoBehaviour
 {
     private bool isHit = false;
 
-    private int health = 100;
+    private float health = 100;
 
     public bool IsAlive
     {
@@ -29,7 +29,7 @@ public class Entity : MonoBehaviour
         }
     }
 
-    public int Health
+    public float Health
     {
         get
         { 
@@ -40,9 +40,9 @@ public class Entity : MonoBehaviour
         { 
             health = value;
 
-            if (health <= 0)
+            if (health < 0.0f)
             {
-                health = 0;
+                health = 0.0f;
             }
         }
     }

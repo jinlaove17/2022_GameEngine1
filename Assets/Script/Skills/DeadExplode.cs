@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class DeadExplode : BaseSkill
 {
+    private void Awake()
+    {
+        skillType = SKILL_TYPE.DeadExplode;
+    }
+
     private void OnEnable()
     {
         StartCoroutine(InActive(2.0f));

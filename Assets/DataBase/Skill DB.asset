@@ -12,55 +12,61 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71165897d4547a2469c445fa80f292f9, type: 3}
   m_Name: Skill DB
   m_EditorClassIdentifier: 
-  skillPrefabs:
+  skillBundles:
   - skillName: ThrowFire
-    skillInfo: "\uC804\uBC29\uC744 \uD5A5\uD574 \uD654\uC5FC \uD22C\uC0AC\uCCB4\uB97C
-      \uB358\uC9D1\uB2C8\uB2E4."
+    skillInfo: "\uC804\uBC29\uC744 \uD5A5\uD574 \uD654\uC5FC\uAD6C\uB97C \uB358\uC9D1\uB2C8\uB2E4."
     skillCoolTime: 1.8
-    skillDamage: 0
+    skillDamage: 100
+    hitDuration: 0.2
     skillIcon: {fileID: 21300000, guid: 2bb02b871b3de264084da35529482ade, type: 3}
     prefab: {fileID: 1900756431413560, guid: c04254b84998c7f4380dd9b391744100, type: 3}
   - skillName: DeadExplode
-    skillInfo: "\uC804\uBC29\uC758 \uB113\uC740 \uC9C0\uC5ED\uC744 \uC5B4\uB460\uC73C\uB85C
-      \uB9CC\uB4E4\uC5B4 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4."
-    skillCoolTime: 4
-    skillDamage: 0
+    skillInfo: "\uC804\uBC29\uC5D0 \uC5B4\uB460\uC758 \uC601\uC5ED\uC744 \uC0DD\uC131\uD558\uC5EC
+      \uD070 \uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4."
+    skillCoolTime: 5
+    skillDamage: 40
+    hitDuration: 0.2
     skillIcon: {fileID: 21300000, guid: 8a5f9829a049c704fa992203bfc451f2, type: 3}
     prefab: {fileID: 100006, guid: 910ed13255412474fa75e72502d490f6, type: 3}
   - skillName: Genesis
-    skillInfo: "\uC77C\uC815\uC2DC\uAC04 \uD6C4 \uB113\uC740 \uBC94\uC704\uC5D0 \uAD11\uC120\uC744
-      \uB5A8\uC5B4\uB728\uB824 \uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4."
-    skillCoolTime: 4
-    skillDamage: 0
+    skillInfo: "\uC77C\uC815\uC2DC\uAC04 \uD6C4 \uAD11\uBC94\uC704\uC5D0 \uAC15\uB825\uD55C
+      \uAD11\uC120\uC744 \uB5A8\uC5B4\uB728\uB824 \uD070 \uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4."
+    skillCoolTime: 10
+    skillDamage: 50
+    hitDuration: 1
     skillIcon: {fileID: 21300000, guid: 406984ac0d0fc2c4bbaf906048f7c43e, type: 3}
     prefab: {fileID: 1896462999409240153, guid: a9decccf8cb4fc743971fb5ca00cedd9, type: 3}
   - skillName: EnergyDischarge
-    skillInfo: "\uC5D0\uB108\uC9C0\uB97C \uBAA8\uC544 \uC77C\uC815\uC2DC\uAC04 \uD6C4
-      \uC8FC\uC704\uC758 \uC801\uB4E4\uC744 \uBC00\uC5B4\uB0B4\uACE0 \uD53C\uD574\uB97C
-      \uC785\uD799\uB2C8\uB2E4."
-    skillCoolTime: 4
-    skillDamage: 0
+    skillInfo: "\uC77C\uC815\uC2DC\uAC04 \uC5D0\uB108\uC9C0\uB97C \uCD95\uC801\uD55C
+      \uD6C4 \uBC29\uCD9C\uD558\uC5EC \uC8FC\uC704 \uC801\uB4E4\uC744 \uBC00\uC5B4\uB0B4\uACE0
+      \uD070 \uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4."
+    skillCoolTime: 8
+    skillDamage: 80
+    hitDuration: 0.2
     skillIcon: {fileID: 21300000, guid: 0c136515f7aa49e43ba0840df48c1f4d, type: 3}
     prefab: {fileID: 100010, guid: 4d0391f078db24fac9f5cba3075f9f5d, type: 3}
   - skillName: LightningArrow
-    skillInfo: "\uC77C\uC815\uC2DC\uAC04\uB3D9\uC548 \uC9D1\uC911\uD558\uC5EC \uD654\uC0B4\uC5D0
-      \uAE30\uC6B4\uC744 \uB2F4\uC544 \uC801\uB4E4\uC744 \uB04C\uC5B4\uB4E4\uC774\uACE0
-      \uD3ED\uBC1C\uC2DC\uD0A8\uB2E4."
-    skillCoolTime: 6
-    skillDamage: 0
+    skillInfo: "\uC77C\uC815\uC2DC\uAC04 \uD654\uC0B4\uC5D0 \uAE30\uC6B4 \uBAA8\uC544
+      \uC8FC\uC758 \uC801\uB4E4\uC5D0\uAC8C \uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4."
+    skillCoolTime: 12
+    skillDamage: 45
+    hitDuration: 0.2
     skillIcon: {fileID: 21300000, guid: b4b81cadbfd16c445962122b4d2d0e20, type: 3}
     prefab: {fileID: 4792277665850183729, guid: efde5df4a1e82844d8b77b75b3568688, type: 3}
   - skillName: GravityField
-    skillInfo: "\uC8FC\uC704\uC5D0 \uC911\uB825\uC7A5\uC744 \uC0DD\uC131\uD558\uC5EC
-      \uD070 \uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4."
-    skillCoolTime: 6
-    skillDamage: 0
+    skillInfo: "\uC790\uC2E0\uC774 \uC704\uCE58\uD55C \uACF3\uC5D0 \uC911\uB825\uC7A5\uC744
+      \uD615\uC131\uD558\uC5EC \uC8FC\uC704 \uC801\uB4E4\uC5D0\uAC8C \uD53C\uD574\uB97C
+      \uC785\uD799\uB2C8\uB2E4."
+    skillCoolTime: 7
+    skillDamage: 40
+    hitDuration: 0.2
     skillIcon: {fileID: 21300000, guid: cdec13907ffc75749ab2ed436bec6b14, type: 3}
     prefab: {fileID: 248826563714500391, guid: 536c28b1437169c4d838ddf6a9e62c85, type: 3}
   - skillName: FlameThrowing
-    skillInfo: "\uC804\uBC29\uC744 \uD5A5\uD574 \uD654\uC5FC\uC758 \uAE30\uC6B4\uC744
-      \uBC29\uCD9C\uD558\uC5EC \uC9C0\uC18D\uC801\uC778 \uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4."
-    skillCoolTime: 5
-    skillDamage: 0
-    skillIcon: {fileID: 21300000, guid: 7140c686292792a4abfe218b90b2ae90, type: 3}
+    skillInfo: "\uC77C\uC815\uC2DC\uAC04\uB3D9\uC548 \uD654\uC5FC\uC744 \uBC29\uC0AC\uD558\uC5EC
+      \uC804\uBC29\uC758 \uC801\uB4E4\uC744 \uBD88\uD0DC\uC6C1\uB2C8\uB2E4."
+    skillCoolTime: 10
+    skillDamage: 20
+    hitDuration: 0.01
+    skillIcon: {fileID: 21300000, guid: dd3885098198d104888439be4c590aba, type: 3}
     prefab: {fileID: 1634767862067424, guid: b4a08749955bde0469b6f1d029310f91, type: 3}
