@@ -1,18 +1,25 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager instance = null;
+    private static GameManager instance;
 
-    public Player player = null;
-    public MonsterGenerator monsterGenerator = null;
-    public GameObject triggers = null;
+    public Player player;
+    public MonsterGenerator monsterGenerator;
+    public GameObject triggers;
+    public SystemUI systemUI;
 
     private bool isGameOver = false;
-    private int stage = 0;
-    private int restMonsterCount = 0;
+
+    private double totalTime;
+    public Text totalTimeText;
+
+    private int stage;
+    private int restMonsterCount;
 
     public static GameManager Instance
     {
@@ -86,6 +93,10 @@ public class GameManager : MonoBehaviour
 
                     // 이전 스테이지로 가는 문들을 닫는 트리거를 활성화시킨다.
                     triggers.transform.GetChild(1).GetChild(stage).gameObject.SetActive(true);
+
+                    systemUI.mainGuideText.text = "현재 스테이지의 모든 몬스터를 제거했습니다!";
+                    systemUI.subGuideText.text = "다음 스테이지로 이동하세요!";
+                    systemUI.ShowUI();
                 }
             }
         }
@@ -101,6 +112,15 @@ public class GameManager : MonoBehaviour
         if (monsterGenerator != null)
         {
             StartCoroutine(monsterGenerator.Spawn());
+        }
+    }
+
+    private void Update()
+    {
+        if (stage > 0)
+        {
+            totalTime += Time.fixedDeltaTime;
+            totalTimeText.text = TimeSpan.FromSeconds(totalTime).ToString(@"mm\:ss");
         }
     }
 

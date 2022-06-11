@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class OpenDoor : MonoBehaviour
 {
-    public GameObject door = null;
+    public GameObject door;
+
+    // 트리거 발동 시 출력할 UI 텍스트
+    public string mainGuideText;
+    public string subGuideText;
 
     private bool isActive = false;
     private const float maxHeight = 3.5f;
@@ -18,6 +22,10 @@ public class OpenDoor : MonoBehaviour
                 isActive = true;
 
                 StartCoroutine(Opening());
+
+                GameManager.Instance.systemUI.mainGuideText.text = mainGuideText;
+                GameManager.Instance.systemUI.subGuideText.text = subGuideText;
+                GameManager.Instance.systemUI.ShowUI();
             }
         }
     }
