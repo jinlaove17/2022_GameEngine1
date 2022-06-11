@@ -86,21 +86,14 @@ public class Monster : Entity
         IsHit = true;
         Health -= skill.skillDamage;
 
+        foreach (Material material in materials)
+        {
+            material.color = new Color(1.0f, 0.8f, 0.8f, 1.0f);
+        }
+
         if (IsAlive)
         {
-            foreach (Material material in materials)
-            {
-                material.color = new Color(1.0f, 0.7f, 0.7f, 1.0f);
-            }
-
             animator.SetTrigger("Hit");
-
-            yield return new WaitForSeconds(skill.hitDuration);
-
-            foreach (Material material in materials)
-            {
-                material.color = Color.white;
-            }
         }
         else
         {
@@ -109,6 +102,13 @@ public class Monster : Entity
 
             GameManager.Instance.RestMonsterCount -= 1;
             GameManager.Instance.IncreasePlayerExp(100.0f);
+        }
+
+        yield return new WaitForSeconds(skill.hitDuration);
+
+        foreach (Material material in materials)
+        {
+            material.color = Color.white;
         }
 
         IsHit = false;

@@ -11,7 +11,9 @@ public enum SKILL_TYPE
     EnergyDischarge,
     LightningArrow,
     GravityField,
-    FlameThrowing
+    FlameThrowing,
+
+    None = int.MinValue
 };
 
 [CreateAssetMenu(fileName = "Skill DB", menuName = "Create Skill DB", order = 1)]

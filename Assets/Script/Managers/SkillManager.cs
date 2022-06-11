@@ -72,6 +72,11 @@ public class SkillManager : MonoBehaviour
         return false;
     }
 
+    public bool IsSkillSlotFull()
+    {
+        return skillCount == skillSlots.Length;
+    }
+
     public int GetSkillLevel(SKILL_TYPE skillType)
     {
         if (skillType < 0 || (int)skillType >= skillDB.skillBundles.Length)
@@ -88,6 +93,24 @@ public class SkillManager : MonoBehaviour
         }
 
         return skillLevelDict[skillType];
+    }
+
+    public SKILL_TYPE GetSkillTypeInSlot(int slotIndex)
+    {
+        if (slotIndex < 0 || slotIndex >= skillSlots.Length)
+        {
+            Debug.LogError("인덱스를 벗어났습니다.");
+
+            return SKILL_TYPE.None;
+        }
+        else if (skillSlots[slotIndex].IsEmpty)
+        {
+            Debug.LogError("해당 스킬 슬롯은 비어있습니다.");
+
+            return SKILL_TYPE.None;
+        }
+
+        return skillSlots[slotIndex].SkillType;
     }
 
     public int GetSkillSlotIndex(SKILL_TYPE skillType)
