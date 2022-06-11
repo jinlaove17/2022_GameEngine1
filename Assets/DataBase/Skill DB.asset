@@ -24,7 +24,7 @@ MonoBehaviour:
     skillInfo: "\uC804\uBC29\uC5D0 \uC5B4\uB460\uC758 \uC601\uC5ED\uC744 \uC0DD\uC131\uD558\uC5EC
       \uD070 \uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4."
     skillCoolTime: 5
-    skillDamage: 40
+    skillDamage: 15
     hitDuration: 0.2
     skillIcon: {fileID: 21300000, guid: 8a5f9829a049c704fa992203bfc451f2, type: 3}
     prefab: {fileID: 100006, guid: 910ed13255412474fa75e72502d490f6, type: 3}
@@ -32,7 +32,7 @@ MonoBehaviour:
     skillInfo: "\uC77C\uC815\uC2DC\uAC04 \uD6C4 \uAD11\uBC94\uC704\uC5D0 \uAC15\uB825\uD55C
       \uAD11\uC120\uC744 \uB5A8\uC5B4\uB728\uB824 \uD070 \uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4."
     skillCoolTime: 10
-    skillDamage: 50
+    skillDamage: 25
     hitDuration: 1
     skillIcon: {fileID: 21300000, guid: 406984ac0d0fc2c4bbaf906048f7c43e, type: 3}
     prefab: {fileID: 1896462999409240153, guid: a9decccf8cb4fc743971fb5ca00cedd9, type: 3}
@@ -41,7 +41,7 @@ MonoBehaviour:
       \uD6C4 \uBC29\uCD9C\uD558\uC5EC \uC8FC\uC704 \uC801\uB4E4\uC744 \uBC00\uC5B4\uB0B4\uACE0
       \uD070 \uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4."
     skillCoolTime: 8
-    skillDamage: 80
+    skillDamage: 40
     hitDuration: 0.2
     skillIcon: {fileID: 21300000, guid: 0c136515f7aa49e43ba0840df48c1f4d, type: 3}
     prefab: {fileID: 100010, guid: 4d0391f078db24fac9f5cba3075f9f5d, type: 3}
@@ -49,7 +49,7 @@ MonoBehaviour:
     skillInfo: "\uC77C\uC815\uC2DC\uAC04 \uD654\uC0B4\uC5D0 \uAE30\uC6B4 \uBAA8\uC544
       \uC8FC\uC758 \uC801\uB4E4\uC5D0\uAC8C \uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4."
     skillCoolTime: 12
-    skillDamage: 45
+    skillDamage: 50
     hitDuration: 0.2
     skillIcon: {fileID: 21300000, guid: b4b81cadbfd16c445962122b4d2d0e20, type: 3}
     prefab: {fileID: 4792277665850183729, guid: efde5df4a1e82844d8b77b75b3568688, type: 3}
@@ -58,7 +58,7 @@ MonoBehaviour:
       \uD615\uC131\uD558\uC5EC \uC8FC\uC704 \uC801\uB4E4\uC5D0\uAC8C \uD53C\uD574\uB97C
       \uC785\uD799\uB2C8\uB2E4."
     skillCoolTime: 7
-    skillDamage: 40
+    skillDamage: 30
     hitDuration: 0.2
     skillIcon: {fileID: 21300000, guid: cdec13907ffc75749ab2ed436bec6b14, type: 3}
     prefab: {fileID: 248826563714500391, guid: 536c28b1437169c4d838ddf6a9e62c85, type: 3}
@@ -66,7 +66,7 @@ MonoBehaviour:
     skillInfo: "\uC77C\uC815\uC2DC\uAC04\uB3D9\uC548 \uD654\uC5FC\uC744 \uBC29\uC0AC\uD558\uC5EC
       \uC804\uBC29\uC758 \uC801\uB4E4\uC744 \uBD88\uD0DC\uC6C1\uB2C8\uB2E4."
     skillCoolTime: 10
-    skillDamage: 20
+    skillDamage: 8
     hitDuration: 0.01
     skillIcon: {fileID: 21300000, guid: dd3885098198d104888439be4c590aba, type: 3}
     prefab: {fileID: 1634767862067424, guid: b4a08749955bde0469b6f1d029310f91, type: 3}

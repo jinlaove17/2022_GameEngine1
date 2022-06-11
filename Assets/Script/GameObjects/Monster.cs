@@ -82,9 +82,10 @@ public class Monster : Entity
     private IEnumerator Hit(SKILL_TYPE skillType)
     {
         SkillData skill = SkillManager.Instance.skillDB.skillBundles[(int)skillType];
+        int skillLevel = SkillManager.Instance.GetSkillLevel(skillType);
 
         IsHit = true;
-        Health -= skill.skillDamage;
+        Health -= skillLevel * skill.skillDamage;
 
         foreach (Material material in materials)
         {
