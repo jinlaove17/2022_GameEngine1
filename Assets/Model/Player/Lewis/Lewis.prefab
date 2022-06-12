@@ -2237,14 +2237,14 @@ GameObject:
   - component: {fileID: 8762065335095825298}
   - component: {fileID: 3420826050599012840}
   - component: {fileID: 9084783555981866116}
-  - component: {fileID: 9084783555981866117}
+  - component: {fileID: 5689983443812904063}
   m_Layer: 6
   m_Name: Lewis
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8762065335095825298
 Transform:
   m_ObjectHideFlags: 0
@@ -2274,7 +2274,7 @@ Animator:
   m_GameObject: {fileID: 8273899023574157608}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 9f0145e5fd5969545a7f235cba4c6aed, type: 3}
-  m_Controller: {fileID: 9100000, guid: 51bca5c2f8b57394ca54bb8db74b4f4d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 98e2d2dcc3f8b8a468798f3f70e4732f, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -2302,7 +2302,7 @@ CharacterController:
   m_SkinWidth: 0.04
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.9, z: 0}
---- !u!114 &9084783555981866117
+--- !u!114 &5689983443812904063
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2316,17 +2316,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSword: {fileID: 2708876550233121170}
   rightHand: {fileID: 3287011791379877743}
-  skillObj:
-  - {fileID: 100006, guid: 910ed13255412474fa75e72502d490f6, type: 3}
-  - {fileID: 1900756431413560, guid: c04254b84998c7f4380dd9b391744100, type: 3}
-  - {fileID: 1896462999409240153, guid: a9decccf8cb4fc743971fb5ca00cedd9, type: 3}
-  - {fileID: 100010, guid: 4d0391f078db24fac9f5cba3075f9f5d, type: 3}
   duration: 1.4
   magnitude: 0.04
-  speed: 15
+  speed: 5
   underAttack: 0
   toggleCameraRotation: 0
   smoothness: 10
+  healthBar: {fileID: 0}
+  healthText: {fileID: 0}
   expBar: {fileID: 0}
   expText: {fileID: 0}
 --- !u!1 &8352235495123754659

@@ -300,14 +300,14 @@ GameObject:
   - component: {fileID: 1854872187370712166}
   - component: {fileID: 5719000578546628124}
   - component: {fileID: 2177328861304769414}
-  - component: {fileID: 2177328861304769413}
+  - component: {fileID: 642576233162939634}
   m_Layer: 6
   m_Name: Remy
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1854872187370712166
 Transform:
   m_ObjectHideFlags: 0
@@ -343,7 +343,7 @@ Animator:
   m_GameObject: {fileID: 1366284767641466588}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 115b99b83608e1841bc4d516cd1ab76c, type: 3}
-  m_Controller: {fileID: 9100000, guid: 498625e883fd47c42af5808b3f8b6ca0, type: 2}
+  m_Controller: {fileID: 9100000, guid: ba800cc9da1ed434a94badad96e87efd, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -371,7 +371,7 @@ CharacterController:
   m_SkinWidth: 0.07
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1.9, z: 0}
---- !u!114 &2177328861304769413
+--- !u!114 &642576233162939634
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -385,17 +385,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSword: {fileID: 2177328861098155835}
   rightHand: {fileID: 4294406897075807884}
-  skillObj:
-  - {fileID: 100006, guid: 910ed13255412474fa75e72502d490f6, type: 3}
-  - {fileID: 1900756431413560, guid: c04254b84998c7f4380dd9b391744100, type: 3}
-  - {fileID: 1896462999409240153, guid: a9decccf8cb4fc743971fb5ca00cedd9, type: 3}
-  - {fileID: 100010, guid: 4d0391f078db24fac9f5cba3075f9f5d, type: 3}
   duration: 1.4
   magnitude: 0.04
-  speed: 15
+  speed: 5
   underAttack: 0
   toggleCameraRotation: 0
   smoothness: 10
+  healthBar: {fileID: 0}
+  healthText: {fileID: 0}
   expBar: {fileID: 0}
   expText: {fileID: 0}
 --- !u!1 &1650153831046950885

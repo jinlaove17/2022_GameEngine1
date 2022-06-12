@@ -1536,14 +1536,14 @@ GameObject:
   - component: {fileID: 3969184381638103325}
   - component: {fileID: 7058632648518568807}
   - component: {fileID: 3503758003426572026}
-  - component: {fileID: 3503758003426572021}
+  - component: {fileID: 2146744774}
   m_Layer: 6
   m_Name: Jody
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3969184381638103325
 Transform:
   m_ObjectHideFlags: 0
@@ -1579,7 +1579,7 @@ Animator:
   m_GameObject: {fileID: 4350108382898752423}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 374a86c730015ba4299485650860eb39, type: 3}
-  m_Controller: {fileID: 9100000, guid: d1cb17e4c65dea049a47d3db510365d0, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9b51b2da255ca69408b06d83e7a59a15, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -1607,7 +1607,7 @@ CharacterController:
   m_SkinWidth: 0.04
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.9, z: 0}
---- !u!114 &3503758003426572021
+--- !u!114 &2146744774
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1621,17 +1621,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSword: {fileID: 3503758004534628191}
   rightHand: {fileID: 7150626732299809532}
-  skillObj:
-  - {fileID: 100006, guid: 910ed13255412474fa75e72502d490f6, type: 3}
-  - {fileID: 1900756431413560, guid: c04254b84998c7f4380dd9b391744100, type: 3}
-  - {fileID: 1896462999409240153, guid: a9decccf8cb4fc743971fb5ca00cedd9, type: 3}
-  - {fileID: 100010, guid: 4d0391f078db24fac9f5cba3075f9f5d, type: 3}
   duration: 1.4
   magnitude: 0.04
-  speed: 15
+  speed: 5
   underAttack: 0
   toggleCameraRotation: 0
   smoothness: 10
+  healthBar: {fileID: 0}
+  healthText: {fileID: 0}
   expBar: {fileID: 0}
   expText: {fileID: 0}
 --- !u!1 &4396604253221247122

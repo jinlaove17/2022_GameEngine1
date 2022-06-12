@@ -61,11 +61,11 @@ ModelImporter:
       curves: []
       events:
       - time: 0
-        functionName: LightningArrow
+        functionName: GenerateEffect
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
-        intParameter: 0
+        intParameter: 4
         messageOptions: 0
       transformMask: []
       maskType: 3
