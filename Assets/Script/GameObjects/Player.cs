@@ -33,9 +33,13 @@ public class Player : Entity
     // 플레이어의 레벨
     private int level = 1;
 
-    // 플레이어의 경험치
-    public Slider expBar = null;
-    public Text expText = null;
+    // 플레이어의 체력 관련 데이터
+    public Slider healthBar;
+    public Text healthText;
+
+    // 플레이어의 경험치 관련 데이터
+    public Slider expBar;
+    public Text expText;
     private float exp = 0.0f;
 
     private void Awake()
@@ -172,13 +176,39 @@ public class Player : Entity
         SkillManager.Instance.GenerateEffect(animationEvent.intParameter);
     }
 
+    public IEnumerator DecreaseHealth(float healthDecrement)
+    {
+        const float maxHealth = 100.0f;
+        const float duration = 0.8f;
+        float offsetPerFrame = (healthDecrement / duration) * Time.deltaTime;
+        float restHealthIncrement = healthDecrement;
+        float healthPer;
+
+        while (restHealthIncrement >= 0.0f)
+        {
+            Health -= offsetPerFrame;
+            restHealthIncrement -= offsetPerFrame;
+
+            healthPer = Health / maxHealth;
+            healthBar.value = healthPer;
+            healthText.text = (100.0f * healthPer).ToString("F1") + "%";
+
+            if (Health <= 0.0f)
+            {
+                break;
+            }
+
+            yield return null;
+        }
+    }
+
     public IEnumerator IncreaseExp(float expIncrement)
     {
         const float maxExp = 500.0f;
         const float duration = 2.0f;
         float offsetPerFrame = (expIncrement / duration) * Time.deltaTime;
         float restExpIncrement = expIncrement;
-        float expPer = 0.0f;
+        float expPer;
 
         while (restExpIncrement >= 0.0f)
         {
@@ -195,7 +225,7 @@ public class Player : Entity
 
             expPer = exp / maxExp;
             expBar.value = expPer;
-            expText.text = 100.0f * expPer + "%";
+            expText.text = (100.0f * expPer).ToString("F1") + "%";
 
             yield return null;
         }

@@ -8,11 +8,15 @@ public class StateMachine<T>
 
     private State<T> currentState;
 
-    public StateMachine(T owner, State<T> currentState)
+    public StateMachine(T owner)
     {
         this.owner = owner;
-        this.currentState = currentState;
-        this.currentState.Enter(owner);
+    }
+
+    public void InitState(State<T> initState)
+    {
+        currentState = initState;
+        currentState.Enter(owner);
     }
 
     public void ChangeState(State<T> newState)

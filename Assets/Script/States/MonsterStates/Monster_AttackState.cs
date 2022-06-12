@@ -21,7 +21,10 @@ public class Monster_AttackState : State<Monster>
 
     public override void Enter(Monster Entity)
     {
-
+        if (Entity.IsAlive && Entity.navMeshAgent.enabled)
+        {
+            Entity.animator.SetTrigger("Attack");
+        }
     }
 
     public override void ProcessInput(Monster Entity)
@@ -35,11 +38,7 @@ public class Monster_AttackState : State<Monster>
         {
             Entity.navMeshAgent.SetDestination(GameManager.Instance.player.transform.position);
 
-            if (Entity.navMeshAgent.remainingDistance < 1.0f)
-            {
-                Debug.Log("플레이어를 공격합니다.");
-            }
-            else
+            if (Entity.navMeshAgent.remainingDistance >= 1.0f)
             {
                 Entity.stateMachine.ChangeState(Monster_ChaseState.Instance);
             }

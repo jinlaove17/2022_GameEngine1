@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
 
                     systemUI.mainGuideText.text = "현재 스테이지의 모든 몬스터를 제거했습니다!";
                     systemUI.subGuideText.text = "다음 스테이지로 이동하세요!";
-                    systemUI.ShowUI();
+                    systemUI.ShowGuide();
                 }
             }
         }

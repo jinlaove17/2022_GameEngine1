@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Monster : Entity
 {
-    private Animator animator = null;
+    public Animator animator;
     private List<Material> materials = new List<Material>();
 
     [HideInInspector]
@@ -19,7 +19,7 @@ public class Monster : Entity
 
     private void Awake()
     {
-        stateMachine = new StateMachine<Monster>(this, Monster_ChaseState.Instance);
+        stateMachine = new StateMachine<Monster>(this);
 
         animator = transform.GetComponent<Animator>();
         navMeshAgent = transform.GetComponent<NavMeshAgent>();
@@ -53,10 +53,7 @@ public class Monster : Entity
 
     private void FixedUpdate()
     {
-        if (IsAlive && !IsHit)
-        {
-            stateMachine.PhysicsUpdate();
-        }
+        stateMachine.PhysicsUpdate();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -68,6 +65,7 @@ public class Monster : Entity
             {
                 animator.SetTrigger("Land");
                 navMeshAgent.enabled = true;
+                stateMachine.InitState(Monster_ChaseState.Instance);
             }
             else if (collision.collider.CompareTag("Weapon"))
             {
@@ -77,6 +75,15 @@ public class Monster : Entity
                 }
             }
         }
+    }
+
+    private void DamageToPlayer(AnimationEvent animationEvent)
+    {
+        // 공격 애니메이션이 끝날 때쯤 플레이어에게 피해를 주어야 하기 때문에, 애니메이션 이벤트를 활용한다.
+        StartCoroutine(GameManager.Instance.player.DecreaseHealth(animationEvent.floatParameter));
+
+        // 화면 전체에 블러드 이펙트 애니메이션을 활성화한다.
+        GameManager.Instance.systemUI.ShowBloodEffect();
     }
 
     private IEnumerator Hit(SKILL_TYPE skillType)

@@ -21,7 +21,10 @@ public class Monster_ChaseState : State<Monster>
 
     public override void Enter(Monster Entity)
     {
-
+        if (Entity.IsAlive && Entity.navMeshAgent.enabled)
+        {
+            Entity.animator.SetTrigger("Chase");
+        }
     }
 
     public override void ProcessInput(Monster Entity)
@@ -35,7 +38,7 @@ public class Monster_ChaseState : State<Monster>
         {
             Entity.navMeshAgent.SetDestination(GameManager.Instance.player.transform.position);
 
-            if (Entity.navMeshAgent.remainingDistance < 1.0f)
+            if (0.0f < Entity.navMeshAgent.remainingDistance && Entity.navMeshAgent.remainingDistance < 1.0f)
             {
                 Entity.stateMachine.ChangeState(Monster_AttackState.Instance);
             }

@@ -17,11 +17,16 @@ public class SystemUI : MonoBehaviour
 
     private void Start()
     {
-        ShowUI();
+        ShowGuide();
     }
 
-    public void ShowUI()
+    public void ShowGuide()
     {
-        animator.Play("ShowGuide", -1, 0.0f);
+        animator.Play("ShowGuide");
+    }
+
+    public void ShowBloodEffect()
+    {
+        animator.Play("ShowBloodEffect");
     }
 }
