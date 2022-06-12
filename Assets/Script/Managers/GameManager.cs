@@ -117,9 +117,23 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (Cursor.lockState == CursorLockMode.None)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+        }
+
         if (stage > 0)
         {
-            totalTime += Time.fixedDeltaTime;
+            totalTime += Time.deltaTime;
             totalTimeText.text = TimeSpan.FromSeconds(totalTime).ToString(@"mm\:ss");
         }
     }

@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class SkillSlot : MonoBehaviour
+public class SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     private Image skillIcon;
     private Image skillFilter;
@@ -16,14 +17,6 @@ public class SkillSlot : MonoBehaviour
     private SKILL_TYPE skillType;
     private float skillCoolTime;
     private float currentCoolTime;
-
-    private void Awake()
-    {
-        skillIcon = transform.GetComponent<Image>();
-        skillFilter = transform.GetChild(0).GetComponent<Image>();
-        skillCoolTimeText = transform.GetChild(0).GetComponentInChildren<Text>(true);
-        skillLevelImages = transform.GetChild(3).GetComponentsInChildren<Image>();
-    }
 
     public bool IsEmpty
     {
@@ -47,6 +40,36 @@ public class SkillSlot : MonoBehaviour
         {
             return skillType;
         }
+    }
+
+    private void Awake()
+    {
+        skillIcon = transform.GetComponent<Image>();
+        skillFilter = transform.GetChild(0).GetComponent<Image>();
+        skillCoolTimeText = transform.GetChild(0).GetComponentInChildren<Text>(true);
+        skillLevelImages = transform.GetChild(3).GetComponentsInChildren<Image>();
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (!isEmpty)
+        {
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                SkillData skill = SkillManager.Instance.skillDB.skillBundles[(int)skillType];
+                int skillLevel = SkillManager.Instance.GetSkillLevel(skillType);
+
+                SkillManager.Instance.skillInfoPanel.SetActive(true);
+                SkillManager.Instance.skillInfoPanelTexts[0].text = skill.skillName + " (LV." + skillLevel + ")";
+                SkillManager.Instance.skillInfoPanelTexts[1].text = SkillManager.Instance.skillInfoPanelTexts[1].text.Replace("O", skill.skillCoolTime.ToString());
+                SkillManager.Instance.skillInfoPanelTexts[2].text = skill.skillInfo.Replace("O", (skillLevel * skill.skillDamage).ToString());
+            }
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        SkillManager.Instance.skillInfoPanel.SetActive(false);
     }
 
     public void RegisterSkill(SKILL_TYPE newSkillType)

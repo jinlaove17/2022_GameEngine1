@@ -96,7 +96,12 @@ public class SkillSelectionUI : MonoBehaviour
                     selectedSkillTypes[i] = candidateSkillTypeList[randomIndex];
                     skillUINames[i].text = skill.skillName + " (LV." + skillLevel + ")";
                     skillIcons[i].sprite = skill.skillIcon;
-                    skillUIInfo[i].text = skill.skillInfo;
+
+                    float currentDamage = skillLevel * skill.skillDamage;
+                    float upgradedDamage = (skillLevel + 1) * skill.skillDamage;
+                    float damageInreament = upgradedDamage - currentDamage;
+                    
+                    skillUIInfo[i].text = skill.skillInfo.Replace("O", upgradedDamage + "(+" + damageInreament + ")");
 
                     selectedIndexList.Add(randomIndex);
                     i += 1;
@@ -113,7 +118,7 @@ public class SkillSelectionUI : MonoBehaviour
         }
         
         Time.timeScale = 0.0f;
-        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
 
@@ -140,7 +145,7 @@ public class SkillSelectionUI : MonoBehaviour
     {
         Vector3 genPosition = transform.position;
 
-        genPosition.y += 25.0f;
+        genPosition.y += 20.0f;
 
         Instantiate(levelUpParticle, genPosition, Quaternion.identity);
     }

@@ -10,6 +10,9 @@ public class SkillManager : MonoBehaviour
     public SkillDB skillDB;
     public SkillSelectionUI skillSelectionUI;
 
+    public GameObject skillInfoPanel;
+    public Text[] skillInfoPanelTexts;
+
     public Sprite skillLevelImage;
 
     public SkillSlot[] skillSlots;
