@@ -39,11 +39,10 @@ public class Boss : MonoBehaviour
         animator.SetBool("IS_CHASE", false);
         isAttack = true;
         nav.isStopped = true;
+        yield return new WaitForSeconds(2.0f);
         transform.LookAt(target);
-        yield return new WaitForSeconds(2f);
-
-        if (ranAction > 2)
-            ranAction = 0;
+        
+        ranAction = UnityEngine.Random.Range(0, 3);
         switch (ranAction)
         {
             case 0:
@@ -82,14 +81,12 @@ public class Boss : MonoBehaviour
             GameObject instantMeteor = Instantiate(skillObj[0], skillPos, Quaternion.identity);
             yield return new WaitForSeconds(0.4f);
         }
-        ranAction++;
     }
 
     void SpellMeteor()
     {
         animator.SetTrigger("DO_ATTACK2");
         StartCoroutine(Meteor());
-        ranAction++;
     }
 
     IEnumerator Meteor()
@@ -121,7 +118,6 @@ public class Boss : MonoBehaviour
         skillPos.y = 1f;
         GameObject instantMeteor = Instantiate(skillObj[2], skillPos, target.rotation);
         animator.SetTrigger("DO_ATTACK3");
-        ranAction++;
     }
 
 }
