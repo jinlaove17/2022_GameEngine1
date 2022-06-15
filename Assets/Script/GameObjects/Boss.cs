@@ -146,11 +146,16 @@ public class Boss : Entity
         yield return new WaitForSeconds(0.1f);
         for (int i = 0; i < 3; i++)
         {
-            Vector3 skillPos = GameManager.Instance.player.transform.transform.position;
+            Vector3 skillPos = GameManager.Instance.player.transform.position;
 
-            skillPos += GameManager.Instance.player.transform.transform.right * 3 * (i - 1);
+            //skillPos += GameManager.Instance.player.transform.right * 3 * (i - 1);
 
-            GameObject instantMeteor = Instantiate(skillObj[0], skillPos, Quaternion.identity);
+            skillPos.y = skillPos.y - 1.0f;
+
+
+
+            GameObject instantPoison = Instantiate(skillObj[0], skillPos, Quaternion.identity);
+            instantPoison.tag = "BossSkill";
             yield return new WaitForSeconds(0.4f);
         }
     }
@@ -179,6 +184,7 @@ public class Boss : Entity
             skillVec.y = -0.8f;
             
             GameObject instantMeteor = Instantiate(skillObj[1], skillPos, transform.rotation);
+            instantMeteor.tag = "BossSkill";
             Rigidbody rigidMeteor = instantMeteor.GetComponent<Rigidbody>();
             rigidMeteor.AddForce(skillVec * 20, ForceMode.Impulse);
         }
@@ -188,7 +194,8 @@ public class Boss : Entity
     {
         Vector3 skillPos = GameManager.Instance.player.transform.position;
         skillPos.y = 1f;
-        //GameObject instantMeteor = Instantiate(skillObj[2], skillPos, GameManager.Instance.player.transform.rotation);
+        GameObject instantExplosion = Instantiate(skillObj[2], skillPos, GameManager.Instance.player.transform.rotation);
+        instantExplosion.tag = "BossSkill";
         animator.SetTrigger("DO_ATTACK3");
     }
 
