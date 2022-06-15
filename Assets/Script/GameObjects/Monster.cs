@@ -79,11 +79,16 @@ public class Monster : Entity
 
     private void DamageToPlayer(AnimationEvent animationEvent)
     {
-        // 공격 애니메이션이 끝날 때쯤 플레이어에게 피해를 주어야 하기 때문에, 애니메이션 이벤트를 활용한다.
-        StartCoroutine(GameManager.Instance.player.DecreaseHealth(animationEvent.floatParameter));
+        Player player = GameManager.Instance.player;
 
-        // 화면 전체에 블러드 이펙트 애니메이션을 활성화한다.
-        GameManager.Instance.systemUI.ShowBloodEffect();
+        if (player.IsAlive && !player.IsHit)
+        {
+            // 공격 애니메이션이 끝날 때쯤 플레이어에게 피해를 주어야 하기 때문에, 애니메이션 이벤트를 활용한다.
+            StartCoroutine(player.DecreaseHealth(animationEvent.floatParameter));
+
+            // 화면 전체에 블러드 이펙트 애니메이션을 활성화한다.
+            GameManager.Instance.systemUI.ShowBloodEffect();
+        }
     }
 
     private IEnumerator Hit(SKILL_TYPE skillType)

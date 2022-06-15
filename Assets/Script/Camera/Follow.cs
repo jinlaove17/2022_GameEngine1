@@ -35,7 +35,9 @@ public class Follow : MonoBehaviour
 
     private void Update()
     {
-        if (!GameManager.Instance.player.underAttack)
+        Player player = GameManager.Instance.player;
+
+        if (player.IsAlive && !player.IsAttack)
         {
             rotation.x += -(Input.GetAxis("Mouse Y")) * mouseSensitivity * Time.deltaTime;
             rotation.x = Mathf.Clamp(rotation.x, -maxAngle, maxAngle);
@@ -46,18 +48,21 @@ public class Follow : MonoBehaviour
 
     private void LateUpdate()
     {
-        transform.position = Vector3.MoveTowards(transform.position, target.position, camSpeed * Time.deltaTime);
-        finalDir = transform.TransformPoint(dirNormalized * maxDistance);
-
-        if (Physics.Linecast(transform.position, finalDir, out RaycastHit hit))
+        if (GameManager.Instance.player.IsAlive)
         {
-            finalDistance = Mathf.Clamp(hit.distance, minDistance, maxDistance);
-        }
-        else
-        {
-            finalDistance = maxDistance;
-        }
+            transform.position = Vector3.MoveTowards(transform.position, target.position, camSpeed * Time.deltaTime);
+            finalDir = transform.TransformPoint(dirNormalized * maxDistance);
 
-        realCamera.localPosition = Vector3.Lerp(realCamera.localPosition, dirNormalized * finalDistance, smoothness * Time.deltaTime);
+            if (Physics.Linecast(transform.position, finalDir, out RaycastHit hit))
+            {
+                finalDistance = Mathf.Clamp(hit.distance, minDistance, maxDistance);
+            }
+            else
+            {
+                finalDistance = maxDistance;
+            }
+
+            realCamera.localPosition = Vector3.Lerp(realCamera.localPosition, dirNormalized * finalDistance, smoothness * Time.deltaTime);
+        }
     }
 }

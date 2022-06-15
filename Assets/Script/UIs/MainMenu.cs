@@ -8,7 +8,6 @@ public class MainMenu : MonoBehaviour
     public void OnClickStartButton()
     {
         SceneManager.LoadScene("GameScene");
-        //Debug.Log("Game Start");
     }
 
     public void OnClickHelpButton()

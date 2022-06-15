@@ -20,9 +20,6 @@ public class Player : Entity
     private CharacterController characterController;
     public float speed;
 
-    // 캐릭터 공격 중
-    public bool underAttack;
-
     // 카메라 회전
     public bool toggleCameraRotation;
     public float smoothness = 10.0f;
@@ -76,7 +73,7 @@ public class Player : Entity
 
     private void LateUpdate()
     {
-        if (!underAttack && !toggleCameraRotation)
+        if (!IsAttack && !toggleCameraRotation)
         {
             Vector3 playerRotate = Vector3.Scale(Camera.main.transform.forward, new Vector3(1.0f, 0, 1.0f));
 
@@ -120,7 +117,7 @@ public class Player : Entity
 
     private void Move()
     {
-        if (!underAttack)
+        if (!IsAttack && !IsHit)
         {
             Vector3 userInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0.0f, Input.GetAxisRaw("Vertical"));
             Vector3 moveDirection = transform.right * userInput.x + transform.forward * userInput.z;
@@ -145,7 +142,7 @@ public class Player : Entity
 
     private void Attack()
     {
-        if (!underAttack && slotIndex >= 0)
+        if (!IsAttack && !IsHit && slotIndex >= 0)
         {
             SkillManager.Instance.UseSkill(slotIndex);
         }
@@ -153,7 +150,7 @@ public class Player : Entity
 
     private void AttackDisable()
     {
-        underAttack = false;
+        IsAttack = false;
         playerSword.SetActive(false);
     }
 
@@ -166,7 +163,7 @@ public class Player : Entity
     {
         if (animator)
         {
-            underAttack = true;
+            IsAttack = true;
             animator.SetTrigger(triggerName);
         }
     }
@@ -178,27 +175,41 @@ public class Player : Entity
 
     public IEnumerator DecreaseHealth(float healthDecrement)
     {
-        const float maxHealth = 100.0f;
-        const float duration = 0.8f;
-        float offsetPerFrame = (healthDecrement / duration) * Time.deltaTime;
-        float restHealthIncrement = healthDecrement;
-        float healthPer;
+        Health -= healthDecrement;
 
-        while (restHealthIncrement >= 0.0f)
+        if (IsAlive)
         {
-            Health -= offsetPerFrame;
-            restHealthIncrement -= offsetPerFrame;
+            Health += healthDecrement;
 
-            healthPer = Health / maxHealth;
-            healthBar.value = healthPer;
-            healthText.text = (100.0f * healthPer).ToString("F1") + "%";
+            const float maxHealth = 100.0f;
+            const float duration = 0.8f;
+            float offsetPerFrame = (healthDecrement / duration) * Time.deltaTime;
+            float restHealthIncrement = healthDecrement;
+            float healthPer;
 
-            if (Health <= 0.0f)
+            IsHit = true;
+            animator.SetTrigger("Hit");
+
+            while (restHealthIncrement >= 0.0f)
             {
-                break;
+                Health -= offsetPerFrame;
+                restHealthIncrement -= offsetPerFrame;
+
+                healthPer = Health / maxHealth;
+                healthBar.value = healthPer;
+                healthText.text = (100.0f * healthPer).ToString("F1") + "%";
+
+                yield return null;
             }
 
-            yield return null;
+            IsHit = false;
+        }
+        else
+        {
+            healthBar.value = 0.0f;
+            healthText.text = "0.0%";
+
+            animator.SetTrigger("Death");
         }
     }
 

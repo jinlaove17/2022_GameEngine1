@@ -22,11 +22,11 @@ public class SystemUI : MonoBehaviour
 
     public void ShowGuide()
     {
-        animator.Play("ShowGuide");
+        animator.Play("ShowGuide", -1, 0.0f);
     }
 
     public void ShowBloodEffect()
     {
-        animator.Play("ShowBloodEffect");
+        animator.Play("ShowBloodEffect", -1, 0.0f);
     }
 }
