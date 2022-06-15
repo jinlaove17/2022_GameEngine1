@@ -5,13 +5,11 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public enum SOUND_TYPE { BGM, SFX }
+    private static SoundManager instance;
 
-    private static SoundManager instance = null;
+    public SoundDB soundDB;
 
-    // 0: Bgm, 1: Sfx
-    private AudioSource[] audioPlayer = new AudioSource[(int)(SOUND_TYPE.SFX + 1)];
-
+    private AudioSource[] audioPlayers;
     private Dictionary<string, AudioClip> audioClips = new Dictionary<string, AudioClip>();
 
     public static SoundManager Instance
@@ -21,9 +19,27 @@ public class SoundManager : MonoBehaviour
             if (instance == null)
             {
                 return FindObjectOfType<SoundManager>();
+
+                if (instance == null)
+                {
+                    GameObject soundManager = new GameObject(nameof(SoundManager));
+
+                    instance = soundManager.AddComponent<SoundManager>();
+                }
             }
 
             return instance;
+        }
+    }
+
+    private void Awake()
+    {
+        audioPlayers = transform.GetComponents<AudioSource>();
+
+        // 데이터베이스를 딕셔너리로 재구성한다.
+        foreach (SoundData soundData in soundDB.soundBundles)
+        {
+            audioClips.Add(soundData.soundName, soundData.soundClip);
         }
     }
 
@@ -33,14 +49,14 @@ public class SoundManager : MonoBehaviour
         {
             if (audioClips.ContainsKey(clipName))
             {
-                if (audioPlayer[(int)(SOUND_TYPE.BGM)].isPlaying)
+                if (audioPlayers[(int)(SOUND_TYPE.BGM)].isPlaying)
                 {
-                    audioPlayer[(int)(SOUND_TYPE.BGM)].Stop();
+                    audioPlayers[(int)(SOUND_TYPE.BGM)].Stop();
                 }
 
-                audioPlayer[(int)(SOUND_TYPE.BGM)].clip = audioClips[clipName];
-                audioPlayer[(int)(SOUND_TYPE.BGM)].pitch = pitch;
-                audioPlayer[(int)(SOUND_TYPE.BGM)].Play();
+                audioPlayers[(int)(SOUND_TYPE.BGM)].clip = audioClips[clipName];
+                audioPlayers[(int)(SOUND_TYPE.BGM)].pitch = pitch;
+                audioPlayers[(int)(SOUND_TYPE.BGM)].Play();
             }
         }
     }
@@ -51,7 +67,7 @@ public class SoundManager : MonoBehaviour
         {
             if (audioClips.ContainsKey(clipName))
             {
-                audioPlayer[(int)(SOUND_TYPE.SFX)].PlayOneShot(audioClips[clipName], pitch);
+                audioPlayers[(int)(SOUND_TYPE.SFX)].PlayOneShot(audioClips[clipName], pitch);
             }
         }
     }

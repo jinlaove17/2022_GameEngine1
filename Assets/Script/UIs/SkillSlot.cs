@@ -61,7 +61,7 @@ public class SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
                 SkillManager.Instance.skillInfoPanel.SetActive(true);
                 SkillManager.Instance.skillInfoPanelTexts[0].text = skill.skillName + " (LV." + skillLevel + ")";
-                SkillManager.Instance.skillInfoPanelTexts[1].text = SkillManager.Instance.skillInfoPanelTexts[1].text.Replace("O", skill.skillCoolTime.ToString());
+                SkillManager.Instance.skillInfoPanelTexts[1].text = "재사용 대기시간 : " + skill.skillCoolTime + "초";
                 SkillManager.Instance.skillInfoPanelTexts[2].text = skill.skillInfo.Replace("O", (skillLevel * skill.skillDamage).ToString());
             }
         }
