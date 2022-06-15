@@ -1623,8 +1623,8 @@ MonoBehaviour:
   rightHand: {fileID: 7150626732299809532}
   duration: 1.4
   magnitude: 0.04
+  deathCam: {fileID: 0}
   speed: 5
-  underAttack: 0
   toggleCameraRotation: 0
   smoothness: 10
   healthBar: {fileID: 0}

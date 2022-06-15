@@ -178,7 +178,6 @@ public class Player : Entity
 
     public IEnumerator DecreaseHealth(float healthDecrement)
     {
-        healthDecrement *= 10;
         Health -= healthDecrement;
 
         if (IsAlive)

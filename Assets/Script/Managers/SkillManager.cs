@@ -234,9 +234,7 @@ public class SkillManager : MonoBehaviour
                 StartCoroutine(Discharge());
                 break;
             case SKILL_TYPE.LightningArrow:
-                genPosition = GameManager.Instance.player.rightHand.transform.position;
-
-                PoolingManager.Instance.GetSkillEffect("LightningArrow", genPosition, playerTransform.rotation);
+                StartCoroutine(ExplodeArrow());
                 break;
             case SKILL_TYPE.GravityField:
                 StartCoroutine(GenerateField());
@@ -278,6 +276,21 @@ public class SkillManager : MonoBehaviour
         skillRange.enabled = false;
 
         yield return new WaitForSeconds(2.0f);
+
+        skillRange.enabled = true;
+    }
+
+    private IEnumerator ExplodeArrow()
+    {
+        Transform playerTransform = GameManager.Instance.player.transform;
+        Vector3 skillPos = playerTransform.position;
+
+        GameObject skill = PoolingManager.Instance.GetSkillEffect("LightningArrow", skillPos, playerTransform.rotation);
+        SphereCollider skillRange = skill.GetComponent<SphereCollider>();
+
+        skillRange.enabled = false;
+
+        yield return new WaitForSeconds(3.5f);
 
         skillRange.enabled = true;
     }

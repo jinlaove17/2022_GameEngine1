@@ -2244,7 +2244,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8762065335095825298
 Transform:
   m_ObjectHideFlags: 0
@@ -2318,8 +2318,8 @@ MonoBehaviour:
   rightHand: {fileID: 3287011791379877743}
   duration: 1.4
   magnitude: 0.04
+  deathCam: {fileID: 0}
   speed: 5
-  underAttack: 0
   toggleCameraRotation: 0
   smoothness: 10
   healthBar: {fileID: 0}
