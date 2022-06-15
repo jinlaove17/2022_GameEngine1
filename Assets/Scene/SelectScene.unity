@@ -181,7 +181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -420,7 +420,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330460323}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -430,8 +430,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4, y: -215.75998}
-  m_SizeDelta: {x: 200, y: 37.6}
+  m_AnchoredPosition: {x: 7, y: -346.2486}
+  m_SizeDelta: {x: 272.2422, y: 65.173}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &330460325
 MonoBehaviour:
@@ -875,7 +875,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1225731384}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -883,11 +883,11 @@ RectTransform:
   - {fileID: 2076254751}
   m_Father: {fileID: 666723793}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -176, y: -272}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -173, y: -462.14938}
+  m_SizeDelta: {x: 160, y: 66.7582}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1225731386
 MonoBehaviour:
@@ -953,8 +953,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 603eabcd71ec55e41be090a50f8b646e, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1008,8 +1008,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 184, y: -272}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 187, y: -462.14938}
+  m_SizeDelta: {x: 160, y: 66.7582}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1226661974
 MonoBehaviour:
@@ -1075,8 +1075,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 603eabcd71ec55e41be090a50f8b646e, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1353,7 +1353,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1467,8 +1467,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4, y: -272}
-  m_SizeDelta: {x: 160, y: 74.8764}
+  m_AnchoredPosition: {x: 7, y: -462.14938}
+  m_SizeDelta: {x: 160, y: 166.6204}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2107239588
 MonoBehaviour:
@@ -2310,7 +2310,7 @@ Animator:
   m_GameObject: {fileID: 6498143000034953406}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 374a86c730015ba4299485650860eb39, type: 3}
-  m_Controller: {fileID: 9100000, guid: bdff1909c62eff540a4f8f47c2db0985, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9b51b2da255ca69408b06d83e7a59a15, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -8986,7 +8986,7 @@ Animator:
   m_GameObject: {fileID: 1366681736350875954}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 9f0145e5fd5969545a7f235cba4c6aed, type: 3}
-  m_Controller: {fileID: 9100000, guid: e3ddbb02790457346820e7c83bd09d20, type: 2}
+  m_Controller: {fileID: 9100000, guid: 98e2d2dcc3f8b8a468798f3f70e4732f, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -12232,7 +12232,7 @@ Animator:
   m_GameObject: {fileID: 2685988106561273185}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 115b99b83608e1841bc4d516cd1ab76c, type: 3}
-  m_Controller: {fileID: 9100000, guid: f3de7f1e2f05b45438b2466656cd2f81, type: 2}
+  m_Controller: {fileID: 9100000, guid: ba800cc9da1ed434a94badad96e87efd, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
