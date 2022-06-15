@@ -17,3 +17,5 @@ MonoBehaviour:
     prefab: {fileID: 4743745568765936209, guid: 1c3d322e71a5d9049a689b0401536104, type: 3}
   - monsterName: Olivia
     prefab: {fileID: 6488646497012148880, guid: 98461cc4f99aefd4f949ff66531440ad, type: 3}
+  - monsterName: Pedroso
+    prefab: {fileID: 626027465047292832, guid: 1d513eb672ece8c47bf9a6201594c0d3, type: 3}
