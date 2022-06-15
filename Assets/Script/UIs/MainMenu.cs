@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     public void OnClickStartButton()
     {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("SelectScene");
     }
 
     public void OnClickHelpButton()
