@@ -65,4 +65,16 @@ public class Follow : MonoBehaviour
             realCamera.localPosition = Vector3.Lerp(realCamera.localPosition, dirNormalized * finalDistance, smoothness * Time.deltaTime);
         }
     }
+    public IEnumerator DeathCam()
+    {
+        Vector3 deathPosition = target.position;
+        deathPosition += transform.forward * (-100f);
+        deathPosition += transform.up * 10f;
+        while (true)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, deathPosition, 3.5f * Time.deltaTime);
+            yield return null;
+        }
+    }
+    
 }

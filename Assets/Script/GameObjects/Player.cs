@@ -14,7 +14,10 @@ public class Player : Entity
     private CameraShake cameraShake;
     public float duration;
     public float magnitude;
-
+    
+    // 데스캠
+    public Follow deathCam;
+    
     // 캐릭터 움직임 및 애니메이션
     private Animator animator;
     private CharacterController characterController;
@@ -175,6 +178,7 @@ public class Player : Entity
 
     public IEnumerator DecreaseHealth(float healthDecrement)
     {
+        healthDecrement *= 10;
         Health -= healthDecrement;
 
         if (IsAlive)
@@ -210,6 +214,7 @@ public class Player : Entity
             healthText.text = "0.0%";
 
             animator.SetTrigger("Death");
+            StartCoroutine(deathCam.DeathCam());
         }
     }
 
