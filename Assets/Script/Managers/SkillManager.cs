@@ -45,7 +45,7 @@ public class SkillManager : MonoBehaviour
         // 스킬 레벨을 관리하기 위한 딕셔너리를 생성한다.
         skillLevelDict = new Dictionary<SKILL_TYPE, int>();
 
-        int allSkillCount = skillDB.skillBundles.Length;
+        int allSkillCount = skillDB.skillBundles.Length - 3;
 
         for (int i = 0; i < allSkillCount; ++i)
         {
@@ -55,7 +55,7 @@ public class SkillManager : MonoBehaviour
 
     public bool HasSkill(SKILL_TYPE skillType)
     {
-        if (skillType < 0 || (int)skillType >= skillDB.skillBundles.Length)
+        if (skillType < 0 || (int)skillType >= skillDB.skillBundles.Length - 3)
         {
             Debug.LogError("인덱스를 벗어났습니다.");
 
@@ -82,7 +82,7 @@ public class SkillManager : MonoBehaviour
 
     public int GetSkillLevel(SKILL_TYPE skillType)
     {
-        if (skillType < 0 || (int)skillType >= skillDB.skillBundles.Length)
+        if (skillType < 0 || (int)skillType >= skillDB.skillBundles.Length - 3)
         {
             Debug.LogError("인덱스를 벗어났습니다.");
 
@@ -119,7 +119,7 @@ public class SkillManager : MonoBehaviour
     public int GetSkillSlotIndex(SKILL_TYPE skillType)
     {
         // 해당 스킬을 보유하고 있다면, 그 스킬을 보유한 슬롯의 인덱스를 반환한다.
-        if (skillType < 0 || (int)skillType >= skillDB.skillBundles.Length)
+        if (skillType < 0 || (int)skillType >= skillDB.skillBundles.Length - 3)
         {
             Debug.LogError("인덱스를 벗어났습니다.");
 
@@ -145,7 +145,7 @@ public class SkillManager : MonoBehaviour
         {
             return;
         }
-        else if (skillType < 0 || (int)skillType >= skillDB.skillBundles.Length)
+        else if (skillType < 0 || (int)skillType >= skillDB.skillBundles.Length - 3)
         {
             Debug.LogError("인덱스를 벗어났습니다.");
 
@@ -166,7 +166,7 @@ public class SkillManager : MonoBehaviour
 
     public void IncreaseSkillLevel(SKILL_TYPE skillType)
     {
-        if (skillType < 0 || (int)skillType >= skillDB.skillBundles.Length)
+        if (skillType < 0 || (int)skillType >= skillDB.skillBundles.Length - 3)
         {
             Debug.LogError("인덱스를 벗어났습니다.");
 

@@ -74,7 +74,7 @@ public class SkillSelectionUI : MonoBehaviour
         {
             // 선택될 가능성이 있는 스킬을 저장하는 리스트
             List<SKILL_TYPE> candidateSkillTypeList = new List<SKILL_TYPE>();
-            int allSkillCount = SkillManager.Instance.skillDB.skillBundles.Length;
+            int allSkillCount = SkillManager.Instance.skillDB.skillBundles.Length - 3;
 
             for (int i = 0; i < allSkillCount; ++i)
             {

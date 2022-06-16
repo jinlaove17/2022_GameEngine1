@@ -33,6 +33,8 @@ public class MeteorExplosion : MonoBehaviour
 
                     // 화면 전체에 블러드 이펙트 애니메이션을 활성화한다.
                     GameManager.Instance.systemUI.ShowBloodEffect();
+
+                    SoundManager.Instance.PlaySFX("Hit");
                 }
             }
         }
