@@ -105,13 +105,18 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         SetPlayer();
+
+        SoundManager.Instance.PlayBGM("GameScene");
     }
+
     private void SetPlayer()
     {
         Characters ch = GameObject.Find("SelectContainer").transform.GetComponent<SelectContainer>().crr_character;
 
         player = GameObject.Find("Player").transform.Find(ch.ToString()).GetComponent<Player>();
         player.gameObject.SetActive(true);
+
+        GameObject.Find("ImageMask").transform.GetChild((int)ch).gameObject.SetActive(true);
     }
 
     private void Start()

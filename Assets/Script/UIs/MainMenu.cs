@@ -24,4 +24,9 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Exit Game");
 #endif
     }
+
+    public void MouseOver()
+    {
+        SoundManager.Instance.PlaySFX("Button", 0.5f);
+    }
 }

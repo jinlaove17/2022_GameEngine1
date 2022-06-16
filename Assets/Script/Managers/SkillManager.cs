@@ -228,6 +228,7 @@ public class SkillManager : MonoBehaviour
                 genPosition += 15.0f * playerTransform.forward;
 
                 PoolingManager.Instance.GetSkillEffect("DeadExplode", genPosition, playerTransform.rotation);
+                SoundManager.Instance.PlaySFX("DeadExplode");
                 break;
             case SKILL_TYPE.Genesis:
                 StartCoroutine(GenerateBeam());
@@ -249,7 +250,11 @@ public class SkillManager : MonoBehaviour
 
     private IEnumerator GenerateBeam()
     {
-        WaitForSeconds spawnTime = new WaitForSeconds(0.3f);
+        SoundManager.Instance.PlaySFX("Genesis_Before");
+
+        yield return new WaitForSeconds(2.0f);
+
+        WaitForSeconds spawnTime = new WaitForSeconds(0.5f);
         Transform playerTransform = GameManager.Instance.player.transform;
 
         for (int i = 0; i < 5; ++i)
@@ -260,6 +265,7 @@ public class SkillManager : MonoBehaviour
             skillPos += Random.Range(-10.0f, 10.0f) * playerTransform.right;
 
             PoolingManager.Instance.GetSkillEffect("Genesis", skillPos, Quaternion.identity);
+            SoundManager.Instance.PlaySFX("Genesis_After");
 
             yield return spawnTime;
         }
@@ -277,6 +283,8 @@ public class SkillManager : MonoBehaviour
 
         skillRange.enabled = false;
 
+        SoundManager.Instance.PlaySFX("EnergyDischarge");
+
         yield return new WaitForSeconds(2.0f);
 
         skillRange.enabled = true;
@@ -291,6 +299,7 @@ public class SkillManager : MonoBehaviour
         SphereCollider skillRange = skill.GetComponent<SphereCollider>();
 
         skillRange.enabled = false;
+        SoundManager.Instance.PlaySFX("LightningArrow");
 
         yield return new WaitForSeconds(3.5f);
 
@@ -305,6 +314,7 @@ public class SkillManager : MonoBehaviour
         BoxCollider skillRange = skill.GetComponent<BoxCollider>();
 
         skillRange.enabled = false;
+        SoundManager.Instance.PlaySFX("GravityField");
 
         yield return new WaitForSeconds(0.3f);
 

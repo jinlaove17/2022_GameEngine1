@@ -41,6 +41,8 @@ public class SoundManager : MonoBehaviour
         {
             audioClips.Add(soundData.soundName, soundData.soundClip);
         }
+
+        DontDestroyOnLoad(gameObject);
     }
 
     public void PlayBGM(string clipName, float pitch = 1.0f)

@@ -9704,7 +9704,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2885611791646070305, guid: b7c6378f6ee06a847a369e11f4ba97c7, type: 3}
       propertyPath: startDelay.scalar
-      value: 3.5
+      value: 2.7
       objectReference: {fileID: 0}
     - target: {fileID: 2885611791646070307, guid: b7c6378f6ee06a847a369e11f4ba97c7, type: 3}
       propertyPath: playOnAwake
@@ -9712,7 +9712,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2885611791646070307, guid: b7c6378f6ee06a847a369e11f4ba97c7, type: 3}
       propertyPath: startDelay.scalar
-      value: 3.5
+      value: 2.7
       objectReference: {fileID: 0}
     - target: {fileID: 2885611791646070309, guid: b7c6378f6ee06a847a369e11f4ba97c7, type: 3}
       propertyPath: playOnAwake
@@ -9720,7 +9720,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2885611791646070309, guid: b7c6378f6ee06a847a369e11f4ba97c7, type: 3}
       propertyPath: startDelay.scalar
-      value: 3.5
+      value: 2.7
       objectReference: {fileID: 0}
     - target: {fileID: 2885611791646070311, guid: b7c6378f6ee06a847a369e11f4ba97c7, type: 3}
       propertyPath: playOnAwake
@@ -9728,7 +9728,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2885611791646070311, guid: b7c6378f6ee06a847a369e11f4ba97c7, type: 3}
       propertyPath: startDelay.scalar
-      value: 3.5
+      value: 2.7
       objectReference: {fileID: 0}
     - target: {fileID: 2885611791646070315, guid: b7c6378f6ee06a847a369e11f4ba97c7, type: 3}
       propertyPath: playOnAwake
@@ -9736,7 +9736,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2885611791646070315, guid: b7c6378f6ee06a847a369e11f4ba97c7, type: 3}
       propertyPath: startDelay.scalar
-      value: 3.5
+      value: 2.7
       objectReference: {fileID: 0}
     - target: {fileID: 2885611791659929409, guid: b7c6378f6ee06a847a369e11f4ba97c7, type: 3}
       propertyPath: m_IsActive

@@ -25,3 +25,25 @@ MonoBehaviour:
     soundClip: {fileID: 8300000, guid: 04ff7baf039b0ef41b79263eb3bb49f6, type: 3}
   - soundName: FlameThrower
     soundClip: {fileID: 8300000, guid: 9edcb0cd678737946be47b4c116b67e7, type: 3}
+  - soundName: TitleScene
+    soundClip: {fileID: 8300000, guid: 9e7356f84014ff9409ac84242cee7268, type: 3}
+  - soundName: GameScene
+    soundClip: {fileID: 8300000, guid: dd1d0706720814443aa52e2204be3708, type: 3}
+  - soundName: Button
+    soundClip: {fileID: 8300000, guid: 967d2b249cc442c4a8df203c5d65cc4d, type: 3}
+  - soundName: Change
+    soundClip: {fileID: 8300000, guid: fb5adf2e81482cf45a8f41430c46e47c, type: 3}
+  - soundName: Hit
+    soundClip: {fileID: 8300000, guid: 5cb16caf9f9525043bcbb46d1f4de5b2, type: 3}
+  - soundName: Genesis_Before
+    soundClip: {fileID: 8300000, guid: 4ad68814615be6742b68fe4d27188cfc, type: 3}
+  - soundName: Genesis_After
+    soundClip: {fileID: 8300000, guid: 85f3367d8193db043ab64c564c891b28, type: 3}
+  - soundName: EnergyDischarge
+    soundClip: {fileID: 8300000, guid: c193e0083d0173a48bdd449905bf9545, type: 3}
+  - soundName: DeadExplode
+    soundClip: {fileID: 8300000, guid: fcc69add0bcd4a54ba6df49928f5e5e6, type: 3}
+  - soundName: GravityField
+    soundClip: {fileID: 8300000, guid: 56b2bfcc046b7784797af825ca9676d3, type: 3}
+  - soundName: LightningArrow
+    soundClip: {fileID: 8300000, guid: 65a0b7fd377ec4442950bf128c68859d, type: 3}

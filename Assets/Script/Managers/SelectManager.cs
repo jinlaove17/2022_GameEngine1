@@ -54,6 +54,8 @@ public class SelectManager : MonoBehaviour
         rot = rot - 90f;
         target.transform.rotation = Quaternion.Euler(0, rot, 0);
         nameText.text = crr_character.ToString();
+
+        SoundManager.Instance.PlaySFX("Change");
     }
 
     private void OnNext()
@@ -68,6 +70,8 @@ public class SelectManager : MonoBehaviour
         rot = rot + 90f;
         target.transform.localRotation = Quaternion.Euler(0, rot, 0);
         nameText.text = crr_character.ToString();
+
+        SoundManager.Instance.PlaySFX("Change");
     }
 
     private void LateUpdate()
