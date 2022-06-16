@@ -14,15 +14,19 @@ public enum Characters
 
 public class SelectManager : MonoBehaviour
 {
+    public static Characters crr_character;
+
     public GameObject disk;
     public GameObject target;
-    public static Characters crr_character;
+
     public Button selectButton;
     public Button nextButton;
     public Button previousButton;
+
     public float smoothRotate = 2.0f;
-    public TMPro.TMP_Text tmp_text;
     private float rot = -45.0f;
+
+    public Text nameText;
     public SelectContainer selectContainer;
 
     void Start()
@@ -49,7 +53,7 @@ public class SelectManager : MonoBehaviour
 
         rot = rot - 90f;
         target.transform.rotation = Quaternion.Euler(0, rot, 0);
-        tmp_text.text = crr_character.ToString();
+        nameText.text = crr_character.ToString();
     }
 
     private void OnNext()
@@ -63,7 +67,7 @@ public class SelectManager : MonoBehaviour
 
         rot = rot + 90f;
         target.transform.localRotation = Quaternion.Euler(0, rot, 0);
-        tmp_text.text = crr_character.ToString();
+        nameText.text = crr_character.ToString();
     }
 
     private void LateUpdate()

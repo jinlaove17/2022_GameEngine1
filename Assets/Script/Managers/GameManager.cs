@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     private bool isGameOver = false;
 
-    private double totalTime;
+    private float totalTime;
     public Text totalTimeText;
 
     private int stage;
