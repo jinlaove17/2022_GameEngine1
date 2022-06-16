@@ -49,7 +49,12 @@ public class SkillSelectionUI : MonoBehaviour
                     selectedSkillTypes[selectedIndex] = skillTypeInSlot;
                     skillUINames[selectedIndex].text = skill.skillName + " (LV." + skillLevel + ")";
                     skillIcons[selectedIndex].sprite = skill.skillIcon;
-                    skillUIInfo[selectedIndex].text = skill.skillInfo;
+
+                    float currentDamage = skillLevel * skill.skillDamage;
+                    float upgradedDamage = (skillLevel + 1) * skill.skillDamage;
+                    float damageInreament = upgradedDamage - currentDamage;
+
+                    skillUIInfo[selectedIndex].text = skill.skillInfo.Replace("O", upgradedDamage + "(+" + damageInreament + ")");
 
                     selectedIndex += 1;
                 }
