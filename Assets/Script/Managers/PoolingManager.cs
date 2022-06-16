@@ -106,9 +106,9 @@ public class PoolingManager : MonoBehaviour
         {
             GameObject possibleObject = managedObjects[objectName].FirstOrDefault(obj => !obj.activeInHierarchy);
 
-            possibleObject.SetActive(true);
             possibleObject.transform.position = position;
             possibleObject.transform.rotation = quaternion;
+            possibleObject.SetActive(true);
 
             // 보유한 파티클 시스템을 재시작 하도록 설정해준다.
             foreach (ParticleSystem particleSystem in possibleObject.GetComponentsInChildren<ParticleSystem>())

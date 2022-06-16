@@ -13,10 +13,10 @@ public class MonsterGenerator : MonoBehaviour
     private const float genPeriod = 3.0f;
 
     private int monsterCount = 0;
-    private const int maxMonsterCount = 30;
+    private const int maxMonsterCount = 5;
 
-    private const int minGenCountPerCycle = 5;
-    private const int maxGenCountPerCycle = 10;
+    private const int minGenCountPerCycle = 1;
+    private const int maxGenCountPerCycle = 5;
 
     public IEnumerator Spawn()
     {
@@ -26,7 +26,21 @@ public class MonsterGenerator : MonoBehaviour
         {
             if (GameManager.Instance.Stage > 0)
             {
-                if (monsterCount < maxMonsterCount)
+                if (GameManager.Instance.Stage == 3)
+                {
+                    if (monsterCount < 1)
+                    {
+                        Vector3 genPosition = new Vector3(0.0f, 1.5f, 80.0f + 108.0f * (GameManager.Instance.Stage - 1));
+                        Quaternion genRotation = Quaternion.identity;
+                        PoolingManager.Instance.GetMonster("Pedroso", genPosition, genRotation);
+
+                        monsterCount += 1;
+                        GameManager.Instance.RestMonsterCount += 1;
+
+                        SoundManager.Instance.PlaySFX("ZombieGen");
+                    }
+                }
+                else if (monsterCount < maxMonsterCount)
                 {
                     int genCountPerCycle = Random.Range(minGenCountPerCycle, maxGenCountPerCycle + 1);
 

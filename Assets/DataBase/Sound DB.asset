@@ -49,3 +49,9 @@ MonoBehaviour:
     soundClip: {fileID: 8300000, guid: 65a0b7fd377ec4442950bf128c68859d, type: 3}
   - soundName: OpenGate
     soundClip: {fileID: 8300000, guid: b1f6551444785f041b9890403c38d33b, type: 3}
+  - soundName: BossSkillPoison
+    soundClip: {fileID: 8300000, guid: b4e37aa591f450543a8db9adfde8f1d6, type: 3}
+  - soundName: BossSkillExplosion
+    soundClip: {fileID: 8300000, guid: d01bcfedfc5f2b1498d37451f7ced218, type: 3}
+  - soundName: BossSkillMeteor
+    soundClip: {fileID: 8300000, guid: 39cdcc0332e294e49b7be05e3cbe0f86, type: 3}
