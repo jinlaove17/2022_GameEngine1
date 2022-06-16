@@ -18,10 +18,10 @@ public class GameManager : MonoBehaviour
     private double totalTime;
     public Text totalTimeText;
 
-    public Text totalscoreText; //점수를 표시하는 Text객체를 에디터에서 받아옵니다.
-    public Text timescoreText; //점수를 표시하는 Text객체를 에디터에서 받아옵니다.
-    public Text dealscoreText; //점수를 표시하는 Text객체를 에디터에서 받아옵니다.
-    public Text hitscoreText; //점수를 표시하는 Text객체를 에디터에서 받아옵니다.
+    public Text totalscoreText; //모든 점수를 표시하는 Text객체를 에디터에서 받아옵니다.
+    public Text timescoreText; //시간 점수를 표시하는 Text객체를 에디터에서 받아옵니다.
+    public Text dealscoreText; //데미지 점수를 표시하는 Text객체를 에디터에서 받아옵니다.
+    public Text hitscoreText; //피격 점수를 표시하는 Text객체를 에디터에서 받아옵니다.
 
     private double totalscore= 0; //점수를 관리합니다.
     private double timescore = 1000;
@@ -145,7 +145,7 @@ public class GameManager : MonoBehaviour
 
         totalTime += Time.deltaTime;
         totalTimeText.text = TimeSpan.FromSeconds(totalTime).ToString(@"mm\:ss");
-        GameManager.instance.TimeScore(1);
+        GameManager.instance.TimeScore(1); //외부에서 시간점수 더해주는 코드, 다른것도 마찬가지
 
     }
 
