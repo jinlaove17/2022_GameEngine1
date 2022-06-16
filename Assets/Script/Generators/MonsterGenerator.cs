@@ -75,6 +75,8 @@ public class MonsterGenerator : MonoBehaviour
                             break;
                         }
                     }
+
+                    SoundManager.Instance.PlaySFX("ZombieGen");
                 }
 
                 yield return genTime;

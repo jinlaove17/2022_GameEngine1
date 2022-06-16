@@ -131,11 +131,8 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (stage > 0)
-        {
-            totalTime += Time.deltaTime;
-            totalTimeText.text = TimeSpan.FromSeconds(totalTime).ToString(@"mm\:ss");
-        }
+        totalTime += Time.deltaTime;
+        totalTimeText.text = TimeSpan.FromSeconds(totalTime).ToString(@"mm\:ss");
     }
 
     public void IncreasePlayerExp(float expIncreament)
