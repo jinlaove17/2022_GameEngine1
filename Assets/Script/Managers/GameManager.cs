@@ -104,6 +104,14 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        SetPlayer();
+    }
+    private void SetPlayer()
+    {
+        Characters ch = GameObject.Find("SelectContainer").transform.GetComponent<SelectContainer>().crr_character;
+
+        GameObject.Find("Entity").transform.Find("Player").transform.Find(ch.ToString()).gameObject.SetActive(true);
+
         player = GameObject.FindWithTag("Player").transform.GetComponent<Player>();
     }
 
