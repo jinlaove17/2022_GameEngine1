@@ -13,5 +13,15 @@ MonoBehaviour:
   m_Name: Sound DB
   m_EditorClassIdentifier: 
   soundBundles:
+  - soundName: LevelUp
+    soundClip: {fileID: 8300000, guid: 617040e4dc176e84a9d43189dec98cca, type: 3}
   - soundName: ZombieGen
     soundClip: {fileID: 8300000, guid: 4453e6786b252aa44a94329730d3bfce, type: 3}
+  - soundName: ZombiePain
+    soundClip: {fileID: 8300000, guid: b6596ccb7f410d641a6e02df3fd1a755, type: 3}
+  - soundName: ZombieDeath
+    soundClip: {fileID: 8300000, guid: 7aec1c67368a06d45a71dd1a9f17d098, type: 3}
+  - soundName: ThrowFire
+    soundClip: {fileID: 8300000, guid: 04ff7baf039b0ef41b79263eb3bb49f6, type: 3}
+  - soundName: FlameThrower
+    soundClip: {fileID: 8300000, guid: 9edcb0cd678737946be47b4c116b67e7, type: 3}

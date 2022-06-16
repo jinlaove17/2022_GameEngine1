@@ -61,7 +61,7 @@ public class Player : Entity
 
     private void Start()
     {
-        SkillManager.Instance.RegisterSkill(SKILL_TYPE.ThrowFire);
+        SkillManager.Instance.RegisterSkill(SKILL_TYPE.FlameThrowing);
     }
 
     private void Update()

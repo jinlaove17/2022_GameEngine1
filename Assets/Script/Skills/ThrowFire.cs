@@ -16,7 +16,7 @@ public class ThrowFire : BaseSkill
 
     private void OnCollisionEnter(Collision collision)
     {
-        gameObject.SetActive(false);
+       // gameObject.SetActive(false);
     }
 
     public override void UseSkill()

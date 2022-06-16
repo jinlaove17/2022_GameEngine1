@@ -120,6 +120,8 @@ public class SkillSelectionUI : MonoBehaviour
         Time.timeScale = 0.0f;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        SoundManager.Instance.PlaySFX("LevelUp");
     }
 
     public void OnClickSelectButton(int index)

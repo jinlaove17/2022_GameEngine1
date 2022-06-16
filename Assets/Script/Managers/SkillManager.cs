@@ -220,6 +220,8 @@ public class SkillManager : MonoBehaviour
                 fireRigidbody.velocity = Vector3.zero;
                 fireRigidbody.angularVelocity = Vector3.zero;
                 fireRigidbody.AddForce(15.0f * GameManager.Instance.player.transform.forward, ForceMode.Impulse);
+
+                SoundManager.Instance.PlaySFX("ThrowFire");
                 break;
             case SKILL_TYPE.DeadExplode:
                 genPosition = playerTransform.position;
@@ -320,6 +322,8 @@ public class SkillManager : MonoBehaviour
         const float duration = 1.5f;
         float centerDeltaZPerFrame = (5.0f / duration) * Time.deltaTime;
         float sizeDeltaZPerFrame = ((10.0f - skillRange.size.z) / duration) * Time.deltaTime;
+
+        SoundManager.Instance.PlaySFX("FlameThrower");
 
         while (skillRange.center.z < 5.0f || skillRange.size.z < 10.0f)
         {

@@ -81,7 +81,7 @@ public class Monster : Entity
     {
         Player player = GameManager.Instance.player;
 
-        if (player.IsAlive && !player.IsHit)
+        if (player.IsAlive && !player.IsHit && navMeshAgent.enabled)
         {
             if (navMeshAgent.remainingDistance < 1.0f)
             {
@@ -110,14 +110,19 @@ public class Monster : Entity
         if (IsAlive)
         {
             animator.SetTrigger("Hit");
+
+            SoundManager.Instance.PlaySFX("ZombiePain");
         }
         else
         {
             navMeshAgent.enabled = false;
+
             animator.SetTrigger("Die");
 
             GameManager.Instance.RestMonsterCount -= 1;
             GameManager.Instance.IncreasePlayerExp(100.0f);
+
+            SoundManager.Instance.PlaySFX("ZombieDeath");
         }
 
         yield return new WaitForSeconds(skill.hitDuration);
@@ -135,6 +140,5 @@ public class Monster : Entity
         yield return new WaitForSeconds(1.0f);
 
         transform.gameObject.SetActive(false);
-        navMeshAgent.enabled = false;
     }
 }
