@@ -33,16 +33,11 @@ public class SelectManager : MonoBehaviour
         nextButton.onClick.AddListener(OnNext);
     }
 
-    void Update()
-    {
-        tmp_text.text = crr_character.ToString();
-    }
-
     private void OnSelect()
     {
-        print("I'm SelectButton");
         SceneManager.LoadScene("GameScene");
     }
+
     private void OnPrevious()
     {
         if (crr_character == Characters.Jody)
@@ -54,7 +49,9 @@ public class SelectManager : MonoBehaviour
 
         rot = rot - 90f;
         target.transform.rotation = Quaternion.Euler(0, rot, 0);
+        tmp_text.text = crr_character.ToString();
     }
+
     private void OnNext()
     {
         if (crr_character == Characters.Remy)
@@ -64,10 +61,11 @@ public class SelectManager : MonoBehaviour
 
         selectContainer.Set_Character(crr_character);
 
-
         rot = rot + 90f;
         target.transform.localRotation = Quaternion.Euler(0, rot, 0);
+        tmp_text.text = crr_character.ToString();
     }
+
     private void LateUpdate()
     {
         float currTAngle = Mathf.LerpAngle(disk.transform.eulerAngles.y, target.transform.eulerAngles.y,

@@ -110,9 +110,8 @@ public class GameManager : MonoBehaviour
     {
         Characters ch = GameObject.Find("SelectContainer").transform.GetComponent<SelectContainer>().crr_character;
 
-        GameObject.Find("Entity").transform.Find("Player").transform.Find(ch.ToString()).gameObject.SetActive(true);
-
-        player = GameObject.FindWithTag("Player").transform.GetComponent<Player>();
+        player = GameObject.Find("Player").transform.Find(ch.ToString()).GetComponent<Player>();
+        player.gameObject.SetActive(true);
     }
 
     private void Start()
