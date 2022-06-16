@@ -18,6 +18,16 @@ public class GameManager : MonoBehaviour
     private double totalTime;
     public Text totalTimeText;
 
+    public Text totalscoreText; //점수를 표시하는 Text객체를 에디터에서 받아옵니다.
+    public Text timescoreText; //점수를 표시하는 Text객체를 에디터에서 받아옵니다.
+    public Text dealscoreText; //점수를 표시하는 Text객체를 에디터에서 받아옵니다.
+    public Text hitscoreText; //점수를 표시하는 Text객체를 에디터에서 받아옵니다.
+
+    private double totalscore= 0; //점수를 관리합니다.
+    private double timescore = 1000;
+    private double dealscore = 0;
+    private double hitscore = 0;
+    
     private int stage;
     private int restMonsterCount;
 
@@ -87,15 +97,15 @@ public class GameManager : MonoBehaviour
 
                 if (stage <= 2)
                 {
-                    // ���� ���������� ���� ���� ���� Ʈ���Ÿ� Ȱ��ȭ��Ų��.
+                    // ���� ���������� ���� ���� ���� Ʈ���Ÿ� Ȱ��ȭ��Ų��.
                     triggers.transform.GetChild(0).GetChild(2 * stage).gameObject.SetActive(true);
                     triggers.transform.GetChild(0).GetChild(2 * stage + 1).gameObject.SetActive(true);
 
-                    // ���� ���������� ���� ������ �ݴ� Ʈ���Ÿ� Ȱ��ȭ��Ų��.
+                    // ���� ���������� ���� ������ �ݴ� Ʈ���Ÿ� Ȱ��ȭ��Ų��.
                     triggers.transform.GetChild(1).GetChild(stage).gameObject.SetActive(true);
 
-                    systemUI.mainGuideText.text = "���� ���������� ��� ���͸� �����߽��ϴ�!";
-                    systemUI.subGuideText.text = "���� ���������� �̵��ϼ���!";
+                    systemUI.mainGuideText.text = "���� ���������� ��� ���͸� �����߽��ϴ�!";
+                    systemUI.subGuideText.text = "���� ���������� �̵��ϼ���!";
                     systemUI.ShowGuide();
                 }
             }
@@ -105,6 +115,8 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         player = GameObject.FindWithTag("Player").transform.GetComponent<Player>();
+        if (!instance) //정적으로 자신을 체크합니다.
+            instance = this; //정적으로 자신을 저장합니다.
     }
 
     private void Start()
@@ -133,6 +145,8 @@ public class GameManager : MonoBehaviour
 
         totalTime += Time.deltaTime;
         totalTimeText.text = TimeSpan.FromSeconds(totalTime).ToString(@"mm\:ss");
+        GameManager.instance.TimeScore(1);
+
     }
 
     public void IncreasePlayerExp(float expIncreament)
@@ -144,5 +158,28 @@ public class GameManager : MonoBehaviour
     {
         Stage += 1;
         monsterGenerator.PrepareNextStage();
+    }
+    
+    public void TimeScore(int num) //점수를 추가해주는 함수를 만들어 줍니다.
+    {
+        timescore += num * -0.01;
+        totalscore += num;
+        timescoreText.text = "" + Math.Ceiling(timescore); //텍스트에 반영합니다.
+    }
+    public void DealScore(int num) //점수를 추가해주는 함수를 만들어 줍니다.
+    {
+        dealscore += num; //점수를 더해줍니다.
+        totalscore += num;
+        dealscoreText.text = "" + Math.Ceiling(dealscore); //텍스트에 반영합니다.
+    }
+    public void HitScore(int num) //점수를 추가해주는 함수를 만들어 줍니다.
+    {
+        hitscore += num; //점수를 더해줍니다.
+        totalscore += num;
+        hitscoreText.text = "Score : " + Math.Ceiling(hitscore); //텍스트에 반영합니다.
+    }
+    public void TotalScore() //점수를 추가해주는 함수를 만들어 줍니다.
+    {
+        totalscoreText.text = "Score : " + Math.Ceiling(totalscore); //텍스트에 반영합니다.
     }
 }
