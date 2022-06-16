@@ -26,6 +26,8 @@ public class OpenDoor : MonoBehaviour
                 GameManager.Instance.systemUI.mainGuideText.text = mainGuideText;
                 GameManager.Instance.systemUI.subGuideText.text = subGuideText;
                 GameManager.Instance.systemUI.ShowGuide();
+
+                SoundManager.Instance.PlaySFX("OpenGate");
             }
         }
     }

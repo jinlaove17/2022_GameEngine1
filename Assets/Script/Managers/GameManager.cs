@@ -105,8 +105,6 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         SetPlayer();
-
-        SoundManager.Instance.PlayBGM("GameScene");
     }
 
     private void SetPlayer()
@@ -125,6 +123,8 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine(monsterGenerator.Spawn());
         }
+
+        SoundManager.Instance.PlayBGM("GameScene");
     }
 
     private void Update()

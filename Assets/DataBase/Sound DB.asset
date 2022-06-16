@@ -47,3 +47,5 @@ MonoBehaviour:
     soundClip: {fileID: 8300000, guid: 56b2bfcc046b7784797af825ca9676d3, type: 3}
   - soundName: LightningArrow
     soundClip: {fileID: 8300000, guid: 65a0b7fd377ec4442950bf128c68859d, type: 3}
+  - soundName: OpenGate
+    soundClip: {fileID: 8300000, guid: b1f6551444785f041b9890403c38d33b, type: 3}
