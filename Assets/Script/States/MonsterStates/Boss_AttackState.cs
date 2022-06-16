@@ -23,11 +23,12 @@ public class Boss_AttackState : State<Boss>
     {
         if (Entity.IsAlive && Entity.navMeshAgent.enabled)
         {
+            Entity.recentTransition = 0.0f;
             Entity.transform.LookAt(GameManager.Instance.player.transform.position);
             Entity.animator.SetBool("IS_CHASE", false);
-            Entity.isAttack = true;
+            Entity.IsAttack = false;
             Entity.navMeshAgent.isStopped = true;
-                        
+            Entity.isAttackFinished = false;
         }
     }
 
@@ -38,23 +39,31 @@ public class Boss_AttackState : State<Boss>
 
     public override void LogicUpdate(Boss Entity)
     {
+        Entity.recentTransition += Time.deltaTime;
         if (Entity.IsAlive && Entity.navMeshAgent.enabled)
         {
-            int ranAction = UnityEngine.Random.Range(0, 3);
-            switch (ranAction)
+            if (!Entity.IsAttack)
             {
-                case 0:
-                    Entity.ThrowPoison();
-                    break;
-                case 1:
-                    Entity.SpellMeteor();
-                    break;
-                case 2:
-                    Entity.Explosion();
-                    break;
+                Entity.IsAttack = true;
+                int ranAction = UnityEngine.Random.Range(0, 3);
+                switch (ranAction)
+                {
+                    case 0:
+                        Entity.ThrowPoison();
+                        break;
+                    case 1:
+                        Entity.SpellMeteor();
+                        break;
+                    case 2:
+                        Entity.Explosion();
+                        break;
+                }
             }
 
-            Entity.stateMachine.ChangeState(Boss_ChaseState.Instance);
+            if (Entity.isAttackFinished)
+            {
+                Entity.stateMachine.ChangeState(Boss_ChaseState.Instance);
+            }
         }
     }
 

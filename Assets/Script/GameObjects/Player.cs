@@ -176,15 +176,6 @@ public class Player : Entity
         SkillManager.Instance.GenerateEffect(animationEvent.intParameter);
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.collider.CompareTag("BossSkill"))
-        {
-            Debug.Log("보스스킬 맞음");
-            StartCoroutine(DecreaseHealth(10));
-        }
-    }
-
     public IEnumerator DecreaseHealth(float healthDecrement)
     {
         Health -= healthDecrement;

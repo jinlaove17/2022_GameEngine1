@@ -23,12 +23,11 @@ public class Boss_ChaseState : State<Boss>
     {
         if (Entity.IsAlive && Entity.navMeshAgent.enabled)
         {
-            Entity.navMeshAgent.enabled = true;
             Entity.recentTransition = 0.0f;
             Entity.navMeshAgent.isStopped = false;
 
-            Entity.animator.SetTrigger("IS_CHASE");
             Entity.animator.SetBool("IS_CHASE", true);
+            Entity.IsAttack = false;
         }
     }
 
@@ -39,13 +38,15 @@ public class Boss_ChaseState : State<Boss>
 
     public override void LogicUpdate(Boss Entity)
     {
-        Entity.recentTransition += Time.deltaTime; 
+        Entity.recentTransition += Time.deltaTime;
+
+        
         Entity.navMeshAgent.SetDestination(GameManager.Instance.player.transform.position);
+        
 
         if (Entity.IsAlive && Entity.navMeshAgent.enabled)
-        {
-            
-            if (0.0f < Entity.navMeshAgent.remainingDistance && Entity.navMeshAgent.remainingDistance < 5.0f && Entity.recentTransition > 5.0f)
+        {            
+            if (0.0f < Entity.navMeshAgent.remainingDistance && Entity.navMeshAgent.remainingDistance < 10.0f )
             {
                Entity.stateMachine.ChangeState(Boss_AttackState.Instance);
             }

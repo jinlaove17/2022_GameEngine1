@@ -23,7 +23,7 @@ public class Boss : Entity
 
     public GameObject[] skillObj;
 
-    public bool isAttack;
+    public bool isAttackFinished;
     public float recentTransition = 0.0f;
     private int ranAction = 0;
 
@@ -61,6 +61,7 @@ public class Boss : Entity
             stateMachine.LogicUpdate();
         }
     }
+
     private void FixedUpdate()
     {
         stateMachine.PhysicsUpdate();
@@ -131,8 +132,7 @@ public class Boss : Entity
 
     void AttackDisable()
     {
-        isAttack = false;
-        navMeshAgent.isStopped = false;
+        isAttackFinished = true;
     }
 
     public void ThrowPoison()
@@ -143,19 +143,29 @@ public class Boss : Entity
 
     IEnumerator Poison()
     {
+        Player player = GameManager.Instance.player;
         yield return new WaitForSeconds(0.1f);
         for (int i = 0; i < 3; i++)
         {
             Vector3 skillPos = GameManager.Instance.player.transform.position;
-
-            //skillPos += GameManager.Instance.player.transform.right * 3 * (i - 1);
-
-            skillPos.y = skillPos.y - 1.0f;
-
-
+            float posX = UnityEngine.Random.Range(-5f, 5f);
+            float posY = UnityEngine.Random.Range(-5f, 5f);
+            skillPos += GameManager.Instance.player.transform.right * posX;
+            skillPos += GameManager.Instance.player.transform.forward * posY;
 
             GameObject instantPoison = Instantiate(skillObj[0], skillPos, Quaternion.identity);
-            instantPoison.tag = "BossSkill";
+
+            if (player.IsAlive && !player.IsHit)
+            {
+                if (Vector3.Distance(instantPoison.transform.position, player.transform.position) < 2.0f)
+                {
+                    // 공격 애니메이션이 끝날 때쯤 플레이어에게 피해를 주어야 하기 때문에, 애니메이션 이벤트를 활용한다.
+                    StartCoroutine(player.DecreaseHealth(10));
+
+                    // 화면 전체에 블러드 이펙트 애니메이션을 활성화한다.
+                    GameManager.Instance.systemUI.ShowBloodEffect();
+                }
+            }
             yield return new WaitForSeconds(0.4f);
         }
     }
@@ -168,6 +178,7 @@ public class Boss : Entity
 
     IEnumerator Meteor()
     {
+
         for (int i = 0; i <20; i++)
         { 
             yield return new WaitForSeconds(0.1f);
@@ -179,26 +190,46 @@ public class Boss : Entity
             skillPos += transform.right * posX;
             skillPos += transform.forward * posY;
             skillPos += transform.up * posZ;
-            
+
             Vector3 skillVec = transform.forward;
             skillVec.y = -0.8f;
             
             GameObject instantMeteor = Instantiate(skillObj[1], skillPos, transform.rotation);
-            instantMeteor.tag = "BossSkill";
             Rigidbody rigidMeteor = instantMeteor.GetComponent<Rigidbody>();
             rigidMeteor.AddForce(skillVec * 20, ForceMode.Impulse);
+
+            
+           
         }
     }
-
     public void Explosion()
+    {
+        StartCoroutine(Explosions());
+    }
+    IEnumerator Explosions()
     {
         Vector3 skillPos = GameManager.Instance.player.transform.position;
         skillPos.y = 1f;
         GameObject instantExplosion = Instantiate(skillObj[2], skillPos, GameManager.Instance.player.transform.rotation);
-        instantExplosion.tag = "BossSkill";
+
         animator.SetTrigger("DO_ATTACK3");
+        
+        Player player = GameManager.Instance.player;
+
+        yield return new WaitForSeconds(2.1f);
+
+        if (player.IsAlive && !player.IsHit)
+        {
+            if (Vector3.Distance(instantExplosion.transform.position, player.transform.position) < 5.0f)
+            {
+                // 공격 애니메이션이 끝날 때쯤 플레이어에게 피해를 주어야 하기 때문에, 애니메이션 이벤트를 활용한다.
+                StartCoroutine(player.DecreaseHealth(10));
+
+                // 화면 전체에 블러드 이펙트 애니메이션을 활성화한다.
+                GameManager.Instance.systemUI.ShowBloodEffect();
+            }
+        }
     }
 
 }
-
 

@@ -26,7 +26,19 @@ public class MonsterGenerator : MonoBehaviour
         {
             if (GameManager.Instance.Stage > 0)
             {
-                if (monsterCount < maxMonsterCount)
+                if (GameManager.Instance.Stage == 2)
+                {
+                    if (monsterCount < 1)
+                    {
+                        Vector3 genPosition = new Vector3(40.0f, 1.5f, 80.0f + 108.0f * (GameManager.Instance.Stage - 1));
+                        Quaternion genRotation = Quaternion.identity;
+                        PoolingManager.Instance.GetMonster("Pedroso", genPosition, genRotation);
+
+                        monsterCount += 1;
+                        GameManager.Instance.RestMonsterCount += 1;
+                    }
+                }
+                else if (monsterCount < maxMonsterCount)
                 {
                     int genCountPerCycle = Random.Range(minGenCountPerCycle, maxGenCountPerCycle + 1);
 
